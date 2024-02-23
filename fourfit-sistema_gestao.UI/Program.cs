@@ -9,7 +9,10 @@ var builder = WebApplication.CreateBuilder(args);
 string strConnection = builder.Configuration.GetConnectionString("DefaultConnection");
 builder.Services.AddDbContext<DataContext>(option =>
 {
-    option.UseSqlServer(strConnection);
+    option.UseSqlServer(strConnection,
+    option =>option.EnableRetryOnFailure());
+   
+
 });
 
 builder.Services.AddIdentity<User, IdentityRole>(option =>

@@ -182,8 +182,8 @@ namespace fourfit.sistema_gestao.Migrations
                         .IsConcurrencyToken()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("Cpf")
-                        .HasColumnType("int");
+                    b.Property<long>("Cpf")
+                        .HasColumnType("bigint");
 
                     b.Property<DateTime>("DataNacimento")
                         .HasColumnType("datetime2");

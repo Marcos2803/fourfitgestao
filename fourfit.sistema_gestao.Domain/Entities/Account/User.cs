@@ -5,7 +5,7 @@ namespace fourfit.sistema_gestao.Domain.Entities.Account
     public class User:IdentityUser
     {
         public string NomeCompleto { get; set; }
-        public int Cpf { get; set; }
+        public long Cpf { get; set; }
         public string ?Celular { get; set; }
         public string ?Cep { get; set; }
         public string? Endereco { get; set; }
