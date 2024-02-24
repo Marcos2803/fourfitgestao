@@ -23,7 +23,7 @@ namespace fourfit.sistema_gestao.Mapping
                 .IsRequired();
 
             builder.Property(x => x.Celular)
-                .HasColumnType("varchar(15)")
+                .HasColumnType("varchar(16)")
                 .IsRequired();
 
             builder.Property(x => x.Endereco)
