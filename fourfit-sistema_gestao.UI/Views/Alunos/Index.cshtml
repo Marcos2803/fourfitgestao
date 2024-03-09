@@ -1,0 +1,61 @@
+﻿@model IEnumerable<fourfit.sistema_gestao.Domain.Entities.Alunos.EntidadeAlunos>
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div class="container">
+    <h2>Gerenciador de Alunos @User.Identity.Name</h2>
+    <hr>
+    
+    <button type="button" onclick="location.href='@Url.Action("CadastroAlunos","Alunos")'" class="btn btn-outline-dark"> <i class="bi bi-plus"></i> Novo Aluno</button>
+    <br /><br />
+    <div class="card">
+        
+       
+        <div class="card-header">
+         <div class="card-title">
+
+          
+         </div>
+      </div>
+        <div class="card-body">
+            @TempData["Msg"]
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Foto</th>
+                        <th>Usuário</th>
+                        <th>Data Ínicio</th>
+                        <th>Data Fim</th>
+                        <th>Ativo</th>
+                        <th>Tipo de Plano</th>
+                        <th>Tipo Pagamento</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@item.Foto</td>
+                            <td>@item.UserId</td>
+                            <td>@item.DataInicio.ToString("dd/MM/yyyy")</td>
+                            <td>@item.DataFim</td>
+                            @if (item.Ativo == true)
+                            {
+                                <td style="color:darkslategrey">ATIVO</td>
+                            }
+                            else
+                            {
+                                <td style="color:red">INATIVO</td>
+                            }
+
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</div>
+
+

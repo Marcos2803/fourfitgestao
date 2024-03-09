@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "J0X0nH99DXU698o9/CdgbLUfeIFpr5eRCcy0u1oyRIQ=",
+  "Hash": "So9jPPZoFOc6a+OKXOKqzEaxzO39VaFXjr/HdFIzKF4=",
   "Source": "fourfit-sistema_gestao.UI",
   "BasePath": "_content/fourfit-sistema_gestao.UI",
   "Mode": "Default",
@@ -129,6 +129,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\js\\cadastro.js"
+    },
+    {
+      "Identity": "C:\\projetos\\fourfit-sistema_gestao\\fourfit-sistema_gestao.UI\\wwwroot\\js\\CadastroAluno.js",
+      "SourceId": "fourfit-sistema_gestao.UI",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\projetos\\fourfit-sistema_gestao\\fourfit-sistema_gestao.UI\\wwwroot\\",
+      "BasePath": "_content/fourfit-sistema_gestao.UI",
+      "RelativePath": "js/CadastroAluno.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\js\\CadastroAluno.js"
     },
     {
       "Identity": "C:\\projetos\\fourfit-sistema_gestao\\fourfit-sistema_gestao.UI\\wwwroot\\js\\site.js",

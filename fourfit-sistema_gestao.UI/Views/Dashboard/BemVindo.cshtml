@@ -5,5 +5,25 @@
 
 <div class="container">
     <label>Bem vindo, @User.Identity.Name</label>
+    <div class="card">
+        <div class="card-header">
+            <div class="card-title">
+                <label>Gerenciar Usuários</label>
+            </div>
+        </div>
+        <div class="card-body">
+            <form asp-controller="Alunos" asp-action="Cadadastrar" method="post">
+               <div class="row">
+                  <div class="col-sm-6">
+                     <button type="button" class="btn btn-success">Gerenciar Alunos</button>
+                  </div>
+                    <div class="col-sm-6">
+                        <button type="button" class="btn btn-warning">Gerenciar Alunos</button>
+                    </div>
+               </div>
+            </form>
+        </div>
+    </div>
+
 </div>
 

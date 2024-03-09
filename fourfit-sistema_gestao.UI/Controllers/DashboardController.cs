@@ -5,7 +5,7 @@ namespace fourfit_sistema_gestao.UI.Controllers
 {
     public class DashboardController : Controller
     {
-        [Authorize]
+       [Authorize]
         public IActionResult BemVindo()
         {
             ///fsdfsdfsfsf

@@ -23,6 +23,9 @@ namespace fourfit.sistema_gestao.Context
         public DbSet<Equipamentos> Equipamentos { get; set; }
         public DbSet<EntidadeAlunos> Alunos { get; set; }
         public DbSet<Genero> Genero { get; set; }
+        public DbSet<TipoPagamento> TipoPagamento { get; set; }
+        public DbSet<TipoPagamentoPc> TipoPagamentoPc { get; set; }
+        public DbSet<TipoPlano> TipoPlano { get; set; }
         #endregion
         protected override void OnModelCreating(ModelBuilder builder)
         {

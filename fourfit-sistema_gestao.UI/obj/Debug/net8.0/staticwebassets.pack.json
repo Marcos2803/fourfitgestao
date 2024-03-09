@@ -17,6 +17,10 @@
       "PackagePath": "staticwebassets\\images\\logo.png"
     },
     {
+      "Id": "C:\\projetos\\fourfit-sistema_gestao\\fourfit-sistema_gestao.UI\\wwwroot\\js\\CadastroAluno.js",
+      "PackagePath": "staticwebassets\\js\\CadastroAluno.js"
+    },
+    {
       "Id": "C:\\projetos\\fourfit-sistema_gestao\\fourfit-sistema_gestao.UI\\wwwroot\\js\\cadastro.js",
       "PackagePath": "staticwebassets\\js\\cadastro.js"
     },
