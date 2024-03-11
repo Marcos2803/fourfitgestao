@@ -13,40 +13,53 @@ namespace fourfit_sistema_gestao.UI.Controllers
 
         public AlunosController(DataContext dbContext)
         {
-           _dbContext = dbContext;
+            _dbContext = dbContext;
         }
         public async Task<IActionResult> Index()
         {
-            var consulta = (from usuarios in _dbContext.Usuarios
-                            join alunos in _dbContext.Alunos on usuarios.Id equals alunos.UserId
-                            join tipoPl in _dbContext.TipoPlano on alunos.TipoPlanoId equals tipoPl.Id
-                            join tipoPg in _dbContext.TipoPagamento on alunos.TipoPagamentoId equals tipoPg.Id
-                            join tipoPlPc in _dbContext.TipoPagamentoPc on tipoPg.IdTipoPagamento equals tipoPlPc.Id
-                            select usuarios).ToList();
 
-           var res = consulta.Select(x=> new {
-            x.NomeCompleto,
-            x.DataNacimento,
+            //var consulta = (from usuarios in _dbContext.Usuarios
+            //                join alunos in _dbContext.Alunos on usuarios.Id equals alunos.UserId
+            //                join tipoPl in _dbContext.TipoPlano on alunos.TipoPlanoId equals tipoPl.Id
+            //                join tipoPg in _dbContext.TipoPagamento on alunos.TipoPagamentoId equals tipoPg.Id
+            //                join tipoPlPc in _dbContext.TipoPagamentoPc on tipoPg.IdTipoPagamento equals tipoPlPc.Id
+            //                select usuarios).ToList();
+            string strSql = string.Format(@"SELECT
+                                            C.Id,
+                                            B.Foto,
+                                            A.NomeCompleto,
+                                            B.Ativo,
+                                            C.DescTipoPlano,
+                                            E.Tipo,
+                                            B.DataInicio,
+                                            B.DataFim
+                                            FROM AspNetUsers A
+                                            INNER JOIN Alunos B ON A.Id = B.UserId
+                                            INNER JOIN TipoPlano C ON B.TipoPlanoId = C.Id
+                                            INNER JOIN TipoPagamento D ON B.TipoPagamentoId = D.Id
+                                            INNER JOIN TipoPagamentoPc E ON D.IdTipoPagamento= E.Id
+                                            ");
+            var resultado = _dbContext.AlunosPesquisa.FromSqlRaw(strSql).ToList();
             
-           });
-            
-            var result = _dbContext.Usuarios.Include(x => x.Alunos).Where(x => x.Alunos.FirstOrDefault().UserId == x.Id).ToList();
-            var teste = result.SelectMany(x => x.Alunos);
-            var resultado = _dbContext.Alunos.ToList();
+          
+
+            //var result = _dbContext.Usuarios.Include(x => x.Alunos).Where(x => x.Alunos.FirstOrDefault().UserId == x.Id).ToList();
+            //var teste = result.SelectMany(x => x.Alunos);
+            //var resultado = _dbContext.Alunos.ToList();
             if (resultado != null)
             {
                 return View(resultado);
 
             }
             return NotFound();
-            
+
         }
 
         public async Task<IActionResult> CadastroAlunos()
         {
-            
-            var usuarios = _dbContext.Usuarios.ToList().Where(x=>x.EmailConfirmed == false);
-            ViewBag.Usuario = new SelectList(usuarios,"Id", "NomeCompleto");
+
+            var usuarios = _dbContext.Usuarios.ToList().Where(x => x.EmailConfirmed == false);
+            ViewBag.Usuario = new SelectList(usuarios, "Id", "NomeCompleto");
 
             var tipoPlano = _dbContext.TipoPlano.ToList();
             ViewBag.TipoPlano = new SelectList(tipoPlano, "Id", "DescTipoPlano");
@@ -61,7 +74,7 @@ namespace fourfit_sistema_gestao.UI.Controllers
         {
             try
             {
-                 var model = new EntidadeAlunos
+                var model = new EntidadeAlunos
                 {
                     UserId = alunosViewModel.UserId,
                     DataInicio = DateTime.Now,

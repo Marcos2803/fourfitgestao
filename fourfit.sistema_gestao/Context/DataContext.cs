@@ -26,11 +26,13 @@ namespace fourfit.sistema_gestao.Context
         public DbSet<TipoPagamento> TipoPagamento { get; set; }
         public DbSet<TipoPagamentoPc> TipoPagamentoPc { get; set; }
         public DbSet<TipoPlano> TipoPlano { get; set; }
+        public DbSet<AlunosPesquisa> AlunosPesquisa { get; set; }
         #endregion
         protected override void OnModelCreating(ModelBuilder builder)
         {
             builder.Entity<User>(new UserConfiguration().Configure);
             builder.Entity<EntidadeAlunos>(new AlunosConfiguration().Configure);
+            
             base.OnModelCreating(builder);
         }
     }

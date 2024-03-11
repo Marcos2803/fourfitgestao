@@ -33,24 +33,27 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach (var item in Model)
-                    {
-                        <tr>
-                            <td>@item.Foto</td>
-                            <td>@item.UserId</td>
-                            <td>@item.DataInicio.ToString("dd/MM/yyyy")</td>
-                            <td>@item.DataFim</td>
-                            @if (item.Ativo == true)
-                            {
-                                <td style="color:darkslategrey">ATIVO</td>
-                            }
-                            else
-                            {
-                                <td style="color:red">INATIVO</td>
-                            }
+                    @if(Model!=null){
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>@item.Foto</td>
+                                <td>@item.UserId</td>
+                                <td>@item.DataInicio.ToString("dd/MM/yyyy")</td>
+                                <td>@item.DataFim</td>
+                                @if (item.Ativo == true)
+                                {
+                                    <td style="color:darkslategrey">ATIVO</td>
+                                }
+                                else
+                                {
+                                    <td style="color:red">INATIVO</td>
+                                }
 
-                        </tr>
+                            </tr>
+                        }
                     }
+                    
                 </tbody>
             </table>
         </div>

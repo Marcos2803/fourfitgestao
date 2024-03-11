@@ -15,7 +15,7 @@ namespace fourfit.sistema_gestao.Domain.Entities.Account
         public string ? Estado { get; set; }
         public DateTime DataNacimento { get; set; }
         public string? Genero { get; set; }
-
+        public string Id { get; set; }
         public ICollection<EntidadeAlunos> Alunos { get; set; }
         
 
