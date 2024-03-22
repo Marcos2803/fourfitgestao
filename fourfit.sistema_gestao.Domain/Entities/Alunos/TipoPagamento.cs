@@ -3,7 +3,7 @@
     public class TipoPagamento
     {
         public int Id { get; set; }
-        public int IdTipoPagamento { get; set; }
+        public int TipoPagamentoPcId { get; set; }
         public TipoPagamentoPc TipoPagamentoPc { get; set; }
         public virtual ICollection<EntidadeAlunos> EntidadeAlunos { get; set; }
     }

@@ -1,4 +1,4 @@
-﻿@model IEnumerable<fourfit.sistema_gestao.Domain.Entities.Alunos.EntidadeAlunos>
+﻿@model IEnumerable<fourfit_sistema_gestao.UI.Models.AlunosIndexViewModel>
 @{
     ViewData["Title"] = "Index";
 }
@@ -26,21 +26,21 @@
                         <th>Foto</th>
                         <th>Usuário</th>
                         <th>Data Ínicio</th>
-                        <th>Data Fim</th>
-                        <th>Ativo</th>
                         <th>Tipo de Plano</th>
                         <th>Tipo Pagamento</th>
+                        <th>Ações</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @if(Model!=null){
-                        @foreach (var item in Model)
+                    @if (ViewBag.Alunos.Count > 0)
+                    {
+                        @foreach (var item in ViewBag.Alunos)
                         {
                             <tr>
                                 <td>@item.Foto</td>
                                 <td>@item.UserId</td>
-                                <td>@item.DataInicio.ToString("dd/MM/yyyy")</td>
-                                <td>@item.DataFim</td>
+                                <td>@item.NomeCompleto</td>
+                                
                                 @if (item.Ativo == true)
                                 {
                                     <td style="color:darkslategrey">ATIVO</td>
@@ -49,7 +49,12 @@
                                 {
                                     <td style="color:red">INATIVO</td>
                                 }
-
+                                <td>@item.DescTipoPlano</td>
+                                <td>@item.Tipo</td>
+                                <td>
+                                    <button class="btn btn-outline-warning" title="Editar"><i class="fa-solid fa-user-pen"></i></button>
+                                    <button class="btn btn-outline-danger btnExcluir" title="Excluir" data-id="@item.IdAluno"><i class="fa-solid fa-user-xmark"></i></button>
+                                </td>
                             </tr>
                         }
                     }
@@ -61,4 +66,28 @@
 
 </div>
 
+@section scripts{
+   <script>
 
+       $('.btnExcluir').on('click', function () {
+           var id = $(this).attr("data-id");
+            $.ajax({
+               type:'POST',
+               url:'@Url.Action("ExcluirAluno","Alunos")',
+               data: {Id:id},
+               success:function(response){
+                   if (response.sucesso) {
+                       alert(response.mensagem);
+                       window.location.href = '@Url.Action("Index","Alunos")';
+
+                   }
+                 
+               },error:function(){
+
+               }
+           });
+          
+       });
+
+   </script>
+}
