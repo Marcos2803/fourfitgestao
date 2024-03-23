@@ -38,8 +38,7 @@
                         {
                             <tr>
                                 <td>@item.Foto</td>
-                                <td>@item.UserId</td>
-                                <td>@item.NomeCompleto</td>
+                               <td>@item.NomeCompleto</td>
                                 
                                 @if (item.Ativo == true)
                                 {
@@ -52,7 +51,9 @@
                                 <td>@item.DescTipoPlano</td>
                                 <td>@item.Tipo</td>
                                 <td>
-                                    <button class="btn btn-outline-warning" title="Editar"><i class="fa-solid fa-user-pen"></i></button>
+                                    <button class="btn btn-outline-warning" title="Editar" onclick="window.location.href ='@Url.Action("AlterarAlunos","Alunos", new {Id = @item.IdAluno})'">
+                                        <i class="fa-solid fa-user-pen"></i>
+                                        </button>
                                     <button class="btn btn-outline-danger btnExcluir" title="Excluir" data-id="@item.IdAluno"><i class="fa-solid fa-user-xmark"></i></button>
                                 </td>
                             </tr>
@@ -70,22 +71,25 @@
    <script>
 
        $('.btnExcluir').on('click', function () {
-           var id = $(this).attr("data-id");
-            $.ajax({
-               type:'POST',
-               url:'@Url.Action("ExcluirAluno","Alunos")',
-               data: {Id:id},
-               success:function(response){
-                   if (response.sucesso) {
-                       alert(response.mensagem);
-                       window.location.href = '@Url.Action("Index","Alunos")';
+           if(confirm("Deseja excluir?")){
+                var id = $(this).attr("data-id");
+                $.ajax({
+                    type: 'POST',
+                    url: '@Url.Action("ExcluirAluno", "Alunos")',
+                    data: { Id: id },
+                    success: function (response) {
+                        if (response.sucesso) {
+                            alert(response.mensagem);
+                            window.location.href = '@Url.Action("Index", "Alunos")';
 
-                   }
-                 
-               },error:function(){
+                        }
 
-               }
-           });
+                    }, error: function () {
+
+                    }
+                });
+           }
+          
           
        });
 

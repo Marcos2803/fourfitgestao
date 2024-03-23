@@ -118,9 +118,13 @@ namespace fourfit_sistema_gestao.UI.Controllers
 
                 throw ex;
             }
-            return View(alunosViewModel);
+           
         }
-        [HttpPost]
+
+        public async Task<IActionResult> AlterarAlunos(int? Id)
+        {
+            return View();
+        }
         public async Task<JsonResult> ExcluirAluno(int Id)
         {
             try
