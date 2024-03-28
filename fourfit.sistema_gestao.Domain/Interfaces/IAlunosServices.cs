@@ -1,11 +1,11 @@
 ﻿using fourfit.sistema_gestao.Domain.Entities.Alunos;
+using fourfit.sistema_gestao.Domain.Interfaces.Base;
+using System.Xml.Schema;
 
 namespace fourfit.sistema_gestao.Domain.Interfaces
 {
-    public interface IAlunosServices
+    public interface IAlunosServices:IBaseServices<EntidadeAlunos>
     {
-        Task Cadastrar(EntidadeAlunos entidadeAlunos);
-        Task Alterar(EntidadeAlunos entidadeAlunos);
-        Task<EntidadeAlunos> BuscarPorNome(string nome );
+        Task<IEnumerable<EntidadeAlunos>> ObterAlunosPorCpf(string cpf);
     }
 }

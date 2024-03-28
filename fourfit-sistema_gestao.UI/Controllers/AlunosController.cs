@@ -1,5 +1,6 @@
 ﻿using fourfit.sistema_gestao.Context;
 using fourfit.sistema_gestao.Domain.Entities.Alunos;
+using fourfit_sistema_gestao.UI.Models;
 using fourfit_sistema_gestao.UI.Models.Account;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -51,8 +52,7 @@ namespace fourfit_sistema_gestao.UI.Controllers
             var query = (from A in _dbContext.Users
                          join B in _dbContext.Alunos on A.Id equals B.UserId
                          join C in _dbContext.TipoPlano on B.TipoPlanoId equals C.Id
-                         join D in _dbContext.TipoPagamento on B.TipoPagamentoId equals D.Id
-                         join E in _dbContext.TipoPagamentoPc on D.TipoPagamentoPcId equals E.Id
+                         join E in _dbContext.TipoPagamentoPc on B.TipoPagamentoId equals E.Id
                          select new
                          {
                              IdAluno = B.Id,
@@ -123,12 +123,62 @@ namespace fourfit_sistema_gestao.UI.Controllers
 
         public async Task<IActionResult> AlterarAlunos(int? Id)
         {
+            var alunosUsuario = _dbContext.Alunos.Include("User").Where(x => x.Id == Id);
+
+           
+            var tipoPlano = _dbContext.TipoPlano.ToList();
+            ViewBag.TipoPlano = new SelectList(tipoPlano, "Id", "DescTipoPlano");
+
+            var tipoPagamentoPc = _dbContext.TipoPagamentoPc.ToList();
+            ViewBag.TipoPagamentoPc = new SelectList(tipoPagamentoPc, "Id", "Tipo");
+
+            var alunosView = new AlunosEdicaoViewModel
+            {
+                Id = alunosUsuario.FirstOrDefault().Id,
+                NomeCompleto = alunosUsuario.FirstOrDefault().User.NomeCompleto,
+                DataInicio = alunosUsuario.FirstOrDefault().DataInicio,
+                DataFim = alunosUsuario.FirstOrDefault().DataFim,
+                TipoPagamentoId = alunosUsuario.FirstOrDefault().TipoPagamentoId,
+                TipoPlanoId = alunosUsuario.FirstOrDefault().TipoPlanoId,
+
+            };
+
+            if (alunosUsuario != null)
+            {
+                return View(alunosView);
+            }
             return View();
+        }
+        [HttpPost]
+        public async Task<IActionResult> AlterarAlunos(AlunosEdicaoViewModel model)
+        {
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    var alunos = _dbContext.Alunos.FindAsync(model.Id).Result;
+                   
+                    alunos.TipoPagamentoId = model.TipoPagamentoId;
+                    alunos.TipoPlanoId = model.TipoPlanoId;
+
+                    _dbContext.Alunos.Update(alunos);
+                    _dbContext.SaveChanges();
+                }
+
+                return RedirectToAction(nameof(Index));
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }
+           
         }
         public async Task<JsonResult> ExcluirAluno(int Id)
         {
             try
             {
+
                 var alunos = _dbContext.Alunos.FindAsync(Id).Result;
 
                 if (alunos != null)
