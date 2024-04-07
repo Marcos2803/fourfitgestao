@@ -266,7 +266,6 @@ C:\projetos\fourfit-sistema_gestao\fourfit-sistema_gestao.UI\obj\Debug\net8.0\st
 C:\projetos\fourfit-sistema_gestao\fourfit-sistema_gestao.UI\obj\Debug\net8.0\scopedcss\Views\Shared\_Layout.cshtml.rz.scp.css
 C:\projetos\fourfit-sistema_gestao\fourfit-sistema_gestao.UI\obj\Debug\net8.0\scopedcss\bundle\fourfit-sistema_gestao.UI.styles.css
 C:\projetos\fourfit-sistema_gestao\fourfit-sistema_gestao.UI\obj\Debug\net8.0\scopedcss\projectbundle\fourfit-sistema_gestao.UI.bundle.scp.css
-C:\projetos\fourfit-sistema_gestao\fourfit-sistema_gestao.UI\obj\Debug\net8.0\fourfit-sistema_gestao.UI.csproj.CopyComplete
 C:\projetos\fourfit-sistema_gestao\fourfit-sistema_gestao.UI\obj\Debug\net8.0\fourfit-sistema_gestao.UI.dll
 C:\projetos\fourfit-sistema_gestao\fourfit-sistema_gestao.UI\obj\Debug\net8.0\refint\fourfit-sistema_gestao.UI.dll
 C:\projetos\fourfit-sistema_gestao\fourfit-sistema_gestao.UI\obj\Debug\net8.0\fourfit-sistema_gestao.UI.pdb
@@ -274,3 +273,4 @@ C:\projetos\fourfit-sistema_gestao\fourfit-sistema_gestao.UI\obj\Debug\net8.0\fo
 C:\projetos\fourfit-sistema_gestao\fourfit-sistema_gestao.UI\obj\Debug\net8.0\ref\fourfit-sistema_gestao.UI.dll
 C:\projetos\fourfit-sistema_gestao\fourfit-sistema_gestao.UI\bin\Debug\net8.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll
 C:\projetos\fourfit-sistema_gestao\fourfit-sistema_gestao.UI\bin\Debug\net8.0\Microsoft.Extensions.Logging.Abstractions.dll
+C:\projetos\fourfit-sistema_gestao\fourfit-sistema_gestao.UI\obj\Debug\net8.0\fourfit-.717AB388.Up2Date
