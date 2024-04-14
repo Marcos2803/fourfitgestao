@@ -274,3 +274,5 @@ C:\projetos\fourfit-sistema_gestao\fourfit-sistema_gestao.UI\obj\Debug\net8.0\re
 C:\projetos\fourfit-sistema_gestao\fourfit-sistema_gestao.UI\bin\Debug\net8.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll
 C:\projetos\fourfit-sistema_gestao\fourfit-sistema_gestao.UI\bin\Debug\net8.0\Microsoft.Extensions.Logging.Abstractions.dll
 C:\projetos\fourfit-sistema_gestao\fourfit-sistema_gestao.UI\obj\Debug\net8.0\fourfit-.717AB388.Up2Date
+C:\projetos\fourfit-sistema_gestao\fourfit-sistema_gestao.UI\bin\Debug\net8.0\fourfit.sistema_gestao.Repositories.dll
+C:\projetos\fourfit-sistema_gestao\fourfit-sistema_gestao.UI\bin\Debug\net8.0\fourfit.sistema_gestao.Repositories.pdb

@@ -1,10 +1,11 @@
-﻿@model IEnumerable<fourfit_sistema_gestao.UI.Models.AlunosIndexViewModel>
+﻿@model IEnumerable<EntidadeAlunos>
 @{
     ViewData["Title"] = "Index";
 }
 
 <div class="container">
     <h2>Gerenciador de Alunos @User.Identity.Name</h2>
+
     <hr>
     
     <button type="button" onclick="location.href='@Url.Action("CadastroAlunos","Alunos")'" class="btn btn-outline-dark"> <i class="bi bi-plus"></i> Novo Aluno</button>
@@ -32,13 +33,13 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @if (ViewBag.Alunos.Count > 0)
+                    @if (@Model!=null)
                     {
-                        @foreach (var item in ViewBag.Alunos)
+                        @foreach (var item in Model)
                         {
                             <tr>
                                 <td>@item.Foto</td>
-                               <td>@item.NomeCompleto</td>
+                               <td>@item.User.NomeCompleto</td>
                                 
                                 @if (item.Ativo == true)
                                 {
@@ -48,13 +49,13 @@
                                 {
                                     <td style="color:red">INATIVO</td>
                                 }
-                                <td>@item.DescTipoPlano</td>
-                                <td>@item.Tipo</td>
+                                <td>@item.TipoPlano.DescTipoPlano</td>
+                                <td>@item.TipoPagamento.TipoPagamentoPc.Tipo</td>
                                 <td>
-                                    <button class="btn btn-outline-warning" title="Editar" onclick="window.location.href ='@Url.Action("AlterarAlunos","Alunos", new {Id = item.IdAluno})'">
+                                    <button class="btn btn-outline-warning" title="Editar" onclick="window.location.href ='@Url.Action("AlterarAlunos","Alunos", new {Id = item.Id})'">
                                         <i class="fa-solid fa-user-pen"></i>
                                         </button>
-                                    <button class="btn btn-outline-danger btnExcluir" title="Excluir" data-id="@item.IdAluno"><i class="fa-solid fa-user-xmark"></i></button>
+                                    <button class="btn btn-outline-danger btnExcluir" title="Excluir" data-id="@item.Id"><i class="fa-solid fa-user-xmark"></i></button>
                                 </td>
                             </tr>
                         }

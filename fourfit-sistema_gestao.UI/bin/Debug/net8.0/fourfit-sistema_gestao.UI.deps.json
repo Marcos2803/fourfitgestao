@@ -14,7 +14,9 @@
           "Microsoft.EntityFrameworkCore.SqlServer": "8.0.1",
           "Microsoft.EntityFrameworkCore.Tools": "8.0.1",
           "Microsoft.VisualStudio.Web.CodeGeneration.Design": "8.0.2",
-          "fourfit.sistema_gestao": "1.0.0"
+          "fourfit.sistema_gestao": "1.0.0",
+          "fourfit.sistema_gestao.Domain": "1.0.0",
+          "fourfit.sistema_gestao.Repositories": "1.0.0"
         },
         "runtime": {
           "fourfit-sistema_gestao.UI.dll": {}
@@ -2042,6 +2044,15 @@
         "runtime": {
           "fourfit.sistema_gestao.Domain.dll": {}
         }
+      },
+      "fourfit.sistema_gestao.Repositories/1.0.0": {
+        "dependencies": {
+          "fourfit.sistema_gestao": "1.0.0",
+          "fourfit.sistema_gestao.Domain": "1.0.0"
+        },
+        "runtime": {
+          "fourfit.sistema_gestao.Repositories.dll": {}
+        }
       }
     }
   },
@@ -3254,6 +3265,11 @@
       "sha512": ""
     },
     "fourfit.sistema_gestao.Domain/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "fourfit.sistema_gestao.Repositories/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

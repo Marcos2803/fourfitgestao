@@ -27,6 +27,8 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\fourfit.sistema_gestao.Domain\fourfit.sistema_gestao.Domain.csproj" />
+    <ProjectReference Include="..\fourfit.sistema_gestao.Repositories\fourfit.sistema_gestao.Repositories.csproj" />
     <ProjectReference Include="..\fourfit.sistema_gestao\fourfit.sistema_gestao.csproj" />
   </ItemGroup>
 

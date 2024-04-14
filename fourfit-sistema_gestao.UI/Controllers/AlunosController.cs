@@ -1,5 +1,7 @@
 ﻿using fourfit.sistema_gestao.Context;
+using fourfit.sistema_gestao.Domain.Entities.Account;
 using fourfit.sistema_gestao.Domain.Entities.Alunos;
+using fourfit.sistema_gestao.Domain.Interfaces;
 using fourfit_sistema_gestao.UI.Models;
 using fourfit_sistema_gestao.UI.Models.Account;
 using Microsoft.AspNetCore.Mvc;
@@ -11,65 +13,30 @@ namespace fourfit_sistema_gestao.UI.Controllers
 {
     public class AlunosController : Controller
     {
-        private readonly DataContext _dbContext;
+        
+        private readonly IUnitOfWork _unitOfwork;
 
-        public AlunosController(DataContext dbContext)
+        public AlunosController(IUnitOfWork unitOfwork)
         {
-            _dbContext = dbContext;
+           
+            _unitOfwork = unitOfwork;
         }
         public async Task<IActionResult> Index()
         {
-
-            //var consulta = (from usuarios in _dbContext.Usuarios
-            //                join alunos in _dbContext.Alunos on usuarios.Id equals alunos.UserId
-            //                join tipoPl in _dbContext.TipoPlano on alunos.TipoPlanoId equals tipoPl.Id
-            //                join tipoPg in _dbContext.TipoPagamento on alunos.TipoPagamentoId equals tipoPg.Id
-            //                join tipoPlPc in _dbContext.TipoPagamentoPc on tipoPg.IdTipoPagamento equals tipoPlPc.Id
-            //                select usuarios).ToList();
-            //string strSql = string.Format(@"SELECT
-            //                        C.Id,
-            //                        B.Foto,
-            //                        A.NomeCompleto,
-            //                        B.Ativo,
-            //                        C.DescTipoPlano,
-            //                        E.Tipo,
-            //                        B.DataInicio,
-            //                        B.DataFim
-            //                        FROM AspNetUsers A
-            //                        INNER JOIN Alunos B ON A.Id = B.UserId
-            //                        INNER JOIN TipoPlano C ON B.TipoPlanoId = C.Id
-            //                        INNER JOIN TipoPagamento D ON B.TipoPagamentoId = D.Id
-            //                        INNER JOIN TipoPagamentoPc E ON D.IdTipoPagamento= E.Id
-            //                        ");
-            //var resultado = _dbContext.AlunosPesquisa.FromSqlRaw(strSql).ToList();
+            
+            var resultado = await _unitOfwork.AlunosServices.ObterAlunosExistentes();
 
 
+            //ViewBag.Alunos = resultado.Select(x => new
+            //{
+            //    x.User.NomeCompleto,
+            //    x.Foto,
+            //    x.Ativo,
+            //    x.TipoPlano.DescTipoPlano,
+            //    x.TipoPagamento.TipoPagamentoPc.Tipo
+            //});
 
-            //var result = _dbContext.Usuarios.Include(x => x.Alunos).Where(x => x.Alunos.FirstOrDefault().UserId == x.Id).ToList();
-            //var teste = result.SelectMany(x => x.Alunos);
-            //var resultado = _dbContext.Alunos.ToList();
-
-            var query = (from A in _dbContext.Users
-                         join B in _dbContext.Alunos on A.Id equals B.UserId
-                         join C in _dbContext.TipoPlano on B.TipoPlanoId equals C.Id
-                         join E in _dbContext.TipoPagamentoPc on B.TipoPagamentoId equals E.Id
-                         select new
-                         {
-                             IdAluno = B.Id,
-                             NomeCompleto = A.NomeCompleto,
-                             Foto = B.Foto,
-                             Ativo = B.Ativo,
-                             DescTipoPlano = C.DescTipoPlano,
-                             Tipo = E.Tipo
-
-                         }).ToList();
-
-            if (query != null)
-            {
-                ViewBag.Alunos = query;
-
-            }
-            return View();
+            return View(resultado.ToList());
 
         }
 
@@ -78,18 +45,18 @@ namespace fourfit_sistema_gestao.UI.Controllers
         
         {
 
-            var usuarios = _dbContext.Usuarios.ToList().Where(x => x.EmailConfirmed == true);
-            ViewBag.Usuario = new SelectList(usuarios.Select(x => new
-            {
-                x.Id,
-                x.NomeCompleto,
-            }), "Id", "NomeCompleto");
+            //var usuarios = _dbContext.Usuarios.ToList().Where(x => x.EmailConfirmed == true);
+            //ViewBag.Usuario = new SelectList(usuarios.Select(x => new
+            //{
+            //    x.Id,
+            //    x.NomeCompleto,
+            //}), "Id", "NomeCompleto");
 
-            var tipoPlano = _dbContext.TipoPlano.ToList();
-            ViewBag.TipoPlano = new SelectList(tipoPlano, "Id", "DescTipoPlano");
+            //var tipoPlano = _dbContext.TipoPlano.ToList();
+            //ViewBag.TipoPlano = new SelectList(tipoPlano, "Id", "DescTipoPlano");
 
-            var tipoPagamentoPc = _dbContext.TipoPagamentoPc.ToList();
-            ViewBag.TipoPagamentoPc = new SelectList(tipoPagamentoPc, "Id", "Tipo");
+            //var tipoPagamentoPc = _dbContext.TipoPagamentoPc.ToList();
+            //ViewBag.TipoPagamentoPc = new SelectList(tipoPagamentoPc, "Id", "Tipo");
 
             return View();
         }
@@ -107,8 +74,8 @@ namespace fourfit_sistema_gestao.UI.Controllers
                     TipoPagamentoId = alunosViewModel.TipoPagamentoId,
                     Ativo = true
                 };
-                await _dbContext.AddAsync(model);
-                await _dbContext.SaveChangesAsync();
+                //await _dbContext.AddAsync(model);
+                //await _dbContext.SaveChangesAsync();
                 TempData["Msg"] = "Alunos cadastrado com sucesso!";
                 return RedirectToAction(nameof(Index));
 
@@ -121,29 +88,29 @@ namespace fourfit_sistema_gestao.UI.Controllers
            
         }
 
-        public async Task<IActionResult> AlterarAlunos(int? Id)
+        public async Task<IActionResult> AlterarAlunos(int Id)
         {
-            var alunosUsuario = _dbContext.Alunos.Include("User").Where(x => x.Id == Id);
+            //var alunosUsuario = _dbContext.Alunos.Include("User").Where(x => x.Id == Id);
+            var alunosComUsuarios = await _unitOfwork.AlunosServices.ObterAlunosUsuariosPorId(Id);  
 
-           
-            var tipoPlano = _dbContext.TipoPlano.ToList();
-            ViewBag.TipoPlano = new SelectList(tipoPlano, "Id", "DescTipoPlano");
+             var tipoPlano = await _unitOfwork.TipoPlano.ObterTodos();
+             ViewBag.TipoPlano = new SelectList(tipoPlano.ToList(), "Id", "DescTipoPlano");
 
-            var tipoPagamentoPc = _dbContext.TipoPagamentoPc.ToList();
+            var tipoPagamentoPc = await _unitOfwork.TipoPagamentoPc.ObterTodos();
             ViewBag.TipoPagamentoPc = new SelectList(tipoPagamentoPc, "Id", "Tipo");
 
             var alunosView = new AlunosEdicaoViewModel
             {
-                Id = alunosUsuario.FirstOrDefault().Id,
-                NomeCompleto = alunosUsuario.FirstOrDefault().User.NomeCompleto,
-                DataInicio = alunosUsuario.FirstOrDefault().DataInicio,
-                DataFim = alunosUsuario.FirstOrDefault().DataFim,
-                TipoPagamentoId = alunosUsuario.FirstOrDefault().TipoPagamentoId,
-                TipoPlanoId = alunosUsuario.FirstOrDefault().TipoPlanoId,
+                Id = alunosComUsuarios.Id,
+                NomeCompleto = alunosComUsuarios.User.NomeCompleto,
+                DataInicio = alunosComUsuarios.DataInicio,
+                DataFim = alunosComUsuarios.DataFim,
+                TipoPagamentoId = alunosComUsuarios.TipoPagamentoId,
+                TipoPlanoId = alunosComUsuarios.TipoPlanoId,
 
             };
 
-            if (alunosUsuario != null)
+            if (alunosComUsuarios != null)
             {
                 return View(alunosView);
             }
@@ -156,13 +123,18 @@ namespace fourfit_sistema_gestao.UI.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    var alunos = _dbContext.Alunos.FindAsync(model.Id).Result;
+                    
+                    var entidade = new EntidadeAlunos
+                    { 
+                        Id = model.Id,
+                       User = new User{NomeCompleto = model.NomeCompleto},                             
+                       TipoPagamentoId = model.TipoPagamentoId,
+                       TipoPlanoId = model.TipoPlanoId
+                    };  
+                     await _unitOfwork.AlunosServices.Atualizar(entidade);
                    
-                    alunos.TipoPagamentoId = model.TipoPagamentoId;
-                    alunos.TipoPlanoId = model.TipoPlanoId;
 
-                    _dbContext.Alunos.Update(alunos);
-                    _dbContext.SaveChanges();
+                   
                 }
 
                 return RedirectToAction(nameof(Index));
@@ -179,24 +151,25 @@ namespace fourfit_sistema_gestao.UI.Controllers
             try
             {
 
-                var alunos = _dbContext.Alunos.FindAsync(Id).Result;
+                //var alunos = _dbContext.Alunos.FindAsync(Id).Result;
 
-                if (alunos != null)
-                {
-                    var al = new EntidadeAlunos()
-                    {
-                        Id = alunos.Id
-                    };
-                    _dbContext.Alunos.Remove(alunos);
-                    _dbContext.SaveChanges();
+                //if (alunos != null)
+                //{
+                //    var al = new EntidadeAlunos()
+                //    {
+                //        Id = alunos.Id
+                //    };
+                //    //_dbContext.Alunos.Remove(alunos);
+                //    //_dbContext.SaveChanges();
 
-                    return Json(new { sucesso = true, mensagem = "Aluno excluido com sucesso" });
-                }
-                else
-                {
-                    return Json(new { sucesso = false, mensagem = "Aluno não exite" });
-                }
-
+                //    return Json(new { sucesso = true, mensagem = "Aluno excluido com sucesso" });
+                //}
+                //else
+                //{
+                //    return Json(new { sucesso = false, mensagem = "Aluno não exite" });
+                //}
+                return Json(null);
+               
                 
             }
             catch (Exception ex)
@@ -204,7 +177,7 @@ namespace fourfit_sistema_gestao.UI.Controllers
 
                 return Json(new { sucesso = false, mensagem = ex.Message });
             }
-            
+           
         }
     }
 }

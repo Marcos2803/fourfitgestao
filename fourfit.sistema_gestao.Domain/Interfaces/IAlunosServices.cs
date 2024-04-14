@@ -7,5 +7,9 @@ namespace fourfit.sistema_gestao.Domain.Interfaces
     public interface IAlunosServices:IBaseServices<EntidadeAlunos>
     {
         Task<IEnumerable<EntidadeAlunos>> ObterAlunosPorCpf(string cpf);
+
+        Task<IEnumerable<EntidadeAlunos>> ObterAlunosExistentes();
+
+        Task<EntidadeAlunos> ObterAlunosUsuariosPorId(int Id);
     }
 }

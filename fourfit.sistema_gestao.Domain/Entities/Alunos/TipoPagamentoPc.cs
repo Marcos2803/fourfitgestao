@@ -4,6 +4,6 @@
     {
         public int Id { get; set; }
         public string Tipo { get; set; }
-        public virtual ICollection<TipoPagamento> TipoPagamentos { get; set; }
+        public virtual ICollection<TipoPagamento> TipoPagamento { get; set; }
     }
 }

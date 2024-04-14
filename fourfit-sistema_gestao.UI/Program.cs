@@ -1,5 +1,7 @@
 using fourfit.sistema_gestao.Context;
 using fourfit.sistema_gestao.Domain.Entities.Account;
+using fourfit.sistema_gestao.Domain.Interfaces;
+using fourfit.sistema_gestao.Repositories.Repository;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
@@ -23,6 +25,8 @@ builder.Services.AddIdentity<User, IdentityRole>(option =>
     option.Password.RequireUppercase = false;
 }).AddEntityFrameworkStores<DataContext>()
 .AddDefaultTokenProviders();
+
+builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 
 builder.Services.AddControllersWithViews();
 

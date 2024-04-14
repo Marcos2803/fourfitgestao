@@ -6,6 +6,7 @@ using fourfit.sistema_gestao.Domain.Entities.Equipaments;
 using fourfit.sistema_gestao.Mapping;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using System.Reflection.Emit;
 
 namespace fourfit.sistema_gestao.Context
 {
@@ -30,9 +31,23 @@ namespace fourfit.sistema_gestao.Context
         #endregion
         protected override void OnModelCreating(ModelBuilder builder)
         {
-            builder.Entity<User>(new UserConfiguration().Configure);
-            builder.Entity<EntidadeAlunos>(new AlunosConfiguration().Configure);
-            
+            //builder.Entity<User>(new UserConfiguration().Configure);
+            //builder.Entity<EntidadeAlunos>(new AlunosConfiguration().Configure);
+            builder.Entity<EntidadeAlunos>()
+            .HasOne(e => e.User)
+            .WithMany()
+            .HasForeignKey(e => e.UserId);
+
+            builder.Entity<EntidadeAlunos>()
+                .HasOne(e => e.TipoPlano)
+                .WithMany()
+                .HasForeignKey(e => e.TipoPlanoId);
+
+            builder.Entity<EntidadeAlunos>()
+                .HasOne(e => e.TipoPagamento)
+                .WithMany()
+                .HasForeignKey(e => e.TipoPagamentoId);
+
             base.OnModelCreating(builder);
         }
     }
