@@ -24,17 +24,18 @@ namespace fourfit_sistema_gestao.UI.Controllers
         public async Task<IActionResult> Index()
         {
             
+            
             var resultado = await _unitOfwork.AlunosServices.ObterAlunosExistentes();
 
 
-            //ViewBag.Alunos = resultado.Select(x => new
-            //{
-            //    x.User.NomeCompleto,
-            //    x.Foto,
-            //    x.Ativo,
-            //    x.TipoPlano.DescTipoPlano,
-            //    x.TipoPagamento.TipoPagamentoPc.Tipo
-            //});
+            ViewBag.Alunos = resultado.Select(x => new
+            {
+               x.User.NomeCompleto,
+               x.Foto,
+               x.Ativo,
+               x.TipoPlano.DescTipoPlano,
+               x.TipoPagamento.TipoPagamentoPc.Tipo
+            });
 
             return View(resultado.ToList());
 
@@ -123,16 +124,29 @@ namespace fourfit_sistema_gestao.UI.Controllers
             {
                 if (ModelState.IsValid)
                 {
+                    var alunos = await _unitOfwork.AlunosServices.ObterPorId(model.Id);
+                    if (alunos != null) {
+
+                        var usuario = await _unitOfwork.UserServices.ObterPorUserId(alunos.UserId);
+
+                        if (usuario != null)
+                        {
+                            
+                            alunos.TipoPagamentoId = model.TipoPagamentoId;
+                            alunos.TipoPlanoId = model.TipoPlanoId;
+                            usuario.NomeCompleto = model.NomeCompleto;
+                            await _unitOfwork.AlunosServices.Atualizar(alunos);
+                            await _unitOfwork.UserServices.Atualizar(usuario);
+                        }
+
+
+                    }
+                    else
+                    {
+                        ViewBag.Msg = "Não há dados.";
+                    }
                     
-                    var entidade = new EntidadeAlunos
-                    { 
-                        Id = model.Id,
-                       User = new User{NomeCompleto = model.NomeCompleto},                             
-                       TipoPagamentoId = model.TipoPagamentoId,
-                       TipoPlanoId = model.TipoPlanoId
-                    };  
-                     await _unitOfwork.AlunosServices.Atualizar(entidade);
-                   
+                     
 
                    
                 }
@@ -146,38 +160,26 @@ namespace fourfit_sistema_gestao.UI.Controllers
             }
            
         }
-        public async Task<JsonResult> ExcluirAluno(int Id)
+        public async Task<JsonResult> ExcluirAluno(int id)
         {
             try
             {
-
-                //var alunos = _dbContext.Alunos.FindAsync(Id).Result;
-
-                //if (alunos != null)
-                //{
-                //    var al = new EntidadeAlunos()
-                //    {
-                //        Id = alunos.Id
-                //    };
-                //    //_dbContext.Alunos.Remove(alunos);
-                //    //_dbContext.SaveChanges();
-
-                //    return Json(new { sucesso = true, mensagem = "Aluno excluido com sucesso" });
-                //}
-                //else
-                //{
-                //    return Json(new { sucesso = false, mensagem = "Aluno não exite" });
-                //}
-                return Json(null);
-               
-                
+                var aluno = await _unitOfwork.AlunosServices.ObterPorId(id);
+                if (aluno != null)
+                {
+                    await _unitOfwork.AlunosServices.Remover(aluno);
+                    return Json(new { sucesso = true, mensagem = "Aluno excluído com sucesso" });
+                }
+                else
+                {
+                    return Json(new { sucesso = false, mensagem = "Aluno não existe" });
+                }
             }
             catch (Exception ex)
             {
-
-                return Json(new { sucesso = false, mensagem = ex.Message });
+                return Json(new { sucesso = false, mensagem = "Ocorreu um erro ao excluir o aluno: " + ex.Message });
             }
-           
         }
+
     }
 }

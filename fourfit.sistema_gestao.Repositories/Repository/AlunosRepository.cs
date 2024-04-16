@@ -54,5 +54,21 @@ namespace fourfit.sistema_gestao.Repositories.Repository
             return null;
                 
         }
+
+        public async Task Remover(EntidadeAlunos aluno)
+        {
+            var alunoExistente = await _dataContext.Alunos.FindAsync(aluno.Id);
+
+            if (alunoExistente != null)
+            {
+                _dataContext.Alunos.Remove(alunoExistente);
+                await _dataContext.SaveChangesAsync();
+            }
+            else
+            {
+                throw new Exception("Aluno não encontrado");
+            }
+        }
+
     }
 }

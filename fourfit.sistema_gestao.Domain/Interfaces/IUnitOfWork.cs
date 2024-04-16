@@ -6,5 +6,6 @@
         ITipoPlanoServices TipoPlano { get; }
         ITipoPagamentoServices TipoPagamento { get; }
         ITipoPagamentoPcServices TipoPagamentoPc { get; }
+        IUserServices UserServices { get; }
     }
 }

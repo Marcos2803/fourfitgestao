@@ -11,5 +11,6 @@ namespace fourfit.sistema_gestao.Domain.Interfaces
         Task<IEnumerable<EntidadeAlunos>> ObterAlunosExistentes();
 
         Task<EntidadeAlunos> ObterAlunosUsuariosPorId(int Id);
+        Task Remover(EntidadeAlunos aluno);
     }
 }
