@@ -5,5 +5,6 @@ namespace fourfit.sistema_gestao.Domain.Interfaces
 {
     public interface ITipoPlanoServices:IBaseServices<TipoPlano>
     {
+        
     }
 }

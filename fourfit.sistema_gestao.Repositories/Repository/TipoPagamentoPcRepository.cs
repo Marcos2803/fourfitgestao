@@ -14,6 +14,7 @@ namespace fourfit.sistema_gestao.Repositories.Repository
     {
         public TipoPagamentoPcRepository(DataContext dataContext) : base(dataContext)
         {
+            
         }
     }
 }

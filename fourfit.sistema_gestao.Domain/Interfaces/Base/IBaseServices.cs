@@ -8,7 +8,6 @@
         Task<TEntity> ObterPorNome(string nome);
         Task<IEnumerable<TEntity>> ObterTodos();
         Task Deletar(int Id);
-
         Task Salvar();
     }
 }

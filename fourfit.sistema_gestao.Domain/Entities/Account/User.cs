@@ -1,10 +1,12 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using fourfit.sistema_gestao.Domain.Entities.Alunos;
+using System.Collections;
 namespace fourfit.sistema_gestao.Domain.Entities.Account
 {
     public class User:IdentityUser
     {
         public string NomeCompleto { get; set; }
+        
         public long Cpf { get; set; }
         public string ?Celular { get; set; }
         public string ?Cep { get; set; }
@@ -17,7 +19,10 @@ namespace fourfit.sistema_gestao.Domain.Entities.Account
         public string? Genero { get; set; }
         public string Id { get; set; }
         public ICollection<EntidadeAlunos> Alunos { get; set; }
-        
 
+        public IEnumerable Select(Func<object, object> value)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

@@ -14,7 +14,6 @@ namespace fourfit.sistema_gestao.Repositories.Repository
         {
             _dataContext = dataContext;
         }
-
         public async Task<IEnumerable<EntidadeAlunos>> ObterAlunosExistentes()
         {
            
