@@ -3,9 +3,10 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace fourfit_sistema_gestao.UI.Controllers
 {
+    [Authorize]
     public class DashboardController : Controller
     {
-       [Authorize]
+      
         public IActionResult BemVindo()
         {
             ///fsdfsdfsfsf

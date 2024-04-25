@@ -2,14 +2,18 @@
 @{
     ViewData["Title"] = "Index";
 }
+@Html.AntiForgeryToken()
+
 
 <div class="container">
     <h2>Gerenciador de Alunos @User.Identity.Name</h2>
 
     <hr>
-    
+
     <button type="button" onclick="location.href='@Url.Action("CadastroAlunos","Alunos")'" class="btn btn-outline-dark"> <i class="bi bi-plus"></i> Novo Aluno</button>
+
     <br /><br />
+   </div>
     <div class="card">
         
        

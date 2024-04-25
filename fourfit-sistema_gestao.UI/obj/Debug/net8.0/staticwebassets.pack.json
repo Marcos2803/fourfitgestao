@@ -5,6 +5,10 @@
       "PackagePath": "staticwebassets\\fourfit-sistema_gestao.UI.bundle.scp.css"
     },
     {
+      "Id": "C:\\projetos\\fourfit-sistema_gestao\\fourfit-sistema_gestao.UI\\wwwroot\\css\\Home.css",
+      "PackagePath": "staticwebassets\\css\\Home.css"
+    },
+    {
       "Id": "C:\\projetos\\fourfit-sistema_gestao\\fourfit-sistema_gestao.UI\\wwwroot\\css\\all.css",
       "PackagePath": "staticwebassets\\css\\all.css"
     },
@@ -83,6 +87,10 @@
     {
       "Id": "C:\\projetos\\fourfit-sistema_gestao\\fourfit-sistema_gestao.UI\\wwwroot\\favicon.ico",
       "PackagePath": "staticwebassets\\favicon.ico"
+    },
+    {
+      "Id": "C:\\projetos\\fourfit-sistema_gestao\\fourfit-sistema_gestao.UI\\wwwroot\\images\\Backgroud.jpg",
+      "PackagePath": "staticwebassets\\images\\Backgroud.jpg"
     },
     {
       "Id": "C:\\projetos\\fourfit-sistema_gestao\\fourfit-sistema_gestao.UI\\wwwroot\\images\\logo.png",

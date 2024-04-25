@@ -2,6 +2,9 @@
 @{
     ViewData["Title"] = "BemVindo";
 }
+@Html.AntiForgeryToken()
+<Authorize>
+    
 
 <div class="container">
     <label>Bem vindo, @User.Identity.Name</label>
@@ -10,12 +13,17 @@
             <div class="card-title">
                 <label>Gerenciar Usuários</label>
             </div>
+
+                <form id="logoutForm" asp-controller="Account" asp-action="Logout" method="post">
+                    <button type="submit" class="btn btn-link">Sair</button>
+                </form>
+
         </div>
         <div class="card-body">
-            <form asp-controller="Alunos" asp-action="Cadadastrar" method="post">
+            <form asp-controller="Alunos" asp-action="Cadastrar" method="post">
                <div class="row">
                   <div class="col-sm-6">
-                     <button type="button" class="btn btn-success">Gerenciar Alunos</button>
+                            <button type="button" onclick="location.href='@Url.Action("Index", "Alunos")'" class="btn btn-outline-dark"> <i class="bi bi-plus"></i> Aluno</button>
                   </div>
                     <div class="col-sm-6">
                         <button type="button" class="btn btn-warning">Gerenciar Alunos</button>

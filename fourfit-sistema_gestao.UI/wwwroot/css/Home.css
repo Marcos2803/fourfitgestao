@@ -1,0 +1,22 @@
+﻿body {
+   padding:0;
+   margin:0;
+   box-sizing:border-box;
+   background-image:url(../images/Backgroud.jpg);
+   background-repeat:no-repeat;
+   background-size:cover;
+}
+.container-home{
+    height:100vh;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    color:#FFF;
+    text-align:center;
+    font-size: 5rem;
+}
+
+conteiner-home h1{
+    text-shadow: 10px 10px 100px 50px #ff0000;
+}

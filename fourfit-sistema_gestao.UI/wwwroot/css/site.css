@@ -22,3 +22,6 @@ body {
     margin-bottom: 60px;
     
 }
+li{
+    list-style:none;
+}

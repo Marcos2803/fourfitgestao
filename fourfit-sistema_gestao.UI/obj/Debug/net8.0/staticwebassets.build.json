@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "dj3CvU/wbd3XgpCMSVnIxycIXokkkbyaR7kCenaZDUU=",
+  "Hash": "3bxUi6X+FRSAw2me39/Jj8aGhw/P/2YMO04XaKqcZbM=",
   "Source": "fourfit-sistema_gestao.UI",
   "BasePath": "_content/fourfit-sistema_gestao.UI",
   "Mode": "Default",
@@ -167,6 +167,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\css\\fontawesome.min.css"
+    },
+    {
+      "Identity": "C:\\projetos\\fourfit-sistema_gestao\\fourfit-sistema_gestao.UI\\wwwroot\\css\\Home.css",
+      "SourceId": "fourfit-sistema_gestao.UI",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\projetos\\fourfit-sistema_gestao\\fourfit-sistema_gestao.UI\\wwwroot\\",
+      "BasePath": "_content/fourfit-sistema_gestao.UI",
+      "RelativePath": "css/Home.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\css\\Home.css"
     },
     {
       "Identity": "C:\\projetos\\fourfit-sistema_gestao\\fourfit-sistema_gestao.UI\\wwwroot\\css\\regular.css",
@@ -433,6 +452,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\favicon.ico"
+    },
+    {
+      "Identity": "C:\\projetos\\fourfit-sistema_gestao\\fourfit-sistema_gestao.UI\\wwwroot\\images\\Backgroud.jpg",
+      "SourceId": "fourfit-sistema_gestao.UI",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\projetos\\fourfit-sistema_gestao\\fourfit-sistema_gestao.UI\\wwwroot\\",
+      "BasePath": "_content/fourfit-sistema_gestao.UI",
+      "RelativePath": "images/Backgroud.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\Backgroud.jpg"
     },
     {
       "Identity": "C:\\projetos\\fourfit-sistema_gestao\\fourfit-sistema_gestao.UI\\wwwroot\\images\\logo.png",

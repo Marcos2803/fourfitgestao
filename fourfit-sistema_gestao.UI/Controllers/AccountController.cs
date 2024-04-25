@@ -1,6 +1,7 @@
 ﻿using fourfit.sistema_gestao.Domain.Entities.Account;
 using fourfit_sistema_gestao.UI.Models.Account;
 using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
@@ -171,6 +172,16 @@ namespace fourfit_sistema_gestao.UI.Controllers
                 ModelState.AddModelError(string.Empty, ex.Message);
             }
             return View();
+        }
+
+        [HttpPost]
+        
+        public async Task<IActionResult> Logout()
+        {
+            await _signInManager.SignOutAsync();
+
+            return RedirectToAction("Login", "Account");
+            
         }
 
 

@@ -5,6 +5,7 @@ using fourfit.sistema_gestao.Domain.Interfaces;
 using fourfit.sistema_gestao.Repositories.Repository;
 using fourfit_sistema_gestao.UI.Models;
 using fourfit_sistema_gestao.UI.Models.Account;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -12,6 +13,7 @@ using System.Linq.Expressions;
 
 namespace fourfit_sistema_gestao.UI.Controllers
 {
+    [Authorize]
     public class AlunosController : Controller
     {
 
@@ -22,6 +24,7 @@ namespace fourfit_sistema_gestao.UI.Controllers
 
             _unitOfwork = unitOfwork;
         }
+        
         public async Task<IActionResult> Index()
         {
             var resultado = await _unitOfwork.AlunosServices.ObterAlunosExistentes();
@@ -29,6 +32,7 @@ namespace fourfit_sistema_gestao.UI.Controllers
             return View(resultado.ToList());
 
         }
+        
         public async Task<IActionResult> CadastroAlunos()
         {
             var usuarios = await _unitOfwork.UserServices.ObterUsuariosComEmailConfirmado();
