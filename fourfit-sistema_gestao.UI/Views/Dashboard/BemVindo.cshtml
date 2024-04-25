@@ -3,8 +3,6 @@
     ViewData["Title"] = "BemVindo";
 }
 @Html.AntiForgeryToken()
-<Authorize>
-    
 
 <div class="container">
     <label>Bem vindo, @User.Identity.Name</label>

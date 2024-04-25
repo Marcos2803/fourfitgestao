@@ -34,7 +34,16 @@
                     @if (!string.IsNullOrEmpty(ViewBag.MsgError))
                     {
                         <label class="alert alert-danger">@ViewBag.MsgError</label>
-                    } 
+                    }
+                    <div class="col-12">
+                        <div class="d-grid gap-2">                       
+                            <br />
+                            <a class="btn btn-outline-warning" asp-area="" asp-controller="Account" asp-action="ForgotPassword"><i class="fa-regular fa-key"></i> Esqueci minha senha</a>
+                        </div>
+
+
+                    </div>
+                    <div asp-validation-summary="All" class="text-danger"></div>
                 
             </form>
         </div>

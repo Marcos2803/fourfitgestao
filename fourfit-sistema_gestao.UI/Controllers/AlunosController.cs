@@ -13,7 +13,7 @@ using System.Linq.Expressions;
 
 namespace fourfit_sistema_gestao.UI.Controllers
 {
-    [Authorize]
+  
     public class AlunosController : Controller
     {
 
