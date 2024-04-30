@@ -6,9 +6,11 @@ namespace fourfit_sistema_gestao.UI.Services
 {
     public class EmailServices : EmailPasswordAccountViewModel
     {
-        private const string Smtp = "smtp.mail.yahoo.com";
+        private const string Smtp = "smtp.gmail.com";
         private const int Port = 587;
-        private const string UserEmail = "edinaldolemos@yahoo.com.br";
+        private const string UserEmail = "felipemercadopago@gmail.com";
+        private const string Password = "bgjddgmchtmennte";
+
 
 
         public async Task SendEmailAsync(EmailAddressViewModel EmailServices)

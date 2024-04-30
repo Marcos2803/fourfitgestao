@@ -10,9 +10,9 @@ C:\projetos\fourfit-sistema_gestao\fourfit.sistema_gestao\obj\Debug\net8.0\fourf
 C:\projetos\fourfit-sistema_gestao\fourfit.sistema_gestao\obj\Debug\net8.0\fourfit.sistema_gestao.AssemblyInfo.cs
 C:\projetos\fourfit-sistema_gestao\fourfit.sistema_gestao\obj\Debug\net8.0\fourfit.sistema_gestao.csproj.CoreCompileInputs.cache
 C:\projetos\fourfit-sistema_gestao\fourfit.sistema_gestao\obj\Debug\net8.0\fourfit.sistema_gestao.sourcelink.json
+C:\projetos\fourfit-sistema_gestao\fourfit.sistema_gestao\obj\Debug\net8.0\fourfit..B3EB64DD.Up2Date
 C:\projetos\fourfit-sistema_gestao\fourfit.sistema_gestao\obj\Debug\net8.0\fourfit.sistema_gestao.dll
 C:\projetos\fourfit-sistema_gestao\fourfit.sistema_gestao\obj\Debug\net8.0\refint\fourfit.sistema_gestao.dll
 C:\projetos\fourfit-sistema_gestao\fourfit.sistema_gestao\obj\Debug\net8.0\fourfit.sistema_gestao.pdb
 C:\projetos\fourfit-sistema_gestao\fourfit.sistema_gestao\obj\Debug\net8.0\fourfit.sistema_gestao.genruntimeconfig.cache
 C:\projetos\fourfit-sistema_gestao\fourfit.sistema_gestao\obj\Debug\net8.0\ref\fourfit.sistema_gestao.dll
-C:\projetos\fourfit-sistema_gestao\fourfit.sistema_gestao\obj\Debug\net8.0\fourfit..B3EB64DD.Up2Date

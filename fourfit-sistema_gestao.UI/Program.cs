@@ -26,6 +26,9 @@ builder.Services.AddIdentity<User, IdentityRole>(option =>
 }).AddEntityFrameworkStores<DataContext>()
 .AddDefaultTokenProviders();
 
+builder.Services.Configure<DataProtectionTokenProviderOptions>(opt =>
+   opt.TokenLifespan = TimeSpan.FromHours(2));
+
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 
 builder.Services.AddControllersWithViews();

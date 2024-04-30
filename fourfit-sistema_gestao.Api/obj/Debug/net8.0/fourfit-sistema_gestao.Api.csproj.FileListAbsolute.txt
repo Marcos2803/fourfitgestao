@@ -36,9 +36,9 @@ C:\projetos\fourfit-sistema_gestao\fourfit-sistema_gestao.Api\obj\Debug\net8.0\s
 C:\projetos\fourfit-sistema_gestao\fourfit-sistema_gestao.Api\obj\Debug\net8.0\staticwebassets\msbuild.buildTransitive.fourfit-sistema_gestao.Api.props
 C:\projetos\fourfit-sistema_gestao\fourfit-sistema_gestao.Api\obj\Debug\net8.0\staticwebassets.pack.json
 C:\projetos\fourfit-sistema_gestao\fourfit-sistema_gestao.Api\obj\Debug\net8.0\scopedcss\bundle\fourfit-sistema_gestao.Api.styles.css
+C:\projetos\fourfit-sistema_gestao\fourfit-sistema_gestao.Api\obj\Debug\net8.0\fourfit-.FAD18371.Up2Date
 C:\projetos\fourfit-sistema_gestao\fourfit-sistema_gestao.Api\obj\Debug\net8.0\fourfit-sistema_gestao.Api.dll
 C:\projetos\fourfit-sistema_gestao\fourfit-sistema_gestao.Api\obj\Debug\net8.0\refint\fourfit-sistema_gestao.Api.dll
 C:\projetos\fourfit-sistema_gestao\fourfit-sistema_gestao.Api\obj\Debug\net8.0\fourfit-sistema_gestao.Api.pdb
 C:\projetos\fourfit-sistema_gestao\fourfit-sistema_gestao.Api\obj\Debug\net8.0\fourfit-sistema_gestao.Api.genruntimeconfig.cache
 C:\projetos\fourfit-sistema_gestao\fourfit-sistema_gestao.Api\obj\Debug\net8.0\ref\fourfit-sistema_gestao.Api.dll
-C:\projetos\fourfit-sistema_gestao\fourfit-sistema_gestao.Api\obj\Debug\net8.0\fourfit-.FAD18371.Up2Date
