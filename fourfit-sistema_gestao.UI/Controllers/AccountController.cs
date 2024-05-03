@@ -1,15 +1,14 @@
 ﻿using fourfit.sistema_gestao.Domain.Entities.Account;
 using fourfit_sistema_gestao.UI.Models.Account;
+using fourfit_sistema_gestao.UI.Models;
 using fourfit_sistema_gestao.UI.Services;
 using Microsoft.AspNetCore.Authentication;
-using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.CodeAnalysis.CSharp.Syntax;
-using Microsoft.IdentityModel.Tokens;
-using Microsoft.VisualStudio.Web.CodeGenerators.Mvc.Templates.BlazorIdentity.Pages.Manage;
-using System.Web;
-using static System.Runtime.InteropServices.JavaScript.JSType;
+using Microsoft.AspNetCore.WebUtilities;
+using System.Text;
+using NuGet.Common;
+
 
 namespace fourfit_sistema_gestao.UI.Controllers
 {
@@ -198,7 +197,7 @@ namespace fourfit_sistema_gestao.UI.Controllers
                         var token = await _userManager.GeneratePasswordResetTokenAsync(user);
                         var resetUrl = Url.Action("ResetPassword", "Account", new { token = token, email = mod.Email }, Request.Scheme);
 
-                         System.IO.File.WriteAllText("resetLinkToNewPass", resetUrl);
+                         //System.IO.File.WriteAllText("resetLinkToNewPass", resetUrl);
 
 
                         var mail = new EmailServices();
@@ -232,7 +231,7 @@ namespace fourfit_sistema_gestao.UI.Controllers
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> ResetPassword(ResetPasswordViewModel mod)
+        public  async Task<IActionResult> ResetPassword(ResetPasswordViewModel mod)
         {
             try
             {
@@ -240,10 +239,10 @@ namespace fourfit_sistema_gestao.UI.Controllers
                 {
                     var user = await _userManager.FindByEmailAsync(mod.Email);
 
+
                     if (user != null)
-                    {
-                        
-                        var result = await _userManager.ResetPasswordAsync(user, mod.Token, mod.Password);
+                    { 
+                        var result = await _userManager.ResetPasswordAsync(user,mod.Token, mod.Password);
                         if (!result.Succeeded)
                         {
                             foreach (var erro in result.Errors)

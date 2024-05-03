@@ -2,6 +2,5 @@
 {
     public class EmailPasswordAccountViewModel
     {
-        public string Password { get; set; } = "@egylwmzotjdodxdj";
     }
 }

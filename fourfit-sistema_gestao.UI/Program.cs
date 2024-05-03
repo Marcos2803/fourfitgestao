@@ -23,11 +23,12 @@ builder.Services.AddIdentity<User, IdentityRole>(option =>
     option.Lockout.MaxFailedAccessAttempts = 3;
     option.Password.RequiredLength = 6;
     option.Password.RequireUppercase = false;
+
 }).AddEntityFrameworkStores<DataContext>()
 .AddDefaultTokenProviders();
 
-builder.Services.Configure<DataProtectionTokenProviderOptions>(opt =>
-   opt.TokenLifespan = TimeSpan.FromHours(2));
+builder.Services.Configure<DataProtectionTokenProviderOptions>(options =>
+   options.TokenLifespan = TimeSpan.FromHours(2));
 
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 

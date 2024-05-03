@@ -13,6 +13,7 @@ namespace fourfit_sistema_gestao.UI.Services
 
 
 
+
         public async Task SendEmailAsync(EmailAddressViewModel EmailServices)
         {
             try

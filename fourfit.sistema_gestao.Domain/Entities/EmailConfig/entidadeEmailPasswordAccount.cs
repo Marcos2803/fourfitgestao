@@ -9,6 +9,6 @@ namespace fourfit.sistema_gestao.Domain.Entities.EmailConfig
     public class entidadeEmailPasswordAccount
     {
         public int Id { get; set; }
-        public string? Password { get; set; }
+        public string? Password { get; set; } 
     }
 }

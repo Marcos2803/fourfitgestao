@@ -17,7 +17,7 @@ namespace fourfit.sistema_gestao.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "8.0.3")
+                .HasAnnotation("ProductVersion", "8.0.4")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
@@ -380,6 +380,76 @@ namespace fourfit.sistema_gestao.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("AlunosPesquisa");
+                });
+
+            modelBuilder.Entity("fourfit.sistema_gestao.Domain.Entities.EmailConfig.entidadeEmailAddress", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Body")
+                        .IsRequired()
+                        .HasColumnType("varchar(500)");
+
+                    b.Property<string>("From")
+                        .IsRequired()
+                        .HasColumnType("varchar(100)");
+
+                    b.Property<string>("Subject")
+                        .IsRequired()
+                        .HasColumnType("varchar(500)");
+
+                    b.Property<string>("To")
+                        .IsRequired()
+                        .HasColumnType("varchar(100)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("EmailAddress", (string)null);
+                });
+
+            modelBuilder.Entity("fourfit.sistema_gestao.Domain.Entities.EmailConfig.entidadeEmailConfiguracoes", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("EmailUser")
+                        .IsRequired()
+                        .HasColumnType("varchar(100)");
+
+                    b.Property<int>("Port")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Smtp")
+                        .IsRequired()
+                        .HasColumnType("varchar(100)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("EmailConfiguracoes", (string)null);
+                });
+
+            modelBuilder.Entity("fourfit.sistema_gestao.Domain.Entities.EmailConfig.entidadeEmailPasswordAccount", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Password")
+                        .IsRequired()
+                        .HasColumnType("varchar(Max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("EmailPasswordAccount", (string)null);
                 });
 
             modelBuilder.Entity("fourfit.sistema_gestao.Domain.Entities.Equipaments.Equipamentos", b =>

@@ -2,6 +2,7 @@
 using fourfit.sistema_gestao.Domain.Entities;
 using fourfit.sistema_gestao.Domain.Entities.Account;
 using fourfit.sistema_gestao.Domain.Entities.Alunos;
+using fourfit.sistema_gestao.Domain.Entities.EmailConfig;
 using fourfit.sistema_gestao.Domain.Entities.Equipaments;
 using fourfit.sistema_gestao.Mapping;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
@@ -28,6 +29,9 @@ namespace fourfit.sistema_gestao.Context
         public DbSet<TipoPagamentoPc> TipoPagamentoPc { get; set; }
         public DbSet<TipoPlano> TipoPlano { get; set; }
         public DbSet<AlunosPesquisa> AlunosPesquisa { get; set; }
+        public DbSet<entidadeEmailConfiguracoes>? EmailConfiguracoes { get; set; }
+        public DbSet<entidadeEmailAddress>? EmailAddress { get; set; }
+        public DbSet<entidadeEmailPasswordAccount>? EmailPasswordAccount { get; set; }
         #endregion
         protected override void OnModelCreating(ModelBuilder builder)
         {
@@ -47,6 +51,12 @@ namespace fourfit.sistema_gestao.Context
                 .HasOne(e => e.TipoPagamento)
                 .WithMany()
                 .HasForeignKey(e => e.TipoPagamentoId);
+
+            builder.Entity<entidadeEmailAddress>(new EmailAddressConfiguration().Configure);
+            builder.Entity<entidadeEmailConfiguracoes>(new EmailConfiguracoesConfiguration().Configure);
+            builder.Entity<entidadeEmailPasswordAccount>(new EmailPasswordAccountConfiguration().Configure);
+
+
 
             base.OnModelCreating(builder);
         }
