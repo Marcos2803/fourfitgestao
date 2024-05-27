@@ -4,6 +4,7 @@ using fourfit.sistema_gestao.Domain.Interfaces;
 using fourfit.sistema_gestao.Repositories.Repository;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -24,11 +25,13 @@ builder.Services.AddIdentity<User, IdentityRole>(option =>
     option.Password.RequiredLength = 6;
     option.Password.RequireUppercase = false;
 
-}).AddEntityFrameworkStores<DataContext>()
-.AddDefaultTokenProviders();
+})
+    .AddEntityFrameworkStores<DataContext>()
+    .AddDefaultTokenProviders();
 
 builder.Services.Configure<DataProtectionTokenProviderOptions>(options =>
-   options.TokenLifespan = TimeSpan.FromHours(2));
+   options.TokenLifespan = TimeSpan.FromHours(3));
+
 
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 

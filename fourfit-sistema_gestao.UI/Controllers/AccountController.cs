@@ -5,9 +5,11 @@ using fourfit_sistema_gestao.UI.Services;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.WebUtilities;
-using System.Text;
+using System.Web;
 using NuGet.Common;
+
+
+
 
 
 namespace fourfit_sistema_gestao.UI.Controllers
@@ -96,25 +98,25 @@ namespace fourfit_sistema_gestao.UI.Controllers
         [HttpGet]
         public async Task<IActionResult> Cadastro()
         {
-            var usuario = new CadastroViewModel
-            {
-                NomeCompleto = "Roberto Carlos da Silva",
-                Email = "roberto@gmail.com",
-                Password = "*SenhaPadrao123*",
-                PasswordConfirmn = "*SenhaPadrao123*",
-                Cpf = "334.288.110-03",
-                Celular = "19988696402",
-                Cep = "89160-242",
-                Endereco = "Travessa Radialista Nilton Novais",
-                Numero = 100,
-                Bairro = "Jardim America",
-                Cidade = "Campinas",
-                Estado = "SP",
-                DataNacimento = Convert.ToDateTime(DateTime.Now.ToString("dd/MM/yyyy")), //Convert.ToDateTime("10/10/1980"),
-                Genero = "M"
+            //var usuario = new CadastroViewModel
+            //{
+                //NomeCompleto = "Roberto Carlos da Silva",
+                //Email = "roberto@gmail.com",
+                //Password = "*SenhaPadrao123*",
+                //PasswordConfirmn = "*SenhaPadrao123*",
+                //Cpf = "334.288.110-03",
+                //Celular = "19988696402",
+                //Cep = "89160-242",
+                //Endereco = "Travessa Radialista Nilton Novais",
+                //Numero = 100,
+                //Bairro = "Jardim America",
+                //Cidade = "Campinas",
+                //Estado = "SP",
+                //DataNacimento = Convert.ToDateTime(DateTime.Now.ToString("dd/MM/yyyy")), //Convert.ToDateTime("10/10/1980"),
+                //Genero = "M"
 
-            };
-            return View(usuario);
+            //};
+            return View();
         }
         [HttpPost]
         public async Task<IActionResult> Cadastro(CadastroViewModel cadastroViewModel)
@@ -195,11 +197,11 @@ namespace fourfit_sistema_gestao.UI.Controllers
                     {
 
                         var token = await _userManager.GeneratePasswordResetTokenAsync(user);
+
+                        
                         var resetUrl = Url.Action("ResetPassword", "Account", new { token = token, email = mod.Email }, Request.Scheme);
 
-                         //System.IO.File.WriteAllText("resetLinkToNewPass", resetUrl);
-
-
+                        System.IO.File.WriteAllText("resetLinkToNewPass", resetUrl);
                         var mail = new EmailServices();
 
                         var msg = new EmailAddressViewModel()
@@ -227,8 +229,10 @@ namespace fourfit_sistema_gestao.UI.Controllers
 
         public IActionResult ResetPassword(string token, string email)
         {
-            return View(new ResetPasswordViewModel { Token = token, Email = email });
+            
+            return View(new ResetPasswordViewModel { Token = token, Email = email});
         }
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public  async Task<IActionResult> ResetPassword(ResetPasswordViewModel mod)
@@ -237,12 +241,13 @@ namespace fourfit_sistema_gestao.UI.Controllers
             {
                 if (ModelState.IsValid)
                 {
+
                     var user = await _userManager.FindByEmailAsync(mod.Email);
 
-
-                    if (user != null)
-                    { 
-                        var result = await _userManager.ResetPasswordAsync(user,mod.Token, mod.Password);
+                          if (user != null)
+                    {
+                        
+                        var result = await _userManager.ResetPasswordAsync(user, mod.Token, mod.Password);
                         if (!result.Succeeded)
                         {
                             foreach (var erro in result.Errors)

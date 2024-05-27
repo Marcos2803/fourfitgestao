@@ -9,7 +9,6 @@
   <ItemGroup>
     <Folder Include="Entities\Clients\" />
     <Folder Include="Entities\Store\" />
-    <Folder Include="Entities\Profission\" />
   </ItemGroup>
 
   <ItemGroup>

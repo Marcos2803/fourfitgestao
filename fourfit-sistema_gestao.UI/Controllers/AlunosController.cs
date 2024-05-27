@@ -1,19 +1,13 @@
-﻿using fourfit.sistema_gestao.Context;
-using fourfit.sistema_gestao.Domain.Entities.Account;
-using fourfit.sistema_gestao.Domain.Entities.Alunos;
+﻿using fourfit.sistema_gestao.Domain.Entities.Alunos;
 using fourfit.sistema_gestao.Domain.Interfaces;
-using fourfit.sistema_gestao.Repositories.Repository;
 using fourfit_sistema_gestao.UI.Models;
 using fourfit_sistema_gestao.UI.Models.Account;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.EntityFrameworkCore;
-using System.Linq.Expressions;
 
 namespace fourfit_sistema_gestao.UI.Controllers
 {
-  
+
     public class AlunosController : Controller
     {
 
@@ -25,9 +19,18 @@ namespace fourfit_sistema_gestao.UI.Controllers
             _unitOfwork = unitOfwork;
         }
         
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string searchString)
+        
+        
         {
+            ViewBag.CurrentFilter = searchString;
+
             var resultado = await _unitOfwork.AlunosServices.ObterAlunosExistentes();
+
+            if (!string.IsNullOrEmpty(searchString))
+            {
+                resultado = resultado.Where(x => x.User.NomeCompleto.Contains(searchString));
+            }
 
             return View(resultado.ToList());
 

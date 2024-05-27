@@ -17,6 +17,7 @@ namespace fourfit.sistema_gestao.Repositories.Repository
         private ITipoPagamentoServices _tipoPagamento;
         private ITipoPagamentoPcServices _tipoPagamentoPc;
         private IUserServices _userServices;
+        private IProfessoresServices _professoresServices;
 
         public IAlunosServices AlunosServices => _alunosServices ??=new AlunosRepository(_dataContext);
 
@@ -27,5 +28,7 @@ namespace fourfit.sistema_gestao.Repositories.Repository
         public ITipoPagamentoPcServices TipoPagamentoPc => _tipoPagamentoPc ??= new TipoPagamentoPcRepository(_dataContext);
 
         public IUserServices UserServices => _userServices ??= new UserRepository(_dataContext);
+
+        public IProfessoresServices ProfessoresServices => _professoresServices ??= new ProfessoresRepository(_dataContext);
     }
 }

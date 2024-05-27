@@ -8,5 +8,6 @@ namespace fourfit_sistema_gestao.UI.Models.Account
         [EmailAddress(ErrorMessage = "Email é invalido")]
 
         public string? Email { get; set; }
+
     }
 }

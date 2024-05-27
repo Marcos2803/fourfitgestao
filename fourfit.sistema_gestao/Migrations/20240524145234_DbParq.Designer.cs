@@ -12,8 +12,8 @@ using fourfit.sistema_gestao.Context;
 namespace fourfit.sistema_gestao.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20240503215641_esquecisenha")]
-    partial class esquecisenha
+    [Migration("20240524145234_DbParq")]
+    partial class DbParq
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -211,7 +211,6 @@ namespace fourfit.sistema_gestao.Migrations
                         .HasColumnType("datetimeoffset");
 
                     b.Property<string>("NomeCompleto")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("NormalizedEmail")
@@ -482,21 +481,21 @@ namespace fourfit.sistema_gestao.Migrations
                     b.ToTable("Equipamentos");
                 });
 
-            modelBuilder.Entity("fourfit.sistema_gestao.Domain.Entities.Genero", b =>
+            modelBuilder.Entity("fourfit.sistema_gestao.Domain.Entities.Parq", b =>
                 {
-                    b.Property<int>("id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("id"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<string>("DescGenero")
+                    b.Property<string>("Nome")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("id");
+                    b.HasKey("Id");
 
-                    b.ToTable("Genero");
+                    b.ToTable("Parq");
                 });
 
             modelBuilder.Entity("fourfit.sistema_gestao.Domain.Entities.TipoPlano", b =>

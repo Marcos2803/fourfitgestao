@@ -9,74 +9,80 @@
     <h2>Gerenciador de Alunos @User.Identity.Name</h2>
 
     <hr>
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <form class="form-inline d-flex" method="get" action="@Url.Action("Index", "Alunos")">
 
-    <button type="button" onclick="location.href='@Url.Action("CadastroAlunos","Alunos")'" class="btn btn-outline-dark"> <i class="bi bi-plus"></i> Novo Aluno</button>
+            <input type="text" class="form-control mr-2" placeholder="Pesquisar aluno..."  name="searchString" value="@ViewBag.CurrentFilter">
+            <button type="submit" class="btn btn-outline-dark">Buscar</button>
+
+        </form>
+        <button type="button" onclick="location.href='@Url.Action("CadastroAlunos","Alunos")'" class="btn btn-outline-dark"> <i class="bi bi-plus"></i> Novo Aluno</button>
+    </div>
 
     <br /><br />
-   </div>
-    <div class="card">
-        
-       
-        <div class="card-header">
-         <div class="card-title">
+</div>
+<div class="card">
 
-          
-         </div>
-      </div>
-        <div class="card-body">
-            @TempData["Msg"]
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th>Foto</th>
-                        <th>Usuário</th>
-                        <th>Data Ínicio</th>
-                        <th>Tipo de Plano</th>
-                        <th>Tipo Pagamento</th>
-                        <th>Ações</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @if (@Model!=null)
-                    {
-                        @foreach (var item in Model)
-                        {
-                            <tr>
-                                <td>@item.Foto</td>
-                               <td>@item.User.NomeCompleto</td>
-                                
-                                @if (item.Ativo == true)
-                                {
-                                    <td style="color:darkslategrey">ATIVO</td>
-                                }
-                                else
-                                {
-                                    <td style="color:red">INATIVO</td>
-                                }
-                                <td>@item.TipoPlano.DescTipoPlano</td>
-                                <td>@item.TipoPagamento.TipoPagamentoPc.Tipo</td>
-                                <td>
-                                    <button class="btn btn-outline-warning" title="Editar" onclick="window.location.href ='@Url.Action("AlterarAlunos","Alunos", new {Id = item.Id})'">
-                                        <i class="fa-solid fa-user-pen"></i>
-                                        </button>
-                                    <button class="btn btn-outline-danger btnExcluir" title="Excluir" data-id="@item.Id"><i class="fa-solid fa-user-xmark"></i></button>
-                                </td>
-                            </tr>
-                        }
-                    }
-                    
-                </tbody>
-            </table>
+
+    <div class="card-header">
+        <div class="card-title">
         </div>
     </div>
+    <div class="card-body">
+        @TempData["Msg"]
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Foto</th>
+                    <th>Usuário</th>
+                    <th>Status</th>
+                    <th>Tipo de Plano</th>
+                    <th>Tipo Pagamento</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (@Model != null)
+                {
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@item.Foto</td>
+                            <td>@item.User.NomeCompleto</td>
+
+
+                            @if (item.Ativo == true)
+                            {
+                                <td style="color:darkslategrey">ATIVO</td>
+                            }
+                            else
+                            {
+                                <td style="color:red">INATIVO</td>
+                            }
+                            <td>@item.TipoPlano.DescTipoPlano</td>
+                            <td>@item.TipoPagamento.TipoPagamentoPc.Tipo</td>
+                            <td>
+                                <button class="btn btn-outline-warning" title="Editar" onclick="window.location.href ='@Url.Action("AlterarAlunos","Alunos", new {Id = item.Id})'">
+                                    <i class="fa-solid fa-user-pen"></i>
+                                </button>
+                                <button class="btn btn-outline-danger btnExcluir" title="Excluir" data-id="@item.Id"><i class="fa-solid fa-user-xmark"></i></button>
+                            </td>
+                        </tr>
+                    }
+                }
+
+            </tbody>
+        </table>
+    </div>
+</div>
 
 </div>
 
-@section scripts{
-   <script>
+@section scripts {
+    <script>
 
-       $('.btnExcluir').on('click', function () {
-           if(confirm("Deseja excluir?")){
+        $('.btnExcluir').on('click', function () {
+            if (confirm("Deseja excluir?")) {
                 var id = $(this).attr("data-id");
                 $.ajax({
                     type: 'POST',
@@ -93,10 +99,10 @@
 
                     }
                 });
-           }
-          
-          
-       });
+            }
 
-   </script>
+
+        });
+
+    </script>
 }

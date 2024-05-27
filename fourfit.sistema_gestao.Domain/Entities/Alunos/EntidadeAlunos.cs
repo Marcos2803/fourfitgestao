@@ -16,6 +16,9 @@ namespace fourfit.sistema_gestao.Domain.Entities.Alunos
         public TipoPagamento TipoPagamento { get; set; }
         public byte[]? Foto { get; set; }
        
-               
+
+
+
+
     }
 }
