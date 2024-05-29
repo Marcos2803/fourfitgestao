@@ -1,0 +1,43 @@
+﻿@model ColaboradoresEdicaoViewModel
+@{
+    ViewData["Title"] = "AlterarColaborador";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="container">
+    <div class="row">
+        <div class="col-md-4">
+            <form class="row g-3" asp-controller="Colaboradores" asp-action="AlterarColaboradores" method="post">
+                <div class="form-group">
+                    <label class="control-label">Foto</label>
+                    <input type="file" asp-for="Foto" class="form-control" />
+                    <span asp-validation-for="Foto" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label class="control-label">Nome Completo</label>
+                    <input type="text" asp-for="NomeCompleto" class="form-control" />
+                    <span asp-validation-for="NomeCompleto" class="text-danger"></span>
+                </div>
+                <div class="col-md-12">
+                    <label for="Cpf" class="form-label">Cpf</label>
+                    <input type="int" class="form-control">
+
+                </div>
+
+                <div class="col-md-12">
+                    <label for="Observacaes" class="form-label">Observaçães</label>
+                    <input type="text" class="form-control" asp-for="Observacaes">
+                    <span asp-validation-for="Observacaes" class="text-danger"></span>
+                </div>
+                <div class="d-grid gap-2">
+                    <button type="submit" class="btn btn-primary">Atualizar</button>
+                </div>
+                <div asp-validation-summary="All" class="text-danger"></div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+<div>
+    <a class="btn bnt-dark" asp-action="Index">Voltar</a>
+</div>

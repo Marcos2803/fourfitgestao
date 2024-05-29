@@ -21,10 +21,10 @@
             <form asp-controller="Alunos" asp-action="Cadastrar" method="post">
                <div class="row">
                   <div class="col-sm-6">
-                            <button type="button" onclick="location.href='@Url.Action("Index", "Alunos")'" class="btn btn-outline-dark"> <i class="bi bi-plus"></i> Aluno</button>
+                            <button type="button" onclick="location.href='@Url.Action("Index", "Alunos")'" class="btn btn-outline-dark"> <i class="bi bi-plus"></i>Gerenciador Aluno</button>
                   </div>
                     <div class="col-sm-6">
-                        <button type="button" class="btn btn-warning">Gerenciar Alunos</button>
+                        <button type="button" onclick="location.href='@Url.Action("Index", "Professores")'" class="btn btn-outline-dark"> <i class="bi bi-plus"></i>Gerenciar Professores</button>
                     </div>
                </div>
             </form>

@@ -12,8 +12,8 @@ using fourfit.sistema_gestao.Context;
 namespace fourfit.sistema_gestao.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20240524145234_DbParq")]
-    partial class DbParq
+    [Migration("20240528125327_DbCorreco")]
+    partial class DbCorreco
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -454,33 +454,6 @@ namespace fourfit.sistema_gestao.Migrations
                     b.ToTable("EmailPasswordAccount", (string)null);
                 });
 
-            modelBuilder.Entity("fourfit.sistema_gestao.Domain.Entities.Equipaments.Equipamentos", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<bool>("Ativo")
-                        .HasColumnType("bit");
-
-                    b.Property<DateTime>("DataManuntecao")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("EquipamentoNome")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Usuario")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Equipamentos");
-                });
-
             modelBuilder.Entity("fourfit.sistema_gestao.Domain.Entities.Parq", b =>
                 {
                     b.Property<int>("Id")
@@ -496,6 +469,88 @@ namespace fourfit.sistema_gestao.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Parq");
+                });
+
+            modelBuilder.Entity("fourfit.sistema_gestao.Domain.Entities.Profission.EntidadeColaboradores", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<bool>("Ativo")
+                        .HasColumnType("bit");
+
+                    b.Property<long>("Cpf")
+                        .HasColumnType("bigint");
+
+                    b.Property<byte[]>("Foto")
+                        .HasColumnType("varbinary(max)");
+
+                    b.Property<string>("NomeCompleto")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Observacaes")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("UserId1")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId");
+
+                    b.HasIndex("UserId1");
+
+                    b.ToTable("Colaboradores");
+                });
+
+            modelBuilder.Entity("fourfit.sistema_gestao.Domain.Entities.Profission.EntidadeProfessores", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<bool>("Ativo")
+                        .HasColumnType("bit");
+
+                    b.Property<long>("Cpf")
+                        .HasColumnType("bigint");
+
+                    b.Property<int?>("Cref")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Especialidade")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<byte[]>("Foto")
+                        .HasColumnType("varbinary(max)");
+
+                    b.Property<string>("NomeCompleto")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Observacaes")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("UserId1")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId");
+
+                    b.HasIndex("UserId1");
+
+                    b.ToTable("Professores");
                 });
 
             modelBuilder.Entity("fourfit.sistema_gestao.Domain.Entities.TipoPlano", b =>
@@ -614,9 +669,39 @@ namespace fourfit.sistema_gestao.Migrations
                     b.Navigation("TipoPagamentoPc");
                 });
 
+            modelBuilder.Entity("fourfit.sistema_gestao.Domain.Entities.Profission.EntidadeColaboradores", b =>
+                {
+                    b.HasOne("fourfit.sistema_gestao.Domain.Entities.Account.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId");
+
+                    b.HasOne("fourfit.sistema_gestao.Domain.Entities.Account.User", null)
+                        .WithMany("Colaboradores")
+                        .HasForeignKey("UserId1");
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("fourfit.sistema_gestao.Domain.Entities.Profission.EntidadeProfessores", b =>
+                {
+                    b.HasOne("fourfit.sistema_gestao.Domain.Entities.Account.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId");
+
+                    b.HasOne("fourfit.sistema_gestao.Domain.Entities.Account.User", null)
+                        .WithMany("Professores")
+                        .HasForeignKey("UserId1");
+
+                    b.Navigation("User");
+                });
+
             modelBuilder.Entity("fourfit.sistema_gestao.Domain.Entities.Account.User", b =>
                 {
                     b.Navigation("Alunos");
+
+                    b.Navigation("Colaboradores");
+
+                    b.Navigation("Professores");
                 });
 
             modelBuilder.Entity("fourfit.sistema_gestao.Domain.Entities.Alunos.TipoPagamento", b =>

@@ -292,5 +292,10 @@ namespace fourfit_sistema_gestao.UI.Controllers
             return View();
         }
 
+        public IActionResult AccessDenied()
+        {
+            return View();
+        }
+
     }
 }

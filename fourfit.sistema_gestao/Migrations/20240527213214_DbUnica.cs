@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace fourfit.sistema_gestao.Migrations
 {
     /// <inheritdoc />
-    public partial class DbParq : Migration
+    public partial class DbUnica : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -122,22 +122,6 @@ namespace fourfit.sistema_gestao.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_EmailPasswordAccount", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Equipamentos",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    EquipamentoNome = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    DataManuntecao = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    Usuario = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Ativo = table.Column<bool>(type: "bit", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Equipamentos", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -286,6 +270,64 @@ namespace fourfit.sistema_gestao.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Colaboradores",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: true),
+                    NomeCompleto = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Cpf = table.Column<long>(type: "bigint", nullable: false),
+                    Celular = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    UserId1 = table.Column<string>(type: "nvarchar(450)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Colaboradores", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Colaboradores_AspNetUsers_UserId",
+                        column: x => x.UserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id");
+                    table.ForeignKey(
+                        name: "FK_Colaboradores_AspNetUsers_UserId1",
+                        column: x => x.UserId1,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id");
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Professores",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: true),
+                    NomeCompleto = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Cpf = table.Column<long>(type: "bigint", nullable: false),
+                    Cref = table.Column<int>(type: "int", nullable: true),
+                    Especialidade = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Ativo = table.Column<bool>(type: "bit", nullable: false),
+                    Foto = table.Column<byte[]>(type: "varbinary(max)", nullable: true),
+                    Observacaes = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    UserId1 = table.Column<string>(type: "nvarchar(450)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Professores", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Professores_AspNetUsers_UserId",
+                        column: x => x.UserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id");
+                    table.ForeignKey(
+                        name: "FK_Professores_AspNetUsers_UserId1",
+                        column: x => x.UserId1,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id");
+                });
+
+            migrationBuilder.CreateTable(
                 name: "TipoPagamento",
                 columns: table => new
                 {
@@ -428,6 +470,26 @@ namespace fourfit.sistema_gestao.Migrations
                 filter: "[NormalizedUserName] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Colaboradores_UserId",
+                table: "Colaboradores",
+                column: "UserId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Colaboradores_UserId1",
+                table: "Colaboradores",
+                column: "UserId1");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Professores_UserId",
+                table: "Professores",
+                column: "UserId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Professores_UserId1",
+                table: "Professores",
+                column: "UserId1");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_TipoPagamento_TipoPagamentoPcId",
                 table: "TipoPagamento",
                 column: "TipoPagamentoPcId");
@@ -458,6 +520,9 @@ namespace fourfit.sistema_gestao.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
+                name: "Colaboradores");
+
+            migrationBuilder.DropTable(
                 name: "EmailAddress");
 
             migrationBuilder.DropTable(
@@ -467,10 +532,10 @@ namespace fourfit.sistema_gestao.Migrations
                 name: "EmailPasswordAccount");
 
             migrationBuilder.DropTable(
-                name: "Equipamentos");
+                name: "Parq");
 
             migrationBuilder.DropTable(
-                name: "Parq");
+                name: "Professores");
 
             migrationBuilder.DropTable(
                 name: "TipoPagamento");

@@ -2,12 +2,13 @@
 using fourfit.sistema_gestao.Domain.Interfaces;
 using fourfit_sistema_gestao.UI.Models;
 using fourfit_sistema_gestao.UI.Models.Account;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace fourfit_sistema_gestao.UI.Controllers
 {
-
+    [Authorize]
     public class AlunosController : Controller
     {
 

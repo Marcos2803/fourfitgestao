@@ -20,6 +20,7 @@ namespace fourfit.sistema_gestao.Domain.Entities.Account
         //public string Id { get; set; }
         public ICollection<EntidadeAlunos> Alunos { get; set; }
         public ICollection<EntidadeProfessores> Professores { get; set; }
+        public ICollection<EntidadeColaboradores> Colaboradores { get; set; }
 
 
         public IEnumerable Select(Func<object, object> value)
