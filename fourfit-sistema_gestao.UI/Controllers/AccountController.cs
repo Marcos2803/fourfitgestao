@@ -1,12 +1,9 @@
 ﻿using fourfit.sistema_gestao.Domain.Entities.Account;
 using fourfit_sistema_gestao.UI.Models.Account;
-using fourfit_sistema_gestao.UI.Models;
 using fourfit_sistema_gestao.UI.Services;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using System.Web;
-using NuGet.Common;
 
 
 

@@ -23,7 +23,7 @@ namespace fourfit_sistema_gestao.UI.Controllers
             return View(resultado.ToList());
         }
 
-        public async Task<IActionResult> CadastroProfessor()
+        public async Task<IActionResult> CadastroProfessores()
         {
             var usuarios = await _unitOfwork.UserServices.ObterUsuariosComEmailConfirmado();
             ViewBag.Usuario = new SelectList(usuarios.Select(x => new
@@ -35,7 +35,7 @@ namespace fourfit_sistema_gestao.UI.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> CadastroProfessor(ProfessoresViewModel professoresViewModel)
+        public async Task<IActionResult> CadastroProfessores(ProfessoresViewModel professoresViewModel)
         {
             try
             {

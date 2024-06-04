@@ -381,6 +381,35 @@ namespace fourfit.sistema_gestao.Migrations
                     b.ToTable("AlunosPesquisa");
                 });
 
+            modelBuilder.Entity("fourfit.sistema_gestao.Domain.Entities.Checkin.Checkin", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("AlunosId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("AlunosId1")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Data")
+                        .IsRequired()
+                        .HasColumnType("varchar(10)");
+
+                    b.Property<string>("Horarios")
+                        .IsRequired()
+                        .HasColumnType("varchar(10)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AlunosId1");
+
+                    b.ToTable("Checkin", (string)null);
+                });
+
             modelBuilder.Entity("fourfit.sistema_gestao.Domain.Entities.EmailConfig.entidadeEmailAddress", b =>
                 {
                     b.Property<int>("Id")
@@ -664,6 +693,17 @@ namespace fourfit.sistema_gestao.Migrations
                         .IsRequired();
 
                     b.Navigation("TipoPagamentoPc");
+                });
+
+            modelBuilder.Entity("fourfit.sistema_gestao.Domain.Entities.Checkin.Checkin", b =>
+                {
+                    b.HasOne("fourfit.sistema_gestao.Domain.Entities.Alunos.EntidadeAlunos", "Alunos")
+                        .WithMany()
+                        .HasForeignKey("AlunosId1")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Alunos");
                 });
 
             modelBuilder.Entity("fourfit.sistema_gestao.Domain.Entities.Profission.EntidadeColaboradores", b =>

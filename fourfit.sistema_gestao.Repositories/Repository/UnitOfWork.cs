@@ -9,7 +9,7 @@ namespace fourfit.sistema_gestao.Repositories.Repository
 
         public UnitOfWork(DataContext dataContext)
         {
-           _dataContext = dataContext;
+            _dataContext = dataContext;
         }
 
         private IAlunosServices _alunosServices;
@@ -19,10 +19,11 @@ namespace fourfit.sistema_gestao.Repositories.Repository
         private IUserServices _userServices;
         private IProfessoresServices _professoresServices;
         private IColaboradoresServices _colaboradoresServices;
+        private ICheckinServices _checkinServices;
 
-        public IAlunosServices AlunosServices => _alunosServices ??=new AlunosRepository(_dataContext);
+        public IAlunosServices AlunosServices => _alunosServices ??= new AlunosRepository(_dataContext);
 
-        public ITipoPlanoServices TipoPlano => _tipoPlano ??=new TipoPlanoRepository(_dataContext);
+        public ITipoPlanoServices TipoPlano => _tipoPlano ??= new TipoPlanoRepository(_dataContext);
 
         public ITipoPagamentoServices TipoPagamento => _tipoPagamento ??= new TipoPagamentoRepository(_dataContext);
 
@@ -33,5 +34,9 @@ namespace fourfit.sistema_gestao.Repositories.Repository
         public IProfessoresServices ProfessoresServices => _professoresServices ??= new ProfessoresRepository(_dataContext);
 
         public IColaboradoresServices ColaboradoresServices => _colaboradoresServices ??= new ColaboradoresRepository(_dataContext);
+
+        public ICheckinServices CheckinServices => _checkinServices ??= new CheckinRepository(_dataContext);
+
+      
     }
 }

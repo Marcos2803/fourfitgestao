@@ -277,3 +277,4 @@ C:\projetos\fourfit-sistema_gestao\fourfit-sistema_gestao.UI\obj\Debug\net8.0\re
 C:\projetos\fourfit-sistema_gestao\fourfit-sistema_gestao.UI\obj\Debug\net8.0\fourfit-sistema_gestao.UI.pdb
 C:\projetos\fourfit-sistema_gestao\fourfit-sistema_gestao.UI\obj\Debug\net8.0\fourfit-sistema_gestao.UI.genruntimeconfig.cache
 C:\projetos\fourfit-sistema_gestao\fourfit-sistema_gestao.UI\obj\Debug\net8.0\ref\fourfit-sistema_gestao.UI.dll
+C:\projetos\fourfit-sistema_gestao\fourfit-sistema_gestao.UI\obj\Debug\net8.0\scopedcss\Views\Shared\_LayoutPrincipal.cshtml.rz.scp.css

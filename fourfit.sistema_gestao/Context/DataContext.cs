@@ -2,25 +2,25 @@
 using fourfit.sistema_gestao.Domain.Entities;
 using fourfit.sistema_gestao.Domain.Entities.Account;
 using fourfit.sistema_gestao.Domain.Entities.Alunos;
+using fourfit.sistema_gestao.Domain.Entities.Checkin;
 using fourfit.sistema_gestao.Domain.Entities.EmailConfig;
 using fourfit.sistema_gestao.Domain.Entities.Profission;
 using fourfit.sistema_gestao.Mapping;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using System.Reflection.Emit;
 
 namespace fourfit.sistema_gestao.Context
 {
-    public class DataContext:IdentityDbContext<User>
+    public class DataContext : IdentityDbContext<User>
     {
-        public DataContext(DbContextOptions<DataContext> options) : base(options)  
+        public DataContext(DbContextOptions<DataContext> options) : base(options)
         {
 
-           
+
         }
         // Dataset
 
-       
+
         #region Tabelas
         public DbSet<User> Usuarios { get; set; }
         public DbSet<entidadeEmailConfiguracoes>? EmailConfiguracoes { get; set; }
@@ -32,9 +32,10 @@ namespace fourfit.sistema_gestao.Context
         public DbSet<TipoPlano> TipoPlano { get; set; }
         public DbSet<Parq> Parq { get; set; }
         public DbSet<AlunosPesquisa> AlunosPesquisa { get; set; }
-        
+
         public DbSet<EntidadeProfessores> Professores { get; set; }
         public DbSet<EntidadeColaboradores> Colaboradores { get; set; }
+        public DbSet<Checkin> Checkin { get; set; }
         #endregion
         protected override void OnModelCreating(ModelBuilder builder)
         {
@@ -66,7 +67,7 @@ namespace fourfit.sistema_gestao.Context
                 .HasForeignKey(e => e.UserId);
 
 
-
+            builder.Entity<Checkin>(new CheckinConfiguration().Configure);
             builder.Entity<entidadeEmailAddress>(new EmailAddressConfiguration().Configure);
             builder.Entity<entidadeEmailConfiguracoes>(new EmailConfiguracoesConfiguration().Configure);
             builder.Entity<entidadeEmailPasswordAccount>(new EmailPasswordAccountConfiguration().Configure);

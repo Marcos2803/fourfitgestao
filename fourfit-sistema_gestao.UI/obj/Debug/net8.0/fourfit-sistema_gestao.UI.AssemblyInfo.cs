@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("fourfit-sistema_gestao.UI")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+63d0e00a255114e1d0433b27bbd58e675444fe95")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+58839b3c447491232cafe5a8c62d15637242a280")]
 [assembly: System.Reflection.AssemblyProductAttribute("fourfit-sistema_gestao.UI")]
 [assembly: System.Reflection.AssemblyTitleAttribute("fourfit-sistema_gestao.UI")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

@@ -1,0 +1,40 @@
+﻿@model fourfit_sistema_gestao.UI.Models.Checkins.CheckinViewModel
+
+@{
+    ViewData["Title"] = "CadastroCheckin";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="container">
+    <div class="row">
+        <div class="col-md-4">
+            <form asp-action="CadastroCheckin" method="post">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="Id" class="control-label"></label>
+                    <select asp-for="Id" class="form-select" asp-items="@ViewBag.Aluno">
+                        <option selected value="0">Selecione o Aluno</option>
+                    </select>
+                    <span asp-validation-for="Id" class="text-danger"></span>
+                </div>
+                <br />
+                <div class="form-group">
+                    <label asp-for="Id" class="control-label"></label>
+                    <select asp-for="Id" class="form-select" asp-items="@ViewBag.Horario">
+                        <option selected value="0">Selecione o Horario</option>
+                    </select>
+                    <span asp-validation-for="Id" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary">Cadastrar</button>
+                </div>
+
+
+            </form>
+        </div>
+    </div>
+</div>
+
+
+<div>
+    <a class="btn bnt-dark" asp-action="Index">Voltar</a>
+</div>

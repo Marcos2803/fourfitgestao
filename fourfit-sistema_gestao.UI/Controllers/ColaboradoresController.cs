@@ -1,8 +1,6 @@
 ﻿using fourfit.sistema_gestao.Domain.Entities.Profission;
 using fourfit.sistema_gestao.Domain.Interfaces;
-using fourfit_sistema_gestao.UI.Models.Colaborador;
 using fourfit_sistema_gestao.UI.Models.Colaboradores;
-using fourfit_sistema_gestao.UI.Models.Professores;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -25,7 +23,7 @@ namespace fourfit_sistema_gestao.UI.Controllers
             var resultado = await _unitOfwork.ColaboradoresServices.ObterColaboradoresExistentes();
             return View(resultado.ToList());
         }
-        [Authorize(Roles ="Professores, Admin")]
+        [Authorize(Roles ="Colaboradores, Admin")]
         public async Task<IActionResult> CadastroColaboradores()
         {
             var usuarios = await _unitOfwork.UserServices.ObterUsuariosComEmailConfirmado();
@@ -50,7 +48,7 @@ namespace fourfit_sistema_gestao.UI.Controllers
                     Ativo = true
                 };
                 await _unitOfwork.ColaboradoresServices.Cadastro(model);
-                TempData["Msg"] = "Professores cadastrado com sucesso!";
+                TempData["Msg"] = "Colaborador cadastrado com sucesso!";
                 return RedirectToAction(nameof(Index));
             }
             catch (Exception ex)

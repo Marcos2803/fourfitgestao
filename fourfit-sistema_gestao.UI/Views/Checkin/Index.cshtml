@@ -1,0 +1,96 @@
+﻿@model IEnumerable<Checkin>
+@{
+    ViewData["Title"] = "Index";
+}
+@Html.AntiForgeryToken()
+
+
+<div class="container">
+    <h2>Gerenciador de Checkins @User.Identity.Name</h2>
+
+    <hr>
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <form class="form-inline d-flex" method="get" action="@Url.Action("Index", "Checkin")">
+
+            <input type="text" class="form-control mr-2" placeholder="Pesquisar Colaborador..." name="searchString" value="@ViewBag.CurrentFilter">
+            <button type="submit" class="btn btn-outline-dark">Buscar</button>
+
+        </form>
+        @*@if (User.IsInRole("Colaboradores") || User.IsInRole("Admin"))*@
+        {
+            <button type="button" onclick="location.href='@Url.Action("CadastroCheckin","Checkin")'" class="btn btn-outline-dark"> <i class="bi bi-plus"></i> Novo Checkin</button>
+        }
+
+    </div>
+
+    <br /><br />
+</div>
+<div class="card">
+
+
+    <div class="card-header">
+        <div class="card-title">
+        </div>
+    </div>
+    <div class="card-body">
+        @TempData["Msg"]
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Data</th>
+                    <th>Alunos</th>
+                    <th>Horários</th>
+                    
+                </tr>
+            </thead>
+            <tbody>
+                @if (@Model != null)
+                {
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@item.Data</td>
+                            <td>@item.Alunos</td>
+                            
+                            <td>
+                                <button class="btn btn-outline-danger btnExcluir" title="Excluir" data-id="@item.Id"><i class="fa-solid fa-user-xmark"></i></button>
+                            </td>
+                        </tr>
+                    }
+                }
+
+            </tbody>
+        </table>
+    </div>
+</div>
+
+</div>
+
+@section scripts {
+    <script>
+
+        $('.btnExcluir').on('click', function () {
+            if (confirm("Deseja excluir?")) {
+                var id = $(this).attr("data-id");
+                $.ajax({
+                    type: 'POST',
+                    url: '@Url.Action("ExcluirCheckin", "Checkin")',
+                    data: { Id: id },
+                    success: function (response) {
+                        if (response.sucesso) {
+                            alert(response.mensagem);
+                            window.location.href = '@Url.Action("Index", "Checkin")';
+
+                        }
+
+                    }, error: function () {
+
+                    }
+                });
+            }
+
+
+        });
+
+    </script>
+}>
