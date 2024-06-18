@@ -11,7 +11,7 @@
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                 <div class="form-group">
                     <label asp-for="Id" class="control-label"></label>
-                    <select asp-for="Id" class="form-select" asp-items="@ViewBag.Aluno">
+                    <select asp-for="Id" class="form-select" asp-items="@ViewBag.TipoPlano">
                         <option selected value="0">Selecione o Aluno</option>
                     </select>
                     <span asp-validation-for="Id" class="text-danger"></span>

@@ -4,6 +4,7 @@
     {
         public int Id { get; set; }
         public DateTime Data { get; set; }
+        public string NomeCompleto { get; set; }
         public string? AlunosId { get; set; }
         public string Horarios { get; set; }
     }

@@ -1,5 +1,6 @@
 ﻿using fourfit.sistema_gestao.Domain.Entities.Account;
 
+
 namespace fourfit.sistema_gestao.Domain.Entities.Alunos
 {
     public class EntidadeAlunos
@@ -15,7 +16,11 @@ namespace fourfit.sistema_gestao.Domain.Entities.Alunos
         public int TipoPagamentoId { get; set; }
         public TipoPagamento TipoPagamento { get; set; }
         public byte[]? Foto { get; set; }
-       
+
+        
+
+
+
 
 
 

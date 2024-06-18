@@ -1,7 +1,9 @@
 ﻿@model IEnumerable<Checkin>
 @{
     ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_LayoutPrincipal.cshtml";
 }
+@await Html.PartialAsync("Checkin")
 @Html.AntiForgeryToken()
 
 

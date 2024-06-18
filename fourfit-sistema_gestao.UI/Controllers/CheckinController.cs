@@ -24,27 +24,29 @@ namespace fourfit_sistema_gestao.UI.Controllers
 
         public async Task<IActionResult> CadastroCheckin()
         {
-            var alunos = await _unitOfwork.AlunosServices.ObterAlunosExistentes();
-            ViewBag.Aluno = new SelectList(alunos.Select(x => new
-            {
-              x.Id,
-              x.TipoPlano,
-            }), "Id", "TipoPlano");
+            //var alunos = await _unitOfwork.AlunosServices.ObterAlunosExistentes();
+            //ViewBag.Aluno = new SelectList(alunos.Select(x => new
+            //{
+            //  x.Id,
+            //  x.TipoPlano,
+            //}), "Id", "TipoPlano");
+            var tipoPlano = await _unitOfwork.TipoPlano.ObterTodos();
+            ViewBag.TipoPlano = new SelectList(tipoPlano.ToList(), "Id", "DescTipoPlano");
 
             return View();
         }
         [HttpPost]
-        public async Task<IActionResult> CadastroCheckin(CheckinViewModel checkinViewModel)
+        public  async Task<IActionResult> CadastroCheckin(CheckinViewModel checkinViewModel)
         {
             try
             {
                 var model = new Checkin
                 {
-                    Id = checkinViewModel.Id,
-                    //Alunos = checkinViewModel.Alunos,
+                    AlunosId = checkinViewModel.AlunosId,
+                    //Data = DateTime.Now,
                     Horarios = checkinViewModel.Horarios,
                 };
-                //await IUnitOfWork.CheckinServices.Cadastro(model);
+                await _unitOfwork.CheckinServices.Cadastro(model);
                 TempData["Msg"] = "Checkin cadastrado com sucesso!";
                 return RedirectToAction(nameof(Index));
             }

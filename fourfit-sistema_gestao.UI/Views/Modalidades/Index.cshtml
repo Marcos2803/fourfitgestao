@@ -1,6 +1,100 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿@model fourfit.sistema_gestao.Domain.Entities.Modalidades
 @{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_LayoutPrincipal.cshtml";
 }
-<div>modalidade</div>
+@Html.AntiForgeryToken()
+
+
+<div class="container">
+    <h2>Gerenciador de Modalidades @User.Identity.Name</h2>
+
+    <hr>
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <form class="form-inline d-flex" method="get" action="@Url.Action("Index", "Modalidades")">
+
+            <input type="text" class="form-control mr-2" placeholder="Pesquisar Modalidade..." name="searchString" value="@ViewBag.CurrentFilter">
+            <button type="submit" class="btn btn-outline-dark">Buscar</button>
+
+        </form>
+        <button type="button" onclick="location.href='@Url.Action("CadastroModalidades","Modalidades")'" class="btn btn-outline-dark"> <i class="bi bi-plus"></i> Nova Modalidade</button>
+    </div>
+
+    <br /><br />
+</div>
+<div class="card">
+
+
+    <div class="card-header">
+        <div class="card-title">
+        </div>
+    </div>
+    <div class="card-body">
+        @TempData["Msg"]
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Nome</th>
+                    <th>Status</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            @*<body>
+                @if (@Model != null)
+                {
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@item.Nome</td>
+                            @if (item.Ativo == true)
+                            {
+                                <td style="color:darkslategrey">ATIVO</td>
+                            }
+                            else
+                            {
+                                <td style="color:red">INATIVO</td>
+                            }
+                            <td>
+                                <button class="btn btn-outline-warning" title="Editar" onclick="window.location.href ='@Url.Action("AlterarModalidades","Modalidades", new {Id = item.Id})'">
+                                    <i class="fa-solid fa-user-pen"></i>
+                                </button>
+                                <button class="btn btn-outline-danger btnExcluir" title="Excluir" data-id="@item.Id"><i class="fa-solid fa-user-xmark"></i></button>
+                            </td>
+                        </tr>
+                    }
+                }
+            </body> *@
+        </table>
+    </div>
+</div>
+
+</div>
+
+@section scripts {
+    <script>
+
+        $('.btnExcluir').on('click', function () {
+            if (confirm("Deseja excluir?")) {
+                var id = $(this).attr("data-id");
+                $.ajax({
+                    type: 'POST',
+                    url: '@Url.Action("ExcluirModalidade", "Modalidades")',
+                    data: { Id: id },
+                    success: function (response) {
+                        if (response.sucesso) {
+                            alert(response.mensagem);
+                            window.location.href = '@Url.Action("Index", "Modalidades")';
+
+                        }
+
+                    }, error: function () {
+
+                    }
+                });
+            }
+
+
+        });
+
+    </script>
+}

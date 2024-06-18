@@ -66,6 +66,11 @@ namespace fourfit.sistema_gestao.Context
                 .WithMany()
                 .HasForeignKey(e => e.UserId);
 
+            //builder.Entity<EntidadeAlunos>()
+            //    .WithMany(e => e.Ch)
+            //    .HasOne(e => e.Alunos)
+            //    .HasForeignKey(e => e.AlunosId);
+
 
             builder.Entity<Checkin>(new CheckinConfiguration().Configure);
             builder.Entity<entidadeEmailAddress>(new EmailAddressConfiguration().Configure);

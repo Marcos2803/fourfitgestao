@@ -1,6 +1,7 @@
 ﻿@model IEnumerable<EntidadeAlunos>
 @{
     ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_LayoutPrincipal.cshtml";
 }
 @Html.AntiForgeryToken()
 
@@ -71,7 +72,7 @@
                     }
                 }
 
-            </tbody>
+            <tbody>
         </table>
     </div>
 </div>

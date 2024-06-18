@@ -1,5 +1,4 @@
-﻿using fourfit.sistema_gestao.Domain.Entities.Account;
-using fourfit.sistema_gestao.Domain.Entities.Alunos;
+﻿using fourfit.sistema_gestao.Domain.Entities.Alunos;
 
 namespace fourfit.sistema_gestao.Domain.Entities.Checkin
 {
