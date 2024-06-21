@@ -6,7 +6,7 @@
     <title>@ViewData["Title"] Four Fit</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/all.css" />
-   
+
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/fourfit_sistema_gestao.UI.styles.css" asp-append-version="true" />
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"
@@ -19,14 +19,24 @@
             <div class="col-2">
                 <div class="sidbar">
                     <div class="sidbar-title">
-                       <img src="../images/avatar-anonimo.png" />
+                        <img src="../images/avatar-anonimo.png" />
+                        @User.Identity.Name
                     </div>
                     
                     <ul>
+
                         <li><a href="BemVindo"><i class="fas fa-tachometer-alt icon-spacing"></i>Dashboard</a></li>
-                        <li><a href="#"><i class="fas fa-address-book icon-spacing"></i>Cadastros</a></li>
-                        <li><a href="#"><i class="fas fa-users icon-spacing"></i>Usuários</a></li>
-                        <li><a href="Checkin"><i class="fas fa-check icon-spacing"></i>Checkin</a></li>
+
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle dropdown-btn" data-toggle="dropdown"><i class="fas fa-address-book icon-spacing "></i>Cadastros <span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a asp-action="Index" asp-controller="Alunos">Alunos</a></li>
+                                <li><a asp-action="Index" asp-controller="Professores">Professores</a></li>
+                                <li><a href="link3">Cadastro 3</a></li>
+                            </ul>
+                        </li>
+                        <li><a asp-action="#" asp-controller="Usuarios"><i class="fas fa-users icon-spacing"></i>Usuários</a></li>
+                        <li><a asp-action="Index" asp-controller="Checkin"><i class="fas fa-check icon-spacing"></i>Checkin</a></li>
                         <li><a href="#"><i class="fas fa-calendar-alt icon-spacing"></i>Mensalidades</a></li>
                         <li><a href="#"><i class="fa-solid fa-dollar-sign icon-spacing"></i>Finanças</a></li>
                         <li><a href="#"><i class="fas fa-chart-bar icon-spacing"></i>Relatórios</a></li>
@@ -34,7 +44,9 @@
                         <li><a href="#"><i class="fas fa-tablet-alt icon-spacing"></i>Meus Dispositivos</a></li>
                         <li><a href="#"><i class="fas fa-cogs icon-spacing"></i>Configuraçães</a></li>
 
+
                     </ul>
+
                 </div>
             </div>
             <div class="col-10">
@@ -43,8 +55,8 @@
                 </main>
             </div>
         </div>
-      
-       
+
+
     </div>
 
     <footer class="border-top footer text-muted">
@@ -55,6 +67,7 @@
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="~/js/menu.js" asp-append-version="true"></script>
     <script src="~/js/all.min.js" asp-append-version="true"></script>
     <script src="~/js/cadastro.js" asp-append-version="true"></script>
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>

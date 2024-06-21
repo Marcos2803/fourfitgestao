@@ -3,14 +3,12 @@
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_LayoutPrincipal.cshtml";
 }
-@await Html.PartialAsync("Checkin")
+
 @Html.AntiForgeryToken()
 
 
 <div class="container">
-    <h2>Gerenciador de Checkins @User.Identity.Name</h2>
-
-    <hr>
+   <hr>
     <div class="d-flex justify-content-between align-items-center mb-3">
         <form class="form-inline d-flex" method="get" action="@Url.Action("Index", "Checkin")">
 

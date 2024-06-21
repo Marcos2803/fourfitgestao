@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "K6LoQQvc3R9L3A7t0PfntIabNfU6wTTUhWyDUmMKEMg=",
+  "Hash": "IV9k2+nI1QHPT22lQ5+Gsezjv/bNczffurN5NtQ1UGc=",
   "Source": "fourfit-sistema_gestao.UI",
   "BasePath": "_content/fourfit-sistema_gestao.UI",
   "Mode": "Default",
@@ -813,6 +813,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\js\\fontawesome.min.js"
+    },
+    {
+      "Identity": "C:\\projetos\\fourfit-sistema_gestao\\fourfit-sistema_gestao.UI\\wwwroot\\js\\menu.js",
+      "SourceId": "fourfit-sistema_gestao.UI",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\projetos\\fourfit-sistema_gestao\\fourfit-sistema_gestao.UI\\wwwroot\\",
+      "BasePath": "_content/fourfit-sistema_gestao.UI",
+      "RelativePath": "js/menu.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\js\\menu.js"
     },
     {
       "Identity": "C:\\projetos\\fourfit-sistema_gestao\\fourfit-sistema_gestao.UI\\wwwroot\\js\\regular.js",

@@ -6,7 +6,7 @@
 @Html.AntiForgeryToken()
 
 <div class="container">
-    <label>Bem vindo, @User.Identity.Name</label>
+    
     <div class="card">
         <div class="card-header">
             <div class="card-title">
@@ -26,6 +26,15 @@
                         <button type="button" onclick="location.href='@Url.Action("Index", "Professores")'" class="btn btn-outline-dark"> <i class="bi bi-plus"></i>Gerenciar Professores</button>
                     </div>
                </div>
+               <br />
+                <div class="row">
+                    <div class="col-sm-6">
+                        <button type="button" onclick="location.href='@Url.Action("Index", "Colaboradores")'" class="btn btn-outline-dark"> <i class="bi bi-plus"></i>Gerenciador Colaboradores</button>
+                    </div>
+                    <div class="col-sm-6">
+                        <button type="button" onclick="location.href='@Url.Action("Index", "Checkin")'" class="btn btn-outline-dark"> <i class="bi bi-plus"></i>Gerenciar Checkin</button>
+                    </div>
+                </div>
             </form>
         </div>
     </div>

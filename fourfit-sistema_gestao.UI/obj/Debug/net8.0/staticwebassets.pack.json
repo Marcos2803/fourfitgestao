@@ -165,6 +165,10 @@
       "PackagePath": "staticwebassets\\js\\fontawesome.min.js"
     },
     {
+      "Id": "C:\\projetos\\fourfit-sistema_gestao\\fourfit-sistema_gestao.UI\\wwwroot\\js\\menu.js",
+      "PackagePath": "staticwebassets\\js\\menu.js"
+    },
+    {
       "Id": "C:\\projetos\\fourfit-sistema_gestao\\fourfit-sistema_gestao.UI\\wwwroot\\js\\regular.js",
       "PackagePath": "staticwebassets\\js\\regular.js"
     },
