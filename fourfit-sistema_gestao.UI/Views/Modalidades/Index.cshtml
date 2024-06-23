@@ -1,4 +1,4 @@
-﻿@model fourfit.sistema_gestao.Domain.Entities.Modalidades
+﻿@model IEnumerable<Modalidades>
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_LayoutPrincipal.cshtml";
@@ -7,9 +7,9 @@
 
 
 <div class="container">
-    <h2>Gerenciador de Modalidades @User.Identity.Name</h2>
+    <h2>Gerenciador de Modalidades </h2>
 
-    <hr>
+    <div class="custom"></div>
     <div class="d-flex justify-content-between align-items-center mb-3">
         <form class="form-inline d-flex" method="get" action="@Url.Action("Index", "Modalidades")">
 
@@ -35,17 +35,19 @@
             <thead>
                 <tr>
                     <th>Nome</th>
+                    <th>Descrição</th>
                     <th>Status</th>
                     <th>Ações</th>
                 </tr>
             </thead>
-            @*<body>
-                @if (@Model != null)
+            <body>
+                @if (Model != null)
                 {
                     @foreach (var item in Model)
                     {
                         <tr>
                             <td>@item.Nome</td>
+                            <td>@item.Descricao</td>
                             @if (item.Ativo == true)
                             {
                                 <td style="color:darkslategrey">ATIVO</td>
@@ -63,7 +65,7 @@
                         </tr>
                     }
                 }
-            </body> *@
+            </body> 
         </table>
     </div>
 </div>

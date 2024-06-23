@@ -6,7 +6,7 @@
     <title>@ViewData["Title"] Four Fit</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/all.css" />
-
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/fourfit_sistema_gestao.UI.styles.css" asp-append-version="true" />
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"
@@ -22,25 +22,64 @@
                         <img src="../images/avatar-anonimo.png" />
                         @User.Identity.Name
                     </div>
-                    
+
                     <ul>
 
-                        <li><a href="BemVindo"><i class="fas fa-tachometer-alt icon-spacing"></i>Dashboard</a></li>
+                        <li><a asp-action="BemVindo" asp-controller="Dashboard"><i class="fas fa-home icon-spacing"></i>Dashboard</a></li>
 
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle dropdown-btn" data-toggle="dropdown"><i class="fas fa-address-book icon-spacing "></i>Cadastros <span class="caret"></span></a>
-                            <ul class="dropdown-menu">
-                                <li><a asp-action="Index" asp-controller="Alunos">Alunos</a></li>
-                                <li><a asp-action="Index" asp-controller="Professores">Professores</a></li>
-                                <li><a href="link3">Cadastro 3</a></li>
+                        <li class="menu-item">
+                            <a asp-action="#" asp-controller="Cadastro"><i class="fas fa-file-alt icon-spacing "></i>Cadastros <span class="caret"></span></a>
+                            <ul class="submenu">
+                                <li>
+                                    <a asp-action="Index" asp-controller="Modalidades">
+                                        <i class="fas fa-dumbbell icon-spacing"></i>
+                                        Modalidades
+                                    </a>
+                                </li>
+                                <li>
+                                    <a asp-action="Index" asp-controller="Planos">
+                                        <i class="fas fa-clipboard-list icon-spacing"></i>
+                                        Planos
+                                    </a>
+                                </li>
+                                <li>
+                                    <a asp-action="Index" asp-controller="AvaliacaoFisica">
+                                        <i class="fas fa-heartbeat icon-spacing"></i>
+                                        Avaliação Física
+                                    </a>
+                                </li>
+
                             </ul>
                         </li>
-                        <li><a asp-action="#" asp-controller="Usuarios"><i class="fas fa-users icon-spacing"></i>Usuários</a></li>
+                        <li class="menu-item">
+                            <a asp-action="#" asp-controller="Usuarios"><i class="fas fa-users icon-spacing"></i>Usuários</a>
+                            <ul class="submenu">
+                                <li>
+                                    <a asp-action="Index" asp-controller="Alunos">
+                                        <i class="fas fa-user-graduate icon-spacing"></i>
+                                        Alunos
+                                    </a>
+                                </li>
+                                <li>
+                                    <a asp-action="Index" asp-controller="Professores">
+                                        <i class="fas fa-chalkboard"></i>
+                                        Professores
+                                    </a>
+                                </li>
+                                <li><a asp-action="Index" asp-controller="Colaboradores"><i class="fas fa-user-tie icon-spacing"></i>Colaboradores</a></li>
+                            </ul>
+                        </li>
                         <li><a asp-action="Index" asp-controller="Checkin"><i class="fas fa-check icon-spacing"></i>Checkin</a></li>
                         <li><a href="#"><i class="fas fa-calendar-alt icon-spacing"></i>Mensalidades</a></li>
                         <li><a href="#"><i class="fa-solid fa-dollar-sign icon-spacing"></i>Finanças</a></li>
                         <li><a href="#"><i class="fas fa-chart-bar icon-spacing"></i>Relatórios</a></li>
-                        <li><a href="#"><i class="fas fa-store icon-spacing"></i>Loja</a></li>
+                        <li class="menu-item">
+                            <a href="#"><i class="fas fa-store icon-spacing"></i>Loja</a>
+                            <ul class="submenu">
+                                <li><a asp-action="Index" asp-controller="Estoque"><i class="fas fa-warehouse icon-spacing"></i>Estoque</a></li>
+                                <li><a asp-action="Index" asp-controller="Vendas"><i class="fas fa-shopping-cart icon-spacing"></i>Vendas</a></li>
+                            </ul>
+                        </li>
                         <li><a href="#"><i class="fas fa-tablet-alt icon-spacing"></i>Meus Dispositivos</a></li>
                         <li><a href="#"><i class="fas fa-cogs icon-spacing"></i>Configuraçães</a></li>
 

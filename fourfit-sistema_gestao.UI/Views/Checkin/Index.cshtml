@@ -8,7 +8,7 @@
 
 
 <div class="container">
-   <hr>
+    <div class="custom"></div>
     <div class="d-flex justify-content-between align-items-center mb-3">
         <form class="form-inline d-flex" method="get" action="@Url.Action("Index", "Checkin")">
 
@@ -17,10 +17,8 @@
 
         </form>
         @*@if (User.IsInRole("Colaboradores") || User.IsInRole("Admin"))*@
-        {
+        
             <button type="button" onclick="location.href='@Url.Action("CadastroCheckin","Checkin")'" class="btn btn-outline-dark"> <i class="bi bi-plus"></i> Novo Checkin</button>
-        }
-
     </div>
 
     <br /><br />
@@ -50,7 +48,7 @@
                     {
                         <tr>
                             <td>@item.Data</td>
-                            <td>@item.Alunos</td>
+                            <td>@item.User</td>
                             
                             <td>
                                 <button class="btn btn-outline-danger btnExcluir" title="Excluir" data-id="@item.Id"><i class="fa-solid fa-user-xmark"></i></button>

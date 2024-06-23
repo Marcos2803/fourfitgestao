@@ -1,7 +1,9 @@
 ﻿using fourfit.sistema_gestao.Context;
-using fourfit.sistema_gestao.Domain.Entities;
+using fourfit.sistema_gestao.Domain.Entities.Alunos;
+using fourfit.sistema_gestao.Domain.Entities.Modalidades;
 using fourfit.sistema_gestao.Domain.Interfaces;
 using fourfit.sistema_gestao.Repositories.Repository.Base;
+using Microsoft.EntityFrameworkCore;
 
 namespace fourfit.sistema_gestao.Repositories.Repository
 {
@@ -14,9 +16,33 @@ namespace fourfit.sistema_gestao.Repositories.Repository
             _dataContext = dataContext;
         }
 
-        public Task<IEnumerable<Modalidades>> ObterModalidadesExistentes()
+        public async Task<IEnumerable<Modalidades>> ObterModalidadesExistentes()
         {
-            throw new NotImplementedException();
+
+            var resultado = await _dataContext.Set<Modalidades>()
+                .Include(x => x.User)
+                .ToListAsync();
+
+            if (resultado != null)
+            {
+                return resultado;
+            }
+
+            return null;
+        }
+
+        public async Task<Modalidades> ObterModalidadesUsuariosPorId(int Id)
+        {
+            var resultado = await _dataContext.Set<Modalidades>()
+                .Include(x => x.User).Where(x => x.Id == Id).FirstOrDefaultAsync();
+
+
+            if (resultado != null)
+            {
+                return resultado;
+            }
+            return null;
+
         }
     }
 }

@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using fourfit.sistema_gestao.Context;
 
@@ -11,9 +12,11 @@ using fourfit.sistema_gestao.Context;
 namespace fourfit.sistema_gestao.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20240623121359_modalidade1")]
+    partial class modalidade1
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -389,6 +392,12 @@ namespace fourfit.sistema_gestao.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<string>("AlunosId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("AlunosId1")
+                        .HasColumnType("int");
+
                     b.Property<string>("Data")
                         .IsRequired()
                         .HasColumnType("varchar(10)");
@@ -397,12 +406,9 @@ namespace fourfit.sistema_gestao.Migrations
                         .IsRequired()
                         .HasColumnType("varchar(10)");
 
-                    b.Property<string>("UserId")
-                        .HasColumnType("nvarchar(450)");
-
                     b.HasKey("Id");
 
-                    b.HasIndex("UserId");
+                    b.HasIndex("AlunosId1");
 
                     b.ToTable("Checkin", (string)null);
                 });
@@ -694,11 +700,13 @@ namespace fourfit.sistema_gestao.Migrations
 
             modelBuilder.Entity("fourfit.sistema_gestao.Domain.Entities.Checkin.Checkin", b =>
                 {
-                    b.HasOne("fourfit.sistema_gestao.Domain.Entities.Account.User", "User")
+                    b.HasOne("fourfit.sistema_gestao.Domain.Entities.Alunos.EntidadeAlunos", "Alunos")
                         .WithMany()
-                        .HasForeignKey("UserId");
+                        .HasForeignKey("AlunosId1")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-                    b.Navigation("User");
+                    b.Navigation("Alunos");
                 });
 
             modelBuilder.Entity("fourfit.sistema_gestao.Domain.Entities.Profission.EntidadeColaboradores", b =>

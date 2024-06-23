@@ -24,16 +24,14 @@ namespace fourfit_sistema_gestao.UI.Controllers
 
         public async Task<IActionResult> CadastroCheckin()
         {
-            //var alunos = await _unitOfwork.AlunosServices.ObterAlunosExistentes();
-            //ViewBag.Aluno = new SelectList(alunos.Select(x => new
-            //{
-            //  x.Id,
-            //  x.TipoPlano,
-            //}), "Id", "TipoPlano");
-            var tipoPlano = await _unitOfwork.TipoPlano.ObterTodos();
-            ViewBag.TipoPlano = new SelectList(tipoPlano.ToList(), "Id", "DescTipoPlano");
+            var usuarios = await _unitOfwork.UserServices.ObterUsuariosComEmailConfirmado();
+            ViewBag.Usuario = new SelectList(usuarios.Select(x => new
+            {
+                x.Id,
+                x.NomeCompleto,
+            }), "Id", "NomeCompleto");
 
-            return View();
+            return View(); 
         }
         [HttpPost]
         public  async Task<IActionResult> CadastroCheckin(CheckinViewModel checkinViewModel)
@@ -42,7 +40,7 @@ namespace fourfit_sistema_gestao.UI.Controllers
             {
                 var model = new Checkin
                 {
-                    AlunosId = checkinViewModel.AlunosId,
+                    UserId = checkinViewModel.UserId,
                     //Data = DateTime.Now,
                     Horarios = checkinViewModel.Horarios,
                 };

@@ -10,6 +10,6 @@
         IProfessoresServices ProfessoresServices { get; }
         IColaboradoresServices ColaboradoresServices { get; }
         ICheckinServices CheckinServices { get; }
-        IModalidadesServices ModalidalidadesServices { get; }
+        IModalidadesServices ModalidadesServices { get; }
     }
 }

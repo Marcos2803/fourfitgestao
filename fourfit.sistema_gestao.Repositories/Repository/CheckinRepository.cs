@@ -19,7 +19,7 @@ namespace fourfit.sistema_gestao.Repositories.Repository
         public async Task<IEnumerable<Checkin>> ObterCheckinExistentes()
         {
             var resultado = await _dataContext.Set<Checkin>()
-                .Include(x => x.Alunos)
+                .Include(x => x.User)
                 .ToListAsync();
 
             if (resultado != null)
@@ -32,7 +32,7 @@ namespace fourfit.sistema_gestao.Repositories.Repository
         public async Task<Checkin> ObterCheckinUsuariosPorId(int Id)
         {
             var resultado = await _dataContext.Set<Checkin>()
-                .Include(x => x.Alunos).Where(x => x.Id == Id).FirstOrDefaultAsync();
+                .Include(x => x.User).Where(x => x.Id == Id).FirstOrDefaultAsync();
 
 
             if (resultado != null)

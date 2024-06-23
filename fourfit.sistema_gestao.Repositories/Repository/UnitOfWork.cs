@@ -39,5 +39,7 @@ namespace fourfit.sistema_gestao.Repositories.Repository
         public ICheckinServices CheckinServices => _checkinServices ??= new CheckinRepository(_dataContext);
 
         public IModalidadesServices ModalidalidadesServices => _modalidadesServices ??= new ModalidadesRepository(_dataContext);
+
+        public IModalidadesServices ModalidadesServices => _modalidadesServices ??= new ModalidadesRepository(_dataContext);
     }
 }

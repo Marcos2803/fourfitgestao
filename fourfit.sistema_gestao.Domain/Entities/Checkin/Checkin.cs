@@ -1,4 +1,5 @@
-﻿using fourfit.sistema_gestao.Domain.Entities.Alunos;
+﻿using fourfit.sistema_gestao.Domain.Entities.Account;
+
 
 namespace fourfit.sistema_gestao.Domain.Entities.Checkin
 {
@@ -6,8 +7,8 @@ namespace fourfit.sistema_gestao.Domain.Entities.Checkin
     {
         public int Id { get; set; }
         public DateTime Data { get; set; }
-        public EntidadeAlunos Alunos { get; set; }
-        public string? AlunosId { get; set; }
+        public User User { get; set; }
+        public string? UserId { get; set; }
         public string Horarios { get; set; }
 
         
