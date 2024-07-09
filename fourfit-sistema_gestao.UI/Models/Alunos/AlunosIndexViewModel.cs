@@ -6,7 +6,6 @@
         public byte[] Foto { get; set; }
         public string NomeCompleto { get; set; }
         public bool Ativo { get; set; }
-        public string DescTipoPlano { get; set; }
-        public string Tipo { get; set; }
+        
     }
 }

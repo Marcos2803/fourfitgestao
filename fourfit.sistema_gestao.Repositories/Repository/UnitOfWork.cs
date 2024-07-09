@@ -21,6 +21,8 @@ namespace fourfit.sistema_gestao.Repositories.Repository
         private IColaboradoresServices _colaboradoresServices;
         private ICheckinServices _checkinServices;
         private IModalidadesServices _modalidadesServices;
+        private IDespesasServices _despesasServices;
+        private IInvestimentosServices _investimentosServices;
 
         public IAlunosServices AlunosServices => _alunosServices ??= new AlunosRepository(_dataContext);
 
@@ -38,8 +40,10 @@ namespace fourfit.sistema_gestao.Repositories.Repository
 
         public ICheckinServices CheckinServices => _checkinServices ??= new CheckinRepository(_dataContext);
 
-        public IModalidadesServices ModalidalidadesServices => _modalidadesServices ??= new ModalidadesRepository(_dataContext);
+        public IDespesasServices DespesasServices => _despesasServices ??= new DespesasRepository(_dataContext);
+
+        public IInvestimentosServices InvestimentosServices => _investimentosServices ??= new InvestimentosRepository(_dataContext);
 
         public IModalidadesServices ModalidadesServices => _modalidadesServices ??= new ModalidadesRepository(_dataContext);
-    }
+    } 
 }

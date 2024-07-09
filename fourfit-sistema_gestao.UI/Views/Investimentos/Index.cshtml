@@ -1,0 +1,114 @@
+﻿@model IEnumerable<Investimentos>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_LayoutPrincipal.cshtml";
+}
+@Html.AntiForgeryToken()
+
+
+<div class="container">
+    <h2>Gerenciador de Investimentos</h2>
+
+    <div class="custom"></div>
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <form class="form-inline d-flex" method="get" action="@Url.Action("Index", "Investimentos")">
+
+            <input type="text" class="form-control mr-2" placeholder="Pesquisar Investimento..." name="searchString" value="@ViewBag.CurrentFilter">
+            <button type="submit" class="btn btn-outline-dark">Buscar</button>
+
+        </form>
+        @if (User.IsInRole("Colaboradores") || User.IsInRole("Admin"))
+        {
+            <button type="button" onclick="location.href='@Url.Action("CadastroInvestimentos","Investimentos")'" class="btn btn-outline-dark"> <i class="bi bi-plus"></i> Novo Investimento</button>
+        }
+
+    </div>
+
+    <br /><br />
+</div>
+<div class="card">
+
+
+    <div class="card-header">
+        <div class="card-title">
+        </div>
+    </div>
+    <div class="card-body">
+        @TempData["Msg"]
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Foto</th>
+                    <th>Nome</th>
+                    <th>Status</th>
+                    <th>Cpf</th>
+                    <th>Observaçães</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            @* <tbody>
+                @if (@Model != null)
+                {
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@item.Foto</td>
+                            <td>@item.User.NomeCompleto</td>
+
+
+                            @if (item.Ativo == true)
+                            {
+                                <td style="color:darkslategrey">ATIVO</td>
+                            }
+                            else
+                            {
+                                <td style="color:red">INATIVO</td>
+                            }
+                            <td>@item.Cpf</td>
+                            <td>@item.Observacaes</td>
+                            <td>
+                                <button class="btn btn-outline-warning" title="Editar" onclick="window.location.href ='@Url.Action("AlterarColaboradores","Colaboradores", new {Id = item.Id})'">
+                                    <i class="fa-solid fa-user-pen"></i>
+                                </button>
+                                <button class="btn btn-outline-danger btnExcluir" title="Excluir" data-id="@item.Id"><i class="fa-solid fa-user-xmark"></i></button>
+                            </td>
+                        </tr>
+                    }
+                }
+
+            </tbody> *@
+        </table>
+    </div>
+</div>
+
+</div>
+
+@section scripts {
+    <script>
+
+        $('.btnExcluir').on('click', function () {
+            if (confirm("Deseja excluir?")) {
+                var id = $(this).attr("data-id");
+                $.ajax({
+                    type: 'POST',
+                    url: '@Url.Action("ExcluirInvestimento", "Investimentos")',
+                    data: { Id: id },
+                    success: function (response) {
+                        if (response.sucesso) {
+                            alert(response.mensagem);
+                            window.location.href = '@Url.Action("Index", "Investimentos")';
+
+                        }
+
+                    }, error: function () {
+
+                    }
+                });
+            }
+
+
+        });
+
+    </script>
+}
+

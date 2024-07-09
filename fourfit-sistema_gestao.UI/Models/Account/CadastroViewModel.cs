@@ -1,13 +1,16 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using System.Security.Permissions;
 
 namespace fourfit_sistema_gestao.UI.Models.Account
 {
     public class CadastroViewModel
     {
-        [Display(Name ="Nome Completo")]
+        [Display(Name ="Primeiro Nome")]
         [Required(ErrorMessage ="Este campo é obrigatório")]
-        public string NomeCompleto { get; set; }
+        public string PrimeiroNome { get; set; }
+
+        [Display(Name = "SobreNome")]
+        [Required(ErrorMessage = "Este campo é obrigatório")]
+        public string SobreNome { get; set; }
         [EmailAddress(ErrorMessage = "E-mail invalido")]
         [Required(ErrorMessage = "Este campo é obrigatório")]
         public string Email { get; set; }
@@ -17,16 +20,7 @@ namespace fourfit_sistema_gestao.UI.Models.Account
         [DataType(DataType.Password)]
         [Compare("Password", ErrorMessage ="As Senhas não conferem")]
         public string PasswordConfirmn { get; set; }
-        public string Cpf { get; set; }
-        public string? Celular { get; set; }
-        public string? Cep { get; set; }
-        public string? Endereco { get; set; }
-        public int? Numero { get; set; }
-        public string? Bairro { get; set; }
-        public string? Cidade { get; set; }
-        public string? Estado { get; set; }
-        public DateTime DataNacimento { get; set; }
-        public string? Genero { get; set; }
+      
         
     }
 }

@@ -1,6 +1,7 @@
 ﻿using fourfit.sistema_gestao.Domain.Entities.Profission;
 using fourfit.sistema_gestao.Domain.Interfaces;
 using fourfit_sistema_gestao.UI.Models;
+using fourfit_sistema_gestao.UI.Models.Alunos;
 using fourfit_sistema_gestao.UI.Models.Professores;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -21,6 +22,7 @@ namespace fourfit_sistema_gestao.UI.Controllers
         {
             var resultado = await _unitOfwork.ProfessoresServices.ObterProfessoresExistentes();
             return View(resultado.ToList());
+            
         }
 
         public async Task<IActionResult> CadastroProfessores()
@@ -29,8 +31,8 @@ namespace fourfit_sistema_gestao.UI.Controllers
             ViewBag.Usuario = new SelectList(usuarios.Select(x => new
             {
                 x.Id,
-                x.NomeCompleto,
-            }), "Id", "NomeCompleto");
+                x.PrimeiroNome,
+            }), "Id", "PrimeiroNome");
             return View();
         }
 
@@ -39,17 +41,23 @@ namespace fourfit_sistema_gestao.UI.Controllers
         {
             try
             {
-                //var CpfRemoverMascara = professoresViewModel.Cpf.ToString().Replace(".", "").Replace("-", "");
+                var CpfRemoverMascara = professoresViewModel.Cpf.ToString().Replace(".", "").Replace("-", "");
                 var model = new EntidadeProfessores
                 {
-                    UserId = professoresViewModel.UserId,
-                    //NomeCompleto = professoresViewModel.NomeCompleto,
-                   // Cpf = Convert.ToInt64(CpfRemoverMascara),
-                   //Cpf = professoresViewModel.Cpf,
+                   UserId = professoresViewModel.UserId,
+                   Cpf = Convert.ToInt64(CpfRemoverMascara),
                     Cref = professoresViewModel.Cref,
-                    Especialidade = professoresViewModel.Especialidade,
-                    Foto = professoresViewModel.Foto,
-                    Observacaes = professoresViewModel.Observacaes,
+                   Especialidade = professoresViewModel.Especialidade,
+                   Foto = professoresViewModel.Foto,
+                    Celular = professoresViewModel.Celular,
+                    Cep = professoresViewModel.Cep,
+                    Endereco = professoresViewModel.Endereco,
+                    Numero = professoresViewModel.Numero,
+                    Bairro = professoresViewModel.Bairro,
+                    Cidade = professoresViewModel.Cidade,
+                    Estado = professoresViewModel.Estado,
+                    DataNacimento = professoresViewModel.DataNacimento,
+                    DataCadastro = DateTime.Now,
                     Ativo = true
                 };
                 await _unitOfwork.ProfessoresServices.Cadastro(model);
@@ -71,12 +79,12 @@ namespace fourfit_sistema_gestao.UI.Controllers
             var professoresView = new ProfessoresEdicaoViewModel
             {
                 Id = professoresComUsuarios.Id,
-                NomeCompleto = professoresComUsuarios.User.NomeCompleto,
+                NomeCompleto = professoresComUsuarios.User.PrimeiroNome,
                // Cpf = professoresComUsuarios.Cpf,
                 Cref = professoresComUsuarios.Cref,
                 Especialidade = professoresComUsuarios.Especialidade,
                 Foto = professoresComUsuarios.Foto,
-                Observacaes = professoresComUsuarios.Observacaes,
+                
 
             };
 
@@ -104,10 +112,10 @@ namespace fourfit_sistema_gestao.UI.Controllers
 
                             //professores.Cpf = model.Cpf;
                             professores.Cref = model.Cref;
-                            usuario.NomeCompleto = model.NomeCompleto;
+                            usuario.PrimeiroNome = model.NomeCompleto;
                             professores.Foto = model.Foto;
                             professores.Especialidade = model.Especialidade;
-                            professores.Observacaes = model.Observacaes;
+                            
                             await _unitOfwork.ProfessoresServices.Atualizar(professores);
                             await _unitOfwork.UserServices.Atualizar(usuario);
                         }

@@ -27,11 +27,11 @@ namespace fourfit_sistema_gestao.UI.Controllers
         public async Task<IActionResult> CadastroColaboradores()
         {
             var usuarios = await _unitOfwork.UserServices.ObterUsuariosComEmailConfirmado();
-            ViewBag.Usuario = new SelectList(usuarios.Select(x => new
-            {
-                x.Id,
-                x.NomeCompleto,
-            }), "Id", "NomeCompleto");
+            //ViewBag.Usuario = new SelectList(usuarios.Select(x => new
+            //{
+            //    x.Id,
+            //    x.NomeCompleto,
+            //}), "Id", "NomeCompleto");
 
             return View();
         }
@@ -44,7 +44,7 @@ namespace fourfit_sistema_gestao.UI.Controllers
                 {
                     UserId = colaboradoresViewModel.UserId,
                     Foto = colaboradoresViewModel.Foto,
-                    Observacaes = colaboradoresViewModel.Observacaes,
+                  
                     Ativo = true
                 };
                 await _unitOfwork.ColaboradoresServices.Cadastro(model);
@@ -66,9 +66,9 @@ namespace fourfit_sistema_gestao.UI.Controllers
             var colaboradoresView = new ColaboradoresEdicaoViewModel
             {
                 Id = colaboradoresComUsuarios.Id,
-                NomeCompleto = colaboradoresComUsuarios.User.NomeCompleto,
+                NomeCompleto = colaboradoresComUsuarios.User.PrimeiroNome,
                 Foto = colaboradoresComUsuarios.Foto,
-                Observacaes = colaboradoresComUsuarios.Observacaes,
+               
 
             };
 
@@ -95,9 +95,9 @@ namespace fourfit_sistema_gestao.UI.Controllers
                         {
 
                            
-                            usuario.NomeCompleto = model.NomeCompleto;
+                            usuario.PrimeiroNome = model.NomeCompleto;
                             colaboradores.Foto = model.Foto;
-                            colaboradores.Observacaes = model.Observacaes;
+                            
                             await _unitOfwork.ColaboradoresServices.Atualizar(colaboradores);
                             await _unitOfwork.UserServices.Atualizar(usuario);
                         }

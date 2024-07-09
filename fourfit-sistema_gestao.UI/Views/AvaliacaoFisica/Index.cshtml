@@ -1,0 +1,99 @@
+﻿@model IEnumerable<AvaliacaoFisica>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_LayoutPrincipal.cshtml";
+}
+
+@Html.AntiForgeryToken()
+
+
+<div class="container">
+    <div class="custom"></div>
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <form class="form-inline d-flex" method="get" action="@Url.Action("Index", "AvaliacaoFisica")">
+
+            <input type="text" class="form-control mr-2" placeholder="Pesquisar Avaliação ..." name="searchString" value="@ViewBag.CurrentFilter">
+            <button type="submit" class="btn btn-outline-dark">Buscar</button>
+
+        </form>
+        @*@if (User.IsInRole("Colaboradores") || User.IsInRole("Admin"))*@
+
+        <button type="button" onclick="location.href='@Url.Action("CadastroAvaliacaoFisica","AvaliacaoFisica")'" class="btn btn-outline-dark"> <i class="bi bi-plus"></i> Nova Avaliacao Fisica</button>
+    </div>
+
+    <br /><br />
+</div>
+<div class="card">
+
+
+    <div class="card-header">
+        <div class="card-title">
+        </div>
+    </div>
+    <div class="card-body">
+        @TempData["Msg"]
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Data</th>
+                    <th>Peso</th>
+                    <th>Busto</th>
+                    <th>Cintura</th>
+                    <th>Barriga</th>
+                    <th>Quadril</th>
+                    <th>Ações</th>
+
+
+                </tr>
+            </thead>
+            @* <tbody>
+                @if (@Model != null)
+                {
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@item.Data</td>
+                            <td>@item.User</td>
+
+                            <td>
+                                <button class="btn btn-outline-danger btnExcluir" title="Excluir" data-id="@item.Id"><i class="fa-solid fa-user-xmark"></i></button>
+                            </td>
+                        </tr>
+                    }
+                }
+
+            </tbody> *@
+        </table>
+    </div>
+</div>
+
+</div>
+
+@section scripts {
+    <script>
+
+        $('.btnExcluir').on('click', function () {
+            if (confirm("Deseja excluir?")) {
+                var id = $(this).attr("data-id");
+                $.ajax({
+                    type: 'POST',
+                    url: '@Url.Action("ExcluirAvaliacaoFisica", "AvaliacaoFisica")',
+                    data: { Id: id },
+                    success: function (response) {
+                        if (response.sucesso) {
+                            alert(response.mensagem);
+                            window.location.href = '@Url.Action("Index", "AvaliacaoFisica")';
+
+                        }
+
+                    }, error: function () {
+
+                    }
+                });
+            }
+
+
+        });
+
+    </script>
+}>

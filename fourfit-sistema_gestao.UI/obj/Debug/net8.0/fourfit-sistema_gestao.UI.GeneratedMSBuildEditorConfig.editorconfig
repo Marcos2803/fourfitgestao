@@ -66,6 +66,10 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWx1bm9zXEluZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/projetos/fourfit-sistema_gestao/fourfit-sistema_gestao.UI/Views/AvaliacaoFisica/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXZhbGlhY2FvRmlzaWNhXEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/projetos/fourfit-sistema_gestao/fourfit-sistema_gestao.UI/Views/Checkin/CadastroCheckin.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2hlY2tpblxDYWRhc3Ryb0NoZWNraW4uY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
@@ -90,12 +94,28 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGFzaGJvYXJkXEJlbVZpbmRvLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/projetos/fourfit-sistema_gestao/fourfit-sistema_gestao.UI/Views/Despesas/CadastroDespesas.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGVzcGVzYXNcQ2FkYXN0cm9EZXNwZXNhcy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/projetos/fourfit-sistema_gestao/fourfit-sistema_gestao.UI/Views/Despesas/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGVzcGVzYXNcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/projetos/fourfit-sistema_gestao/fourfit-sistema_gestao.UI/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/projetos/fourfit-sistema_gestao/fourfit-sistema_gestao.UI/Views/Horarios/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9yYXJpb3NcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/projetos/fourfit-sistema_gestao/fourfit-sistema_gestao.UI/Views/Investimentos/CadastroInvestimentos.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSW52ZXN0aW1lbnRvc1xDYWRhc3Ryb0ludmVzdGltZW50b3MuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/projetos/fourfit-sistema_gestao/fourfit-sistema_gestao.UI/Views/Investimentos/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSW52ZXN0aW1lbnRvc1xJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/projetos/fourfit-sistema_gestao/fourfit-sistema_gestao.UI/Views/Modalidades/CadastroModalidades.cshtml]

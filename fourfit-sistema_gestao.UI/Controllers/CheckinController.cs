@@ -25,11 +25,11 @@ namespace fourfit_sistema_gestao.UI.Controllers
         public async Task<IActionResult> CadastroCheckin()
         {
             var usuarios = await _unitOfwork.UserServices.ObterUsuariosComEmailConfirmado();
-            ViewBag.Usuario = new SelectList(usuarios.Select(x => new
-            {
-                x.Id,
-                x.NomeCompleto,
-            }), "Id", "NomeCompleto");
+            //ViewBag.Usuario = new SelectList(usuarios.Select(x => new
+            //{
+            //    x.Id,
+            //    x.NomeCompleto,
+            //}), "Id", "NomeCompleto");
 
             return View(); 
         }

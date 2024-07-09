@@ -1,5 +1,6 @@
 ﻿using fourfit.sistema_gestao.Domain.Entities.Alunos;
 using fourfit.sistema_gestao.Domain.Interfaces;
+using fourfit_sistema_gestao.UI.Models.Account;
 using fourfit_sistema_gestao.UI.Models.Alunos;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -27,10 +28,10 @@ namespace fourfit_sistema_gestao.UI.Controllers
 
             var resultado = await _unitOfwork.AlunosServices.ObterAlunosExistentes();
 
-            if (!string.IsNullOrEmpty(searchString))
-            {
-                resultado = resultado.Where(x => x.User.NomeCompleto.Contains(searchString));
-            }
+            //if (!string.IsNullOrEmpty(searchString))
+            //{
+            //    resultado = resultado.Where(x => x.User.NomeCompleto.Contains(searchString));
+            //}
 
             return View(resultado.ToList());
 
@@ -42,14 +43,9 @@ namespace fourfit_sistema_gestao.UI.Controllers
             ViewBag.Usuario = new SelectList(usuarios.Select(x => new
             {
                 x.Id,
-                x.NomeCompleto,
-            }), "Id", "NomeCompleto");
+                x.PrimeiroNome,
+            }), "Id", "PrimeiroNome");
 
-            var tipoPlano = await _unitOfwork.TipoPlano.ObterTodos();
-            ViewBag.TipoPlano = new SelectList(tipoPlano.ToList(), "Id", "DescTipoPlano");
-
-            var tipoPagamentoPc = await _unitOfwork.TipoPagamentoPc.ObterTodos();
-            ViewBag.TipoPagamentoPc = new SelectList(tipoPagamentoPc, "Id", "Tipo");
 
             return View();
         }
@@ -58,13 +54,20 @@ namespace fourfit_sistema_gestao.UI.Controllers
         {
             try
             {
+                var CpfRemoverMascara = alunosViewModel.Cpf.ToString().Replace(".", "").Replace("-", "");
                 var model = new EntidadeAlunos
                 {
                     UserId = alunosViewModel.UserId,
-                    DataInicio = DateTime.Now,
-                    DataFim = DateTime.Now,
-                    TipoPlanoId = alunosViewModel.TipoPlanoId,
-                    TipoPagamentoId = alunosViewModel.TipoPagamentoId,
+                    Cpf = Convert.ToInt64(CpfRemoverMascara),
+                    Foto = alunosViewModel.Foto,
+                    Cep = alunosViewModel.Cep,
+                    Endereco = alunosViewModel.Endereco,
+                    Numero = alunosViewModel.Numero,
+                    Bairro = alunosViewModel.Bairro,
+                    Cidade = alunosViewModel.Cidade,
+                    Estado = alunosViewModel.Estado,
+                    DataNacimento = alunosViewModel.DataNacimento,
+                    DataCadastro = DateTime.Now,
                     Ativo = true
                 };
                 await _unitOfwork.AlunosServices.Cadastro(model);
@@ -79,21 +82,22 @@ namespace fourfit_sistema_gestao.UI.Controllers
         public async Task<IActionResult> AlterarAlunos(int Id)
         {
             var alunosComUsuarios = await _unitOfwork.AlunosServices.ObterAlunosUsuariosPorId(Id);
-
-            var tipoPlano = await _unitOfwork.TipoPlano.ObterTodos();
-            ViewBag.TipoPlano = new SelectList(tipoPlano.ToList(), "Id", "DescTipoPlano");
-
-            var tipoPagamentoPc = await _unitOfwork.TipoPagamentoPc.ObterTodos();
-            ViewBag.TipoPagamentoPc = new SelectList(tipoPagamentoPc, "Id", "Tipo");
-
+            
             var alunosView = new AlunosEdicaoViewModel
             {
                 Id = alunosComUsuarios.Id,
-                NomeCompleto = alunosComUsuarios.User.NomeCompleto,
-                DataInicio = alunosComUsuarios.DataInicio,
-                DataFim = alunosComUsuarios.DataFim,
-                TipoPagamentoId = alunosComUsuarios.TipoPagamentoId,
-                TipoPlanoId = alunosComUsuarios.TipoPlanoId,
+                PrimeiroNome = alunosComUsuarios.User.PrimeiroNome,
+                Cpf = alunosComUsuarios.Bairro,
+                Celular = alunosComUsuarios.Celular,
+                Cep = alunosComUsuarios.Cep,
+                Endereco = alunosComUsuarios.Endereco,
+                Numero = alunosComUsuarios.Numero,
+                Bairro = alunosComUsuarios.Bairro,
+                Cidade = alunosComUsuarios.Cidade,
+                Estado = alunosComUsuarios.Estado,
+                DataNacimento = alunosComUsuarios.DataNacimento,
+               
+               
 
             };
 
@@ -117,10 +121,16 @@ namespace fourfit_sistema_gestao.UI.Controllers
 
                         if (usuario != null)
                         {
-
-                            alunos.TipoPagamentoId = model.TipoPagamentoId;
-                            alunos.TipoPlanoId = model.TipoPlanoId;
-                            usuario.NomeCompleto = model.NomeCompleto;
+                            //alunos.Cpf = model.Bairro;
+                            alunos.Celular = model.Celular;
+                            alunos.Cep = model.Cep;
+                            alunos.Endereco = model.Endereco;
+                            alunos.Bairro = model.Bairro;
+                            alunos.Numero = model.Numero;
+                            alunos.Cidade = model.Cidade;
+                            alunos.Estado = model.Estado;
+                            alunos.DataNacimento = model.DataNacimento;
+                            usuario.PrimeiroNome = model.PrimeiroNome;
                             await _unitOfwork.AlunosServices.Atualizar(alunos);
                             await _unitOfwork.UserServices.Atualizar(usuario);
                         }

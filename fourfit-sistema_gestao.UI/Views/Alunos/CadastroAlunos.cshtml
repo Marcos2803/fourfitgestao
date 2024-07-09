@@ -14,28 +14,57 @@
                     <input type="file" asp-for="Foto" class="form-control" />
                     <span asp-validation-for="Foto" class="text-danger"></span>
                 </div>
-                <div class="form-group">
+                <div class="col-12">
                     <label asp-for="Id" class="control-label"></label>
                     <select asp-for="UserId" class="form-select" asp-items="@ViewBag.Usuario">
                         <option selected value="0">Selecione o Usuário</option>
                     </select>
                     <span asp-validation-for="UserId" class="text-danger"></span>
                 </div>
-                              
-                <div class="form-group">
-                    <label asp-for="TipoPlanoId" class="control-label"></label>
-                    <select asp-for="TipoPlanoId" class="form-select" asp-items="@ViewBag.TipoPlano">
-                        <option selected value="0">Selecione o Plano</option>
-                    </select>
-                    <span asp-validation-for="TipoPlanoId" class="text-danger"></span>
-                </div>
 
-                <div class="form-group">
-                    <label asp-for="TipoPagamentoId" class="control-label"></label>
-                    <select asp-for="TipoPagamentoId" class="form-select" asp-items="@ViewBag.TipoPagamentoPc">
-                        <option selected value="0">Selecione o Pagamento</option>
+                <div class="col-12">
+                    <label for="Cpf" class="form-label">Cpf</label>
+                    <input type="text" asp-for="Cpf" class="form-control Cpf">
+                </div>
+                <div class="col-12">
+                    <label for="Celular" class="form-label">Celular</label>
+                    <input type="text" class="form-control Celular" asp-for="Celular">
+                </div>
+                <div class="col-12">
+                    <label for="DataNascimento" class="form-label">Data De Nascimento</label>
+                    <input type="text" class="form-control Nascimento" asp-for="DataNacimento">
+                </div>
+                <div class="col-md-12">
+                    <label>Genero</label>
+                    <select asp-for="Genero" class="form-select">
+                        <option selected>Genero</option>
+                        <option value="1">Masculino</option>
+                        <option value="2">Feminino</option>
                     </select>
-                    <span asp-validation-for="TipoPagamentoId" class="text-danger"></span>
+                </div>
+                <div class="col-12">
+                    <label for="cep" class="form-label">Cep</label>
+                    <input type="int" class="form-control Cep" asp-for="Cep">
+                </div>
+                <div class="col-12">
+                    <label for="endereco" class="form-label">Endereço</label>
+                    <input type="text" class="form-control" asp-for="Endereco">
+                </div>
+                <div class="col-md-12">
+                    <label for="Bairro" class="form-label">Bairro</label>
+                    <input type="text" class="form-control" asp-for="Bairro">
+                </div>
+                <div class="col-md-12">
+                    <label for="Numero" class="form-label">Numero</label>
+                    <input type="int" class="form-control" asp-for="Numero">
+                </div>
+                <div class="col-md-12">
+                    <label for="Cidade" class="form-label">Cidade</label>
+                    <input type="text" class="form-control" asp-for="Cidade">
+                </div>
+                <div class="col-md-12">
+                    <label for="Estado" class="form-label">Estado</label>
+                    <input type="text" class="form-control" asp-for="Estado">
                 </div>
                <br />
                     <div class="form-group">

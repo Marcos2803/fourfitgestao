@@ -11,5 +11,7 @@
         IColaboradoresServices ColaboradoresServices { get; }
         ICheckinServices CheckinServices { get; }
         IModalidadesServices ModalidadesServices { get; }
+        IDespesasServices DespesasServices { get; }
+        IInvestimentosServices InvestimentosServices { get; }
     }
 }

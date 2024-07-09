@@ -18,33 +18,13 @@ namespace fourfit.sistema_gestao.Mapping
 
             builder.HasKey(x => x.Id);
 
-            builder.Property(x => x.NomeCompleto)
-                .HasColumnType("varchar(50)")
-                .IsRequired();
+            builder.Property(x => x.PrimeiroNome)
+             .HasColumnType("varchar(50)")
+             .IsRequired();
 
-            builder.Property(x => x.Celular)
-                .HasColumnType("varchar(16)")
-                .IsRequired();
-
-            builder.Property(x => x.Endereco)
-               .HasColumnType("varchar(100)")
-               .IsRequired();
-
-            builder.Property(x => x.Cpf)
-              .HasColumnType("varchar(14)")
-              .IsRequired();
-
-            builder.Property(x => x.Bairro)
-               .HasColumnType("varchar(50)")
-               .IsRequired();
-
-            builder.Property(x => x.Cidade)
-               .HasColumnType("varchar(50)")
-               .IsRequired();
-
-            builder.Property(x => x.Estado)
-               .HasColumnType("varchar(2)")
-               .IsRequired();
+             builder.Property(x => x.SobreNome)
+             .HasColumnType("varchar(50)")
+             .IsRequired();
 
             builder.Property(x => x.UserName)
               .HasColumnType("varchar(50)")

@@ -16,14 +16,10 @@ namespace fourfit.sistema_gestao.Repositories.Repository
         }
         public async Task<IEnumerable<EntidadeAlunos>> ObterAlunosExistentes()
         
-        
         {
            
             var resultado = await _dataContext.Set<EntidadeAlunos>()
                 .Include(x => x.User)
-                .Include(x => x.TipoPlano)
-                .Include(x => x.TipoPagamento)
-                .ThenInclude(x => x.TipoPagamentoPc)
                 .ToListAsync();
 
             if (resultado != null)
@@ -56,20 +52,20 @@ namespace fourfit.sistema_gestao.Repositories.Repository
                 
         }
 
-        public async Task Remover(EntidadeAlunos aluno)
-        {
-            var alunoExistente = await _dataContext.Alunos.FindAsync(aluno.Id);
+        //public async Task Remover(EntidadeAlunos aluno)
+        //{
+        //    var alunoExistente = await _dataContext.Alunos.FindAsync(aluno.Id);
 
-            if (alunoExistente != null)
-            {
-                _dataContext.Alunos.Remove(alunoExistente);
-                await _dataContext.SaveChangesAsync();
-            }
-            else
-            {
-                throw new Exception("Aluno não encontrado");
-            }
-        }
+        //    if (alunoExistente != null)
+        //    {
+        //        _dataContext.Alunos.Remove(alunoExistente);
+        //        await _dataContext.SaveChangesAsync();
+        //    }
+        //    else
+        //    {
+        //        throw new Exception("Aluno não encontrado");
+        //    }
+        //}
 
     }
 }

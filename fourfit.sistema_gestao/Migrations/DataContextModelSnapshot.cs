@@ -17,7 +17,7 @@ namespace fourfit.sistema_gestao.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "8.0.4")
+                .HasAnnotation("ProductVersion", "8.0.5")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
@@ -163,52 +163,23 @@ namespace fourfit.sistema_gestao.Migrations
                     b.Property<int>("AccessFailedCount")
                         .HasColumnType("int");
 
-                    b.Property<string>("Bairro")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Celular")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Cep")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Cidade")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<long>("Cpf")
-                        .HasColumnType("bigint");
-
-                    b.Property<DateTime>("DataNacimento")
-                        .HasColumnType("datetime2");
-
                     b.Property<string>("Email")
+                        .IsRequired()
                         .HasMaxLength(256)
-                        .HasColumnType("nvarchar(256)");
+                        .HasColumnType("varchar(50)");
 
                     b.Property<bool>("EmailConfirmed")
                         .HasColumnType("bit");
-
-                    b.Property<string>("Endereco")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Estado")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Genero")
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("LockoutEnabled")
                         .HasColumnType("bit");
 
                     b.Property<DateTimeOffset?>("LockoutEnd")
                         .HasColumnType("datetimeoffset");
-
-                    b.Property<string>("NomeCompleto")
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("NormalizedEmail")
                         .HasMaxLength(256)
@@ -217,9 +188,6 @@ namespace fourfit.sistema_gestao.Migrations
                     b.Property<string>("NormalizedUserName")
                         .HasMaxLength(256)
                         .HasColumnType("nvarchar(256)");
-
-                    b.Property<int?>("Numero")
-                        .HasColumnType("int");
 
                     b.Property<string>("PasswordHash")
                         .HasColumnType("nvarchar(max)");
@@ -230,15 +198,24 @@ namespace fourfit.sistema_gestao.Migrations
                     b.Property<bool>("PhoneNumberConfirmed")
                         .HasColumnType("bit");
 
+                    b.Property<string>("PrimeiroNome")
+                        .IsRequired()
+                        .HasColumnType("varchar(50)");
+
                     b.Property<string>("SecurityStamp")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("SobreNome")
+                        .IsRequired()
+                        .HasColumnType("varchar(50)");
 
                     b.Property<bool>("TwoFactorEnabled")
                         .HasColumnType("bit");
 
                     b.Property<string>("UserName")
+                        .IsRequired()
                         .HasMaxLength(256)
-                        .HasColumnType("nvarchar(256)");
+                        .HasColumnType("varchar(50)");
 
                     b.HasKey("Id");
 
@@ -264,234 +241,48 @@ namespace fourfit.sistema_gestao.Migrations
                     b.Property<bool>("Ativo")
                         .HasColumnType("bit");
 
-                    b.Property<DateTime>("DataFim")
+                    b.Property<string>("Bairro")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Celular")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Cep")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Cidade")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<long>("Cpf")
+                        .HasColumnType("bigint");
+
+                    b.Property<DateTime>("DataCadastro")
                         .HasColumnType("datetime2");
 
-                    b.Property<DateTime>("DataInicio")
+                    b.Property<DateTime>("DataNacimento")
                         .HasColumnType("datetime2");
+
+                    b.Property<string>("Endereco")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Estado")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<byte[]>("Foto")
                         .HasColumnType("varbinary(max)");
 
-                    b.Property<int>("TipoPagamentoId")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("TipoPagamentoId1")
-                        .HasColumnType("int");
-
-                    b.Property<int>("TipoPlanoId")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("TipoPlanoId1")
+                    b.Property<int?>("Numero")
                         .HasColumnType("int");
 
                     b.Property<string>("UserId")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("UserId1")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("TipoPagamentoId");
-
-                    b.HasIndex("TipoPagamentoId1");
-
-                    b.HasIndex("TipoPlanoId");
-
-                    b.HasIndex("TipoPlanoId1");
-
-                    b.HasIndex("UserId");
-
-                    b.HasIndex("UserId1");
-
-                    b.ToTable("Alunos");
-                });
-
-            modelBuilder.Entity("fourfit.sistema_gestao.Domain.Entities.Alunos.TipoPagamento", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<int>("TipoPagamentoPcId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("TipoPagamentoPcId");
-
-                    b.ToTable("TipoPagamento");
-                });
-
-            modelBuilder.Entity("fourfit.sistema_gestao.Domain.Entities.Alunos.TipoPagamentoPc", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("Tipo")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("TipoPagamentoPc");
-                });
-
-            modelBuilder.Entity("fourfit.sistema_gestao.Domain.Entities.AlunosPesquisa", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<bool>("Ativo")
-                        .HasColumnType("bit");
-
-                    b.Property<DateTime>("DataFim")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime>("DataInicio")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("DescTipoPlano")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<byte[]>("Foto")
-                        .IsRequired()
-                        .HasColumnType("varbinary(max)");
-
-                    b.Property<string>("NomeCompleto")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Tipo")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("AlunosPesquisa");
-                });
-
-            modelBuilder.Entity("fourfit.sistema_gestao.Domain.Entities.Checkin.Checkin", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("Data")
-                        .IsRequired()
-                        .HasColumnType("varchar(10)");
-
-                    b.Property<string>("Horarios")
-                        .IsRequired()
-                        .HasColumnType("varchar(10)");
-
-                    b.Property<string>("UserId")
                         .HasColumnType("nvarchar(450)");
 
                     b.HasKey("Id");
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Checkin", (string)null);
-                });
-
-            modelBuilder.Entity("fourfit.sistema_gestao.Domain.Entities.EmailConfig.entidadeEmailAddress", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("Body")
-                        .IsRequired()
-                        .HasColumnType("varchar(500)");
-
-                    b.Property<string>("From")
-                        .IsRequired()
-                        .HasColumnType("varchar(100)");
-
-                    b.Property<string>("Subject")
-                        .IsRequired()
-                        .HasColumnType("varchar(500)");
-
-                    b.Property<string>("To")
-                        .IsRequired()
-                        .HasColumnType("varchar(100)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("EmailAddress", (string)null);
-                });
-
-            modelBuilder.Entity("fourfit.sistema_gestao.Domain.Entities.EmailConfig.entidadeEmailConfiguracoes", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("EmailUser")
-                        .IsRequired()
-                        .HasColumnType("varchar(100)");
-
-                    b.Property<int>("Port")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Smtp")
-                        .IsRequired()
-                        .HasColumnType("varchar(100)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("EmailConfiguracoes", (string)null);
-                });
-
-            modelBuilder.Entity("fourfit.sistema_gestao.Domain.Entities.EmailConfig.entidadeEmailPasswordAccount", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("Password")
-                        .IsRequired()
-                        .HasColumnType("varchar(Max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("EmailPasswordAccount", (string)null);
-                });
-
-            modelBuilder.Entity("fourfit.sistema_gestao.Domain.Entities.Parq", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("Nome")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Parq");
+                    b.ToTable("Alunos", (string)null);
                 });
 
             modelBuilder.Entity("fourfit.sistema_gestao.Domain.Entities.Profission.EntidadeColaboradores", b =>
@@ -505,31 +296,48 @@ namespace fourfit.sistema_gestao.Migrations
                     b.Property<bool>("Ativo")
                         .HasColumnType("bit");
 
-                    b.Property<long>("Cpf")
-                        .HasColumnType("bigint");
+                    b.Property<string>("Bairro")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Celular")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Cep")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Cidade")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Cpf")
+                        .IsRequired()
+                        .HasColumnType("varchar(14)");
+
+                    b.Property<DateTime>("DataCadastro")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("DataNacimento")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Endereco")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Estado")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<byte[]>("Foto")
                         .HasColumnType("varbinary(max)");
 
-                    b.Property<string>("NomeCompleto")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Observacaes")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int?>("Numero")
+                        .HasColumnType("int");
 
                     b.Property<string>("UserId")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("UserId1")
                         .HasColumnType("nvarchar(450)");
 
                     b.HasKey("Id");
 
                     b.HasIndex("UserId");
 
-                    b.HasIndex("UserId1");
-
-                    b.ToTable("Colaboradores");
+                    b.ToTable("Colaboradores", (string)null);
                 });
 
             modelBuilder.Entity("fourfit.sistema_gestao.Domain.Entities.Profission.EntidadeProfessores", b =>
@@ -543,54 +351,56 @@ namespace fourfit.sistema_gestao.Migrations
                     b.Property<bool>("Ativo")
                         .HasColumnType("bit");
 
-                    b.Property<long>("Cpf")
-                        .HasColumnType("bigint");
+                    b.Property<string>("Bairro")
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("Cref")
-                        .HasColumnType("int");
+                    b.Property<string>("Celular")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Cep")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Cidade")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Cpf")
+                        .IsRequired()
+                        .HasColumnType("varchar(14)");
+
+                    b.Property<string>("Cref")
+                        .IsRequired()
+                        .HasColumnType("varchar(15)");
+
+                    b.Property<DateTime>("DataCadastro")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("DataNacimento")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Endereco")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Especialidade")
+                        .IsRequired()
+                        .HasColumnType("varchar(50)");
+
+                    b.Property<string>("Estado")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<byte[]>("Foto")
                         .HasColumnType("varbinary(max)");
 
-                    b.Property<string>("NomeCompleto")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Observacaes")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int?>("Numero")
+                        .HasColumnType("int");
 
                     b.Property<string>("UserId")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("UserId1")
                         .HasColumnType("nvarchar(450)");
 
                     b.HasKey("Id");
 
                     b.HasIndex("UserId");
 
-                    b.HasIndex("UserId1");
-
-                    b.ToTable("Professores");
-                });
-
-            modelBuilder.Entity("fourfit.sistema_gestao.Domain.Entities.TipoPlano", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("DescTipoPlano")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("TipoPlano");
+                    b.ToTable("Professores", (string)null);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -646,57 +456,11 @@ namespace fourfit.sistema_gestao.Migrations
 
             modelBuilder.Entity("fourfit.sistema_gestao.Domain.Entities.Alunos.EntidadeAlunos", b =>
                 {
-                    b.HasOne("fourfit.sistema_gestao.Domain.Entities.Alunos.TipoPagamento", "TipoPagamento")
-                        .WithMany()
-                        .HasForeignKey("TipoPagamentoId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("fourfit.sistema_gestao.Domain.Entities.Alunos.TipoPagamento", null)
-                        .WithMany("EntidadeAlunos")
-                        .HasForeignKey("TipoPagamentoId1");
-
-                    b.HasOne("fourfit.sistema_gestao.Domain.Entities.TipoPlano", "TipoPlano")
-                        .WithMany()
-                        .HasForeignKey("TipoPlanoId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("fourfit.sistema_gestao.Domain.Entities.TipoPlano", null)
-                        .WithMany("EntidadeAlunos")
-                        .HasForeignKey("TipoPlanoId1");
-
                     b.HasOne("fourfit.sistema_gestao.Domain.Entities.Account.User", "User")
-                        .WithMany()
-                        .HasForeignKey("UserId");
-
-                    b.HasOne("fourfit.sistema_gestao.Domain.Entities.Account.User", null)
                         .WithMany("Alunos")
-                        .HasForeignKey("UserId1");
-
-                    b.Navigation("TipoPagamento");
-
-                    b.Navigation("TipoPlano");
-
-                    b.Navigation("User");
-                });
-
-            modelBuilder.Entity("fourfit.sistema_gestao.Domain.Entities.Alunos.TipoPagamento", b =>
-                {
-                    b.HasOne("fourfit.sistema_gestao.Domain.Entities.Alunos.TipoPagamentoPc", "TipoPagamentoPc")
-                        .WithMany("TipoPagamento")
-                        .HasForeignKey("TipoPagamentoPcId")
+                        .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("TipoPagamentoPc");
-                });
-
-            modelBuilder.Entity("fourfit.sistema_gestao.Domain.Entities.Checkin.Checkin", b =>
-                {
-                    b.HasOne("fourfit.sistema_gestao.Domain.Entities.Account.User", "User")
-                        .WithMany()
-                        .HasForeignKey("UserId");
 
                     b.Navigation("User");
                 });
@@ -704,12 +468,8 @@ namespace fourfit.sistema_gestao.Migrations
             modelBuilder.Entity("fourfit.sistema_gestao.Domain.Entities.Profission.EntidadeColaboradores", b =>
                 {
                     b.HasOne("fourfit.sistema_gestao.Domain.Entities.Account.User", "User")
-                        .WithMany()
+                        .WithMany("colaboradores")
                         .HasForeignKey("UserId");
-
-                    b.HasOne("fourfit.sistema_gestao.Domain.Entities.Account.User", null)
-                        .WithMany("Colaboradores")
-                        .HasForeignKey("UserId1");
 
                     b.Navigation("User");
                 });
@@ -717,12 +477,8 @@ namespace fourfit.sistema_gestao.Migrations
             modelBuilder.Entity("fourfit.sistema_gestao.Domain.Entities.Profission.EntidadeProfessores", b =>
                 {
                     b.HasOne("fourfit.sistema_gestao.Domain.Entities.Account.User", "User")
-                        .WithMany()
-                        .HasForeignKey("UserId");
-
-                    b.HasOne("fourfit.sistema_gestao.Domain.Entities.Account.User", null)
                         .WithMany("Professores")
-                        .HasForeignKey("UserId1");
+                        .HasForeignKey("UserId");
 
                     b.Navigation("User");
                 });
@@ -731,24 +487,9 @@ namespace fourfit.sistema_gestao.Migrations
                 {
                     b.Navigation("Alunos");
 
-                    b.Navigation("Colaboradores");
-
                     b.Navigation("Professores");
-                });
 
-            modelBuilder.Entity("fourfit.sistema_gestao.Domain.Entities.Alunos.TipoPagamento", b =>
-                {
-                    b.Navigation("EntidadeAlunos");
-                });
-
-            modelBuilder.Entity("fourfit.sistema_gestao.Domain.Entities.Alunos.TipoPagamentoPc", b =>
-                {
-                    b.Navigation("TipoPagamento");
-                });
-
-            modelBuilder.Entity("fourfit.sistema_gestao.Domain.Entities.TipoPlano", b =>
-                {
-                    b.Navigation("EntidadeAlunos");
+                    b.Navigation("colaboradores");
                 });
 #pragma warning restore 612, 618
         }

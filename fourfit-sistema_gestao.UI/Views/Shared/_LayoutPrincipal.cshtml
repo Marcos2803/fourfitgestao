@@ -71,7 +71,13 @@
                         </li>
                         <li><a asp-action="Index" asp-controller="Checkin"><i class="fas fa-check icon-spacing"></i>Checkin</a></li>
                         <li><a href="#"><i class="fas fa-calendar-alt icon-spacing"></i>Mensalidades</a></li>
-                        <li><a href="#"><i class="fa-solid fa-dollar-sign icon-spacing"></i>Finanças</a></li>
+                        <li class="menu-item">
+                            <a href="#"><i class="fa-solid fa-dollar-sign icon-spacing"></i>Finanças</a>
+                            <ul class="submenu">
+                                <li><a asp-action="Index" asp-controller="Despesas"><i class="fas fa-receipt icon-spacing"></i>Despesas</a></li>
+                                <li><a asp-action="Index" asp-controller="Investimentos"><i class="fas fa-piggy-bank icon-spacing"></i>Investimentos</a></li>
+                            </ul>
+                            </li>
                         <li><a href="#"><i class="fas fa-chart-bar icon-spacing"></i>Relatórios</a></li>
                         <li class="menu-item">
                             <a href="#"><i class="fas fa-store icon-spacing"></i>Loja</a>

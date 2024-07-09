@@ -44,19 +44,19 @@ namespace fourfit.sistema_gestao.Repositories.Repository
 
         }
 
-        public async Task Remover(EntidadeProfessores professor)
-        {
-            var professorExistente = await _dataContext.Professores.FindAsync(professor.Id);
+        //public async Task Remover(EntidadeProfessores professor)
+        //{
+        //    var professorExistente = await _dataContext.Professores.FindAsync(professor.Id);
 
-            if (professorExistente != null)
-            {
-                _dataContext.Professores.Remove(professorExistente);
-                await _dataContext.SaveChangesAsync();
-            }
-            else
-            {
-                throw new Exception("Professor não encontrado");
-            }
-        }
+        //    if (professorExistente != null)
+        //    {
+        //        _dataContext.Professores.Remove(professorExistente);
+        //        await _dataContext.SaveChangesAsync();
+        //    }
+        //    else
+        //    {
+        //        throw new Exception("Professor não encontrado");
+        //    }
+        //}
     }
 }

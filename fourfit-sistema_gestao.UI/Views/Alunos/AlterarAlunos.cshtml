@@ -11,37 +11,56 @@
             <form asp-action="AlterarAlunos" method="post">
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                 <div class="form-group">
-                    <label class="control-label">Nome Completo</label>
-                    <input type="text" asp-for="NomeCompleto" class="form-control" />
-                    <span asp-validation-for="NomeCompleto" class="text-danger"></span>
+                    <label class="control-label">Nome</label>
+                    <input type="text" asp-for="PrimeiroNome" class="form-control" />
+                    <span asp-validation-for="PrimeiroNome" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label class="control-label">Cpf</label>
+                    <input type="text" asp-for="Cpf" class="form-control" />
+                    <span asp-validation-for="Cpf" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label class="control-label">Celular</label>
+                    <input type="text" asp-for="Celular" class="form-control" />
+                    <span asp-validation-for="Celular" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label class="control-label">Cep</label>
+                    <input type="text" asp-for="Cep" class="form-control" />
+                    <span asp-validation-for="Cep" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label class="control-label">Endereço</label>
+                    <input type="text" asp-for="Endereco" class="form-control" />
+                    <span asp-validation-for="Endereco" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label class="control-label">Numero</label>
+                    <input type="text" asp-for="Numero" class="form-control" />
+                    <span asp-validation-for="Numero" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label class="control-label">Bairro</label>
+                    <input type="text" asp-for="Bairro" class="form-control" />
+                    <span asp-validation-fo" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label class="control-label">Cidade</label>
+                    <input type="text" asp-for="Cidade" class="form-control" />
+                    <span asp-validation-for="Cidade" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label class="control-label">Estado</label>
+                    <input type="text" asp-for="Estado" class="form-control" />
+                    <span asp-validation-for="Estado" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label class="control-label">Data De Nacimento</label>
+                    <input type="text" asp-for="DataNacimento" class="form-control" />
+                    <span asp-validation-for="DataNacimento" class="text-danger"></span>
                 </div>
                 
-                <div class="form-group">
-                    <label class="control-label">Data Inicio</label>
-                    <input type="text" asp-for="DataInicio" class="form-control" />
-                    
-                </div>
-                <div class="form-group">
-                    <label class="control-label">Data Final</label>
-                    <input type="text" asp-for="DataFim" class="form-control" />
-                    <span asp-validation-for="DataFim" class="text-danger"></span>
-                </div>
-                
-                <div class="form-group">
-                    <label class="control-label">Tipo de Plano</label>
-                    <select asp-for="TipoPlanoId" class="form-select" asp-items="@ViewBag.TipoPlano">
-                        <option selected value="0">Selecione o Plano</option>
-                    </select>
-                    <span asp-validation-for="TipoPlanoId" class="text-danger"></span>
-                </div>
-
-                <div class="form-group">
-                    <label asp-for="TipoPagamentoId" class="control-label">Tipo de pagamento</label>
-                    <select asp-for="TipoPagamentoId" class="form-select" asp-items="@ViewBag.TipoPagamentoPc">
-                        <option selected value="0">Selecione o Pagamento</option>
-                    </select>
-                    <span asp-validation-for="TipoPagamentoId" class="text-danger"></span>
-                </div>
                 <br />
                 <div class="form-group">
                     <button type="submit" class="btn btn-primary">Alterar</button>

@@ -26,7 +26,7 @@ namespace fourfit_sistema_gestao.UI.Controllers
             ViewBag.Usuario = new SelectList(usuarios.Select(x => new
             {
                 x.Id,
-                x.NomeCompleto,
+                x.PrimeiroNome,
             }), "Id", "NomeCompleto");
 
             return View();

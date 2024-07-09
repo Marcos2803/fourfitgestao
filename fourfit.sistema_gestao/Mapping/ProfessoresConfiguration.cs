@@ -16,9 +16,9 @@ namespace fourfit.sistema_gestao.Mapping
                 .WithMany(a => a.Professores)
                 .HasForeignKey(a => a.UserId);
 
-            builder.Property(x => x.NomeCompleto)
-               .HasColumnType("varchar(50)")
-               .IsRequired();
+            //builder.Property(x => x.User.PrimeiroNome)
+            //   .HasColumnType("varchar(50)")
+            //   .IsRequired();
 
             builder.Property(x => x.Cpf)
               .HasColumnType("varchar(14)")
@@ -32,9 +32,6 @@ namespace fourfit.sistema_gestao.Mapping
               .HasColumnType("varchar(50)")
               .IsRequired();
 
-            builder.Property(x => x.Observacaes)
-              .HasColumnType("varchar(200)")
-              .IsRequired();
         }
     }
 }

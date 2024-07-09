@@ -7,27 +7,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Migrations\20240122234404_PrimeiraMigracao.cs" />
-    <Compile Remove="Migrations\20240122234404_PrimeiraMigracao.Designer.cs" />
-    <Compile Remove="Migrations\20240122235424_Equipamentos_Ativo.cs" />
-    <Compile Remove="Migrations\20240122235424_Equipamentos_Ativo.Designer.cs" />
-    <Compile Remove="Migrations\20240123000407_Identity.cs" />
-    <Compile Remove="Migrations\20240123000407_Identity.Designer.cs" />
-    <Compile Remove="Migrations\20240124001154_ConfigaracaoMaisRelacionamento.cs" />
-    <Compile Remove="Migrations\20240124001154_ConfigaracaoMaisRelacionamento.Designer.cs" />
-    <Compile Remove="Migrations\20240202224042_Usuario_Foto.cs" />
-    <Compile Remove="Migrations\20240202224042_Usuario_Foto.Designer.cs" />
-    <Compile Remove="Migrations\20240208004746_genero.cs" />
-    <Compile Remove="Migrations\20240208004746_genero.Designer.cs" />
-    <Compile Remove="Migrations\20240220000911_CpfQuantidade15.cs" />
-    <Compile Remove="Migrations\20240220000911_CpfQuantidade15.Designer.cs" />
-    <Compile Remove="Migrations\20240223233134_CelularPara16Caracter.cs" />
-    <Compile Remove="Migrations\20240223233134_CelularPara16Caracter.Designer.cs" />
-    <Compile Remove="Migrations\20240302154932_NovasTableasTipoPlano.cs" />
-    <Compile Remove="Migrations\20240302154932_NovasTableasTipoPlano.Designer.cs" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.4" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="8.0.4">
       <PrivateAssets>all</PrivateAssets>
@@ -42,10 +21,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\fourfit.sistema_gestao.Domain\fourfit.sistema_gestao.Domain.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Migrations\" />
   </ItemGroup>
 
 </Project>

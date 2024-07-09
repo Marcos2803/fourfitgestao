@@ -19,11 +19,9 @@ namespace fourfit_sistema_gestao.Api.Controllers
                 {
                     Id = 1,
                     UserId = "teste",
-                    DataInicio = DateTime.Now,
-                    DataFim = DateTime.Now,
+                    //DataInicio = DateTime.Now,
                     Ativo = true,
-                    TipoPlanoId = 1,
-                    TipoPagamentoId = 1
+                   
 
 
                 });
@@ -31,11 +29,9 @@ namespace fourfit_sistema_gestao.Api.Controllers
                 {
                     Id = 2,
                     UserId = "teste",
-                    DataInicio = DateTime.Now,
-                    DataFim = DateTime.Now,
+                    //DataInicio = DateTime.Now,
                     Ativo = true,
-                    TipoPlanoId = 1,
-                    TipoPagamentoId = 1
+                    
 
 
                 });

@@ -8,7 +8,7 @@
 
 <div class="container">
     <h2>Gerenciador de Alunos </h2>
-    <div class="custom"></div>
+     <div class="custom"></div>
     <div class="d-flex justify-content-between align-items-center mb-3">
         <form class="form-inline d-flex" method="get" action="@Url.Action("Index", "Alunos")">
 
@@ -34,10 +34,13 @@
             <thead>
                 <tr>
                     <th>Foto</th>
-                    <th>Usuário</th>
+                    <th>Nome</th>
+                    <th>Email</th>
                     <th>Status</th>
-                    <th>Tipo de Plano</th>
-                    <th>Tipo Pagamento</th>
+                    <th>Cpf</th>
+                    <th>Celular</th>
+                    <th>Cep</th>
+                    <th>Bairro</th>
                     <th>Ações</th>
                 </tr>
             </thead>
@@ -48,7 +51,8 @@
                     {
                         <tr>
                             <td>@item.Foto</td>
-                            <td>@item.User.NomeCompleto</td>
+                            <td>@item.User.PrimeiroNome</td>
+                            <td>@item.User.Email</td>
 
 
                             @if (item.Ativo == true)
@@ -59,8 +63,10 @@
                             {
                                 <td style="color:red">INATIVO</td>
                             }
-                            <td>@item.TipoPlano.DescTipoPlano</td>
-                            <td>@item.TipoPagamento.TipoPagamentoPc.Tipo</td>
+                            <td>@item.Cpf</td>
+                            <td>@item.Celular</td>
+                            <td>@item.Cep</td>
+                            <td>@item.Bairro</td>
                             <td>
                                 <button class="btn btn-outline-warning" title="Editar" onclick="window.location.href ='@Url.Action("AlterarAlunos","Alunos", new {Id = item.Id})'">
                                     <i class="fa-solid fa-user-pen"></i>
@@ -73,7 +79,7 @@
 
             <tbody>
         </table>
-    </div>
+    </div> 
 </div>
 
 </div>

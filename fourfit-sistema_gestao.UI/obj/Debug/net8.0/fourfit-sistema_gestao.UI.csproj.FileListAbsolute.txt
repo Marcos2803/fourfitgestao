@@ -1,12 +1,3 @@
-C:\projetos\fourfit-sistema_gestao\fourfit-sistema_gestao.UI\obj\Debug\net8.0\fourfit-sistema_gestao.UI.csproj.AssemblyReference.cache
-C:\projetos\fourfit-sistema_gestao\fourfit-sistema_gestao.UI\obj\Debug\net8.0\fourfit-sistema_gestao.UI.GeneratedMSBuildEditorConfig.editorconfig
-C:\projetos\fourfit-sistema_gestao\fourfit-sistema_gestao.UI\obj\Debug\net8.0\fourfit-sistema_gestao.UI.AssemblyInfoInputs.cache
-C:\projetos\fourfit-sistema_gestao\fourfit-sistema_gestao.UI\obj\Debug\net8.0\fourfit-sistema_gestao.UI.AssemblyInfo.cs
-C:\projetos\fourfit-sistema_gestao\fourfit-sistema_gestao.UI\obj\Debug\net8.0\fourfit-sistema_gestao.UI.csproj.CoreCompileInputs.cache
-C:\projetos\fourfit-sistema_gestao\fourfit-sistema_gestao.UI\obj\Debug\net8.0\fourfit-sistema_gestao.UI.MvcApplicationPartsAssemblyInfo.cache
-C:\projetos\fourfit-sistema_gestao\fourfit-sistema_gestao.UI\obj\Debug\net8.0\fourfit-sistema_gestao.UI.RazorAssemblyInfo.cache
-C:\projetos\fourfit-sistema_gestao\fourfit-sistema_gestao.UI\obj\Debug\net8.0\fourfit-sistema_gestao.UI.RazorAssemblyInfo.cs
-C:\projetos\fourfit-sistema_gestao\fourfit-sistema_gestao.UI\obj\Debug\net8.0\fourfit-sistema_gestao.UI.sourcelink.json
 C:\projetos\fourfit-sistema_gestao\fourfit-sistema_gestao.UI\bin\Debug\net8.0\appsettings.Development.json
 C:\projetos\fourfit-sistema_gestao\fourfit-sistema_gestao.UI\bin\Debug\net8.0\appsettings.json
 C:\projetos\fourfit-sistema_gestao\fourfit-sistema_gestao.UI\bin\Debug\net8.0\metadata\icon-families.json
@@ -260,6 +251,15 @@ C:\projetos\fourfit-sistema_gestao\fourfit-sistema_gestao.UI\bin\Debug\net8.0\fo
 C:\projetos\fourfit-sistema_gestao\fourfit-sistema_gestao.UI\bin\Debug\net8.0\fourfit.sistema_gestao.Domain.pdb
 C:\projetos\fourfit-sistema_gestao\fourfit-sistema_gestao.UI\bin\Debug\net8.0\fourfit.sistema_gestao.Repositories.pdb
 C:\projetos\fourfit-sistema_gestao\fourfit-sistema_gestao.UI\bin\Debug\net8.0\fourfit.sistema_gestao.pdb
+C:\projetos\fourfit-sistema_gestao\fourfit-sistema_gestao.UI\obj\Debug\net8.0\fourfit-sistema_gestao.UI.csproj.AssemblyReference.cache
+C:\projetos\fourfit-sistema_gestao\fourfit-sistema_gestao.UI\obj\Debug\net8.0\fourfit-sistema_gestao.UI.GeneratedMSBuildEditorConfig.editorconfig
+C:\projetos\fourfit-sistema_gestao\fourfit-sistema_gestao.UI\obj\Debug\net8.0\fourfit-sistema_gestao.UI.AssemblyInfoInputs.cache
+C:\projetos\fourfit-sistema_gestao\fourfit-sistema_gestao.UI\obj\Debug\net8.0\fourfit-sistema_gestao.UI.AssemblyInfo.cs
+C:\projetos\fourfit-sistema_gestao\fourfit-sistema_gestao.UI\obj\Debug\net8.0\fourfit-sistema_gestao.UI.csproj.CoreCompileInputs.cache
+C:\projetos\fourfit-sistema_gestao\fourfit-sistema_gestao.UI\obj\Debug\net8.0\fourfit-sistema_gestao.UI.MvcApplicationPartsAssemblyInfo.cache
+C:\projetos\fourfit-sistema_gestao\fourfit-sistema_gestao.UI\obj\Debug\net8.0\fourfit-sistema_gestao.UI.RazorAssemblyInfo.cache
+C:\projetos\fourfit-sistema_gestao\fourfit-sistema_gestao.UI\obj\Debug\net8.0\fourfit-sistema_gestao.UI.RazorAssemblyInfo.cs
+C:\projetos\fourfit-sistema_gestao\fourfit-sistema_gestao.UI\obj\Debug\net8.0\fourfit-sistema_gestao.UI.sourcelink.json
 C:\projetos\fourfit-sistema_gestao\fourfit-sistema_gestao.UI\obj\Debug\net8.0\staticwebassets.build.json
 C:\projetos\fourfit-sistema_gestao\fourfit-sistema_gestao.UI\obj\Debug\net8.0\staticwebassets.development.json
 C:\projetos\fourfit-sistema_gestao\fourfit-sistema_gestao.UI\obj\Debug\net8.0\staticwebassets\msbuild.fourfit-sistema_gestao.UI.Microsoft.AspNetCore.StaticWebAssets.props
@@ -278,3 +278,4 @@ C:\projetos\fourfit-sistema_gestao\fourfit-sistema_gestao.UI\obj\Debug\net8.0\re
 C:\projetos\fourfit-sistema_gestao\fourfit-sistema_gestao.UI\obj\Debug\net8.0\fourfit-sistema_gestao.UI.pdb
 C:\projetos\fourfit-sistema_gestao\fourfit-sistema_gestao.UI\obj\Debug\net8.0\fourfit-sistema_gestao.UI.genruntimeconfig.cache
 C:\projetos\fourfit-sistema_gestao\fourfit-sistema_gestao.UI\obj\Debug\net8.0\ref\fourfit-sistema_gestao.UI.dll
+C:\projetos\fourfit-sistema_gestao\fourfit-sistema_gestao.UI\bin\Debug\net8.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll

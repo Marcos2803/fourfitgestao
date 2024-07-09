@@ -7,18 +7,17 @@ using System.Threading.Tasks;
 
 namespace fourfit.sistema_gestao.Domain.Entities.Profission
 {
-    public class EntidadeProfessores
+    public class EntidadeProfessores  : Generics
     {
         public int Id { get; set; }
-        public User User { get; set; }
         public string? UserId { get; set; }
-        public string? NomeCompleto { get; set; }
-        public long Cpf { get; set; }
+        public User User { get; set; }
         public int? Cref { get; set; }
         public string? Especialidade { get; set; }
         public bool Ativo { get; set; }
         public byte[]? Foto { get; set; }
-        public string? Observacaes { get; set; }
+        public DateTime DataCadastro { get; set; }
+
 
     }
 }

@@ -34,6 +34,7 @@ namespace fourfit_sistema_gestao.UI.Controllers
         [HttpPost]
         public async Task<IActionResult> Login(LoginViewModel model)
         {
+           
             try
             {
                 if (ModelState.IsValid)
@@ -46,9 +47,8 @@ namespace fourfit_sistema_gestao.UI.Controllers
                             if (await _userManager.CheckPasswordAsync(user, model.Password))
                             {
                                 if (!await _userManager.IsEmailConfirmedAsync(user))
-                                {
-                                    ModelState.AddModelError(string.Empty, "Conta em processo de autorização");
-                                    return View();
+                                { 
+                                    return BadRequest("Conta em processo de autorização.");
                                 }
 
                                 //DEU TUDO CERTO
@@ -95,24 +95,6 @@ namespace fourfit_sistema_gestao.UI.Controllers
         [HttpGet]
         public async Task<IActionResult> Cadastro()
         {
-            //var usuario = new CadastroViewModel
-            //{
-                //NomeCompleto = "Roberto Carlos da Silva",
-                //Email = "roberto@gmail.com",
-                //Password = "*SenhaPadrao123*",
-                //PasswordConfirmn = "*SenhaPadrao123*",
-                //Cpf = "334.288.110-03",
-                //Celular = "19988696402",
-                //Cep = "89160-242",
-                //Endereco = "Travessa Radialista Nilton Novais",
-                //Numero = 100,
-                //Bairro = "Jardim America",
-                //Cidade = "Campinas",
-                //Estado = "SP",
-                //DataNacimento = Convert.ToDateTime(DateTime.Now.ToString("dd/MM/yyyy")), //Convert.ToDateTime("10/10/1980"),
-                //Genero = "M"
-
-            //};
             return View();
         }
         [HttpPost]
@@ -123,24 +105,16 @@ namespace fourfit_sistema_gestao.UI.Controllers
                 var user = await _userManager.FindByNameAsync(cadastroViewModel.Email);
                 if (user == null)
                 {
-                    var CpfRemoverMascara = cadastroViewModel.Cpf.ToString().Replace(".", "").Replace("-", "");
+                    
                     user = new User
                     {
                         Id = Guid.NewGuid().ToString(),
-                        NomeCompleto = cadastroViewModel.NomeCompleto,
+                        PrimeiroNome = cadastroViewModel.PrimeiroNome,
+                        SobreNome = cadastroViewModel.SobreNome,
                         Email = cadastroViewModel.Email,
                         UserName = cadastroViewModel.Email,
                         PasswordHash = cadastroViewModel.Password,
-                        Cpf = Convert.ToInt64(CpfRemoverMascara),
-                        Celular = cadastroViewModel.Celular,
-                        Cep = cadastroViewModel.Cep,
-                        Endereco = cadastroViewModel.Cep,
-                        Numero = cadastroViewModel.Numero,
-                        Bairro = cadastroViewModel.Bairro,
-                        Cidade = cadastroViewModel.Cidade,
-                        Estado = cadastroViewModel.Estado,
-                        DataNacimento = cadastroViewModel.DataNacimento,
-                        Genero = cadastroViewModel.Genero,
+                       
                     };
 
 
@@ -152,7 +126,7 @@ namespace fourfit_sistema_gestao.UI.Controllers
                         confirmarEmail = cadastroViewModel.Email;
                         var token = await _userManager.GenerateEmailConfirmationTokenAsync(user);
                         System.IO.File.WriteAllText("confirmeEmail.text", confirmarEmail);
-                        TempData["msg"] = $"Usuario {cadastroViewModel.NomeCompleto}, cadastro com sucesso!";
+                        TempData["msg"] = $"Usuário {cadastroViewModel.PrimeiroNome}, cadastro com sucesso!";
                         return RedirectToAction("Login");
                     }
                     else
