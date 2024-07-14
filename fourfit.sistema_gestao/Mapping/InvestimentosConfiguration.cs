@@ -11,12 +11,36 @@ namespace fourfit.sistema_gestao.Mapping
             builder.ToTable("Investimentos");
             builder.HasKey(x => x.Id);
 
+            builder.HasOne(x => x.TipoPagamento)
+               .WithMany(a => a.Investimentos)
+               .HasForeignKey(a => a.TipoPagamentoId);
+
+            builder.HasOne(x => x.ContasBancarias)
+               .WithMany(a => a.Investimentos)
+               .HasForeignKey(a => a.ContasBancariasId);
+
             builder.Property(x => x.Descricao)
-            .HasColumnType("varchar(10)")
+            .HasColumnType("varchar(30)")
              .IsRequired();
 
+            builder.Property(x => x.ValorInvestido)
+             .HasColumnType(" decimal(18, 2)")
+             .IsRequired();
+
+            builder.Property(x => x.DataVencimento)
+             .HasColumnType("date")
+             .IsRequired();
+
+            builder.Property(x => x.DataPagamento)
+             .HasColumnType("date")
+             .IsRequired();
+
+            builder.Property(x => x.Status)
+          .HasColumnType("varchar(10)")
+          .IsRequired();
+
             builder.Property(x => x.Observacao)
-                .HasColumnType("varchar(10)")
+                .HasColumnType("varchar(100)")
                 .IsRequired();
         }
     }

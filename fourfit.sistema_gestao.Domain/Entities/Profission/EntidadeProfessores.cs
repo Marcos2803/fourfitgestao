@@ -1,4 +1,5 @@
 ﻿using fourfit.sistema_gestao.Domain.Entities.Account;
+using fourfit.sistema_gestao.Domain.Entities.Alunos;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,6 +18,8 @@ namespace fourfit.sistema_gestao.Domain.Entities.Profission
         public bool Ativo { get; set; }
         public byte[]? Foto { get; set; }
         public DateTime DataCadastro { get; set; }
+
+        public ICollection<Horarios> Horarios { get; set; }
 
 
     }

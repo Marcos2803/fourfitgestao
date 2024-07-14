@@ -18,16 +18,16 @@ namespace fourfit.sistema_gestao.Repositories.Repository
 
         {
 
-            var resultado = await _dataContext.Set<Despesas>()
-                .Include(x => x.Id)
-                .Include(x => x.Pagamento)
-                .Include(x => x.Descricao)
-                .ToListAsync();
+            //var resultado = await _dataContext.Set<Despesas>()
+            //    .Include(x => x.Id)
+            //    .Include(x => x.Pagamento)
+            //    .Include(x => x.Descricao)
+            //    .ToListAsync();
 
-            if (resultado != null)
-            {
-                return resultado;
-            }
+            //if (resultado != null)
+            //{
+            //    return resultado;
+            //}
 
             return null;
         }

@@ -75,6 +75,7 @@ namespace fourfit_sistema_gestao.Api.Controllers
                 Id = alunosComUsuarios.Id,
                 PrimeiroNome = alunosComUsuarios.User.PrimeiroNome,
                 SobreNome = alunosComUsuarios.User.SobreNome,
+                Email = alunosComUsuarios.User.Email,
                 Cpf = alunosComUsuarios.Cpf,
                 Celular = alunosComUsuarios.Celular,
                 Cep = alunosComUsuarios.Cep,
@@ -115,6 +116,7 @@ namespace fourfit_sistema_gestao.Api.Controllers
 
                 usuario.PrimeiroNome = model.PrimeiroNome;
                 usuario.SobreNome = model.SobreNome;
+                usuario.Email = model.Email;
                 alunos.Cpf = model.Cpf;
                 alunos.Celular = model.Celular;
                 alunos.Cep = model.Cep;

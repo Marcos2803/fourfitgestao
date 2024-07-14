@@ -1,4 +1,4 @@
-﻿using fourfit.sistema_gestao.Domain.Entities.Checkin;
+﻿using fourfit.sistema_gestao.Domain.Entities;
 using fourfit.sistema_gestao.Domain.Interfaces;
 using fourfit_sistema_gestao.UI.Models.Checkins;
 using Microsoft.AspNetCore.Mvc;
@@ -38,13 +38,13 @@ namespace fourfit_sistema_gestao.UI.Controllers
         {
             try
             {
-                var model = new Checkin
+                //var model = new Checkins
                 {
-                    UserId = checkinViewModel.UserId,
+                 
                     //Data = DateTime.Now,
-                    Horarios = checkinViewModel.Horarios,
+                    
                 };
-                await _unitOfwork.CheckinServices.Cadastro(model);
+                //await _unitOfwork.CheckinServices.Cadastro(model);
                 TempData["Msg"] = "Checkin cadastrado com sucesso!";
                 return RedirectToAction(nameof(Index));
             }

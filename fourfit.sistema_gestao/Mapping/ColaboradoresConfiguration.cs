@@ -16,9 +16,17 @@ namespace fourfit.sistema_gestao.Mapping
                 .WithMany(a => a.colaboradores)
                 .HasForeignKey(a => a.UserId);
 
-            builder.Property(x => x.Cpf)
-                   .HasColumnType("varchar(14)")
-                   .IsRequired();
+            builder.Property(x => x.DataCadastro)
+           .HasColumnType("date")
+           .IsRequired();
+
+            builder.Property(x => x.Ativo)
+           .HasColumnType("varchar(10)")
+           .IsRequired();
+
+            builder.Property(e => e.Foto)
+                .HasColumnType("varbinary(max)")
+                .IsRequired(false);
         }
 
     }

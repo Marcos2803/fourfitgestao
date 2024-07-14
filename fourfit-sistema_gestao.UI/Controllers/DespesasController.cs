@@ -40,11 +40,11 @@ namespace fourfit_sistema_gestao.UI.Controllers
             {
                 var model = new Despesas
                 {
-                   Valor = despesasViewModel.Valor,
-                    Tipo = despesasViewModel.Tipo,
-                    Vencimento = DateTime.Now,
-                    Pagamento = DateTime.Now,
-                    Ativo = true
+                   //Valor = despesasViewModel.Valor,
+                   // Tipo = despesasViewModel.Tipo,
+                   // Vencimento = DateTime.Now,
+                   // Pagamento = DateTime.Now,
+                    
                 };
                 await _unitOfwork.DespesasServices.Cadastro(model);
                 TempData["Msg"] = "Despesa cadastrado com sucesso!";

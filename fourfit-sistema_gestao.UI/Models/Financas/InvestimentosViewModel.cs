@@ -1,4 +1,4 @@
-﻿using fourfit.sistema_gestao.Domain.Entities.Alunos;
+﻿using fourfit.sistema_gestao.Domain.Entities.Financas;
 
 namespace fourfit_sistema_gestao.UI.Models.Financas
 {

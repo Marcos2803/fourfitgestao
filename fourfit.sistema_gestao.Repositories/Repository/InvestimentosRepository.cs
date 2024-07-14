@@ -20,7 +20,7 @@ namespace fourfit.sistema_gestao.Repositories.Repository
 
             var resultado = await _dataContext.Set<Investimentos>()
                 .Include(x => x.Id)
-                .Include(x => x.Pagamento)
+                //.Include(x => x.Pagamento)
                 .Include(x => x.Descricao)
                 .ToListAsync();
 

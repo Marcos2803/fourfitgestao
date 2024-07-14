@@ -1,6 +1,5 @@
 ﻿using fourfit.sistema_gestao.Context;
 using fourfit.sistema_gestao.Domain.Entities.Alunos;
-using fourfit.sistema_gestao.Domain.Entities.Modalidades;
 using fourfit.sistema_gestao.Domain.Interfaces;
 using fourfit.sistema_gestao.Repositories.Repository.Base;
 using Microsoft.EntityFrameworkCore;
@@ -20,7 +19,7 @@ namespace fourfit.sistema_gestao.Repositories.Repository
         {
 
             var resultado = await _dataContext.Set<Modalidades>()
-                .Include(x => x.User)
+                .Include(x => x.Horarios)
                 .ToListAsync();
 
             if (resultado != null)
@@ -34,7 +33,7 @@ namespace fourfit.sistema_gestao.Repositories.Repository
         public async Task<Modalidades> ObterModalidadesUsuariosPorId(int Id)
         {
             var resultado = await _dataContext.Set<Modalidades>()
-                .Include(x => x.User).Where(x => x.Id == Id).FirstOrDefaultAsync();
+                .Include(x => x.Horarios).Where(x => x.Id == Id).FirstOrDefaultAsync();
 
 
             if (resultado != null)

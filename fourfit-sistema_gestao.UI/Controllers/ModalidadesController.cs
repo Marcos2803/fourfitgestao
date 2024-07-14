@@ -1,4 +1,4 @@
-﻿using fourfit.sistema_gestao.Domain.Entities.Modalidades;
+﻿
 using fourfit.sistema_gestao.Domain.Interfaces;
 using fourfit_sistema_gestao.UI.Models.Modalidades;
 using Microsoft.AspNetCore.Mvc;
@@ -36,12 +36,12 @@ namespace fourfit_sistema_gestao.UI.Controllers
         {
             try
             {
-                var model = new Modalidades
+                // var model = new Modalidades
                 {
-                    UserId = modalidadesViewModel.UserId,
-                    Ativo = true
+
+                    //Ativo = true
                 };
-                await _unitOfwork.ModalidadesServices.Cadastro(model);
+               // await _unitOfwork.ModalidadesServices.Cadastro(model);
                 TempData["Msg"] = "Modalidades cadastrado com sucesso!";
                 return RedirectToAction(nameof(Index));
             }

@@ -1,4 +1,4 @@
-﻿namespace fourfit.sistema_gestao.Domain.Entities.Alunos
+﻿namespace fourfit.sistema_gestao.Domain.Entities.Financas
 {
     public class TipoPagamentoPc
     {

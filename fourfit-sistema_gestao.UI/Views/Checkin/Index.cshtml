@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Checkin>
+﻿@model IEnumerable<Checkins>
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_LayoutPrincipal.cshtml";
@@ -47,8 +47,8 @@
                     @foreach (var item in Model)
                     {
                         <tr>
-                            <td>@item.Data</td>
-                            <td>@item.User</td>
+                            @* <td>@item.Data</td> *@
+                           
                             
                             <td>
                                 <button class="btn btn-outline-danger btnExcluir" title="Excluir" data-id="@item.Id"><i class="fa-solid fa-user-xmark"></i></button>

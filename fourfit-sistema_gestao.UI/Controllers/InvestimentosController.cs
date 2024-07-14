@@ -2,7 +2,6 @@
 using fourfit.sistema_gestao.Domain.Interfaces;
 using fourfit_sistema_gestao.UI.Models.Financas;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace fourfit_sistema_gestao.UI.Controllers
 {
@@ -38,11 +37,11 @@ namespace fourfit_sistema_gestao.UI.Controllers
             {
                 var model = new Investimentos
                 {
-                    Valor = investimentosViewModel.Valor,
-                    Tipo = investimentosViewModel.Tipo,
-                    Vencimento = DateTime.Now,
-                    Pagamento = DateTime.Now,
-                    Ativo = true
+                    //Valor = investimentosViewModel.Valor,
+                    //Tipo = investimentosViewModel.Tipo,
+                    //Vencimento = DateTime.Now,
+                    //Pagamento = DateTime.Now,
+                
                 };
                 await _unitOfwork.InvestimentosServices.Cadastro(model);
                 TempData["Msg"] = "Investimento cadastrado com sucesso!";

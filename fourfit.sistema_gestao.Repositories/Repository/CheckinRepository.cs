@@ -1,5 +1,5 @@
 ﻿using fourfit.sistema_gestao.Context;
-using fourfit.sistema_gestao.Domain.Entities.Checkin;
+using fourfit.sistema_gestao.Domain.Entities.Alunos;
 using fourfit.sistema_gestao.Domain.Entities.Profission;
 using fourfit.sistema_gestao.Domain.Interfaces;
 using fourfit.sistema_gestao.Repositories.Repository.Base;
@@ -7,7 +7,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace fourfit.sistema_gestao.Repositories.Repository
 {
-    public class CheckinRepository : BaseRepository<Checkin>, ICheckinServices
+    public class CheckinRepository : BaseRepository<Checkins>, ICheckinServices
     {
         private readonly DataContext _dataContext;
 
@@ -16,10 +16,10 @@ namespace fourfit.sistema_gestao.Repositories.Repository
             _dataContext = dataContext;
         }
 
-        public async Task<IEnumerable<Checkin>> ObterCheckinExistentes()
+        public async Task<IEnumerable<Checkins>> ObterCheckinExistentes()
         {
-            var resultado = await _dataContext.Set<Checkin>()
-                .Include(x => x.User)
+            var resultado = await _dataContext.Set<Checkins>()
+                .Include(x => x.Alunos)
                 .ToListAsync();
 
             if (resultado != null)
@@ -29,10 +29,10 @@ namespace fourfit.sistema_gestao.Repositories.Repository
 
             return null;
         }
-        public async Task<Checkin> ObterCheckinUsuariosPorId(int Id)
+        public async Task<Checkins> ObterCheckinUsuariosPorId(int Id)
         {
-            var resultado = await _dataContext.Set<Checkin>()
-                .Include(x => x.User).Where(x => x.Id == Id).FirstOrDefaultAsync();
+            var resultado = await _dataContext.Set<Checkins>()
+                .Include(x => x.Alunos).Where(x => x.Id == Id).FirstOrDefaultAsync();
 
 
             if (resultado != null)
