@@ -11,7 +11,7 @@ namespace fourfit.sistema_gestao.Mapping
             builder.ToTable("Impostos");
             builder.HasKey("Id");
 
-            builder.Property(x => x.Tipo)
+            builder.Property(x => x.NomeImposto)
              .HasColumnType("varchar(30)")
              .IsRequired();
         }

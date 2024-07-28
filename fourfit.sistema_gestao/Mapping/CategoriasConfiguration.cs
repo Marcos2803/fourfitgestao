@@ -11,7 +11,7 @@ namespace fourfit.sistema_gestao.Mapping
             builder.ToTable("Categorias");
             builder.HasKey("Id");
 
-            builder.Property(x => x.Nome)
+            builder.Property(x => x.NomeCategoria)
               .HasColumnType("varchar(50)")
               .IsRequired();
         }

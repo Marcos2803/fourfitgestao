@@ -11,7 +11,7 @@
         public int ValorInvestido { get; set; }
         public DateTime DataVencimento { get; set; }
         public DateTime DataPagamento { get; set; }
-        public bool Status { get; set; }
+        public string StatusPagamentos { get; set; }
         public string Observacao { get; set; }
 
     }

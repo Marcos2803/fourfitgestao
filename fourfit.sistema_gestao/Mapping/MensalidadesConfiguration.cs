@@ -13,8 +13,8 @@ namespace fourfit.sistema_gestao.Mapping
     {
         public void Configure(EntityTypeBuilder<Mensalidades> builder)
         {
-            
-        builder.ToTable("Mensalidades");
+
+            builder.ToTable("Mensalidades");
             builder.HasKey("Id");
 
             builder.HasOne(x => x.Alunos)
@@ -32,10 +32,10 @@ namespace fourfit.sistema_gestao.Mapping
             builder.HasOne(x => x.Pagamentos)
                .WithMany(a => a.Mensalidades)
                .HasForeignKey(a => a.PagamentosId);
-           
-                 builder.Property(x => x.ValorMensalidade)
-              .HasColumnType(" decimal(18, 2)")
-              .IsRequired();
+
+            builder.Property(x => x.ValorMensalidade)
+         .HasColumnType(" decimal(18, 2)")
+         .IsRequired();
 
             builder.Property(x => x.ValorMatricula)
               .HasColumnType(" decimal(18, 2)")
@@ -50,15 +50,15 @@ namespace fourfit.sistema_gestao.Mapping
              .IsRequired();
 
             builder.Property(x => x.DataInicialPlano)
-          .HasColumnType("date")
-          .IsRequired();
+             .HasColumnType("date")
+             .IsRequired();
 
             builder.Property(x => x.DataPagamento)
           .HasColumnType("date")
           .IsRequired();
 
-            builder.Property(m => m.StatusPagamento)
-                .HasConversion<string>() // Armazena o enum como string no banco de dados
+            builder.Property(m => m.StatusPagamentos)
+                .HasColumnType("varchar(10)")
                 .IsRequired();
 
         }

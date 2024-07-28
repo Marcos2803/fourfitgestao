@@ -1,4 +1,5 @@
 ﻿using fourfit.sistema_gestao.Context;
+using fourfit.sistema_gestao.Domain.Entities.Account;
 using fourfit.sistema_gestao.Domain.Entities.Profission;
 using fourfit.sistema_gestao.Domain.Interfaces;
 using fourfit.sistema_gestao.Repositories.Repository.Base;
@@ -42,6 +43,11 @@ namespace fourfit.sistema_gestao.Repositories.Repository
             }
             return null;
 
+        }
+
+        public async Task<EntidadeProfessores> ObterProfessoresPorId(int ProfessoresId)
+        {
+            return await _dataContext.Set<EntidadeProfessores>().FindAsync(ProfessoresId);
         }
 
         //public async Task Remover(EntidadeProfessores professor)

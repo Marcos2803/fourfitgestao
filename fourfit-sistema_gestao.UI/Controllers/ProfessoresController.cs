@@ -58,7 +58,7 @@ namespace fourfit_sistema_gestao.UI.Controllers
                     Estado = professoresViewModel.Estado,
                     DataNacimento = professoresViewModel.DataNacimento,
                     DataCadastro = DateTime.Now,
-                    Ativo = true
+                    
                 };
                 await _unitOfwork.ProfessoresServices.Cadastro(model);
                 TempData["Msg"] = "Professor cadastrado com sucesso!";

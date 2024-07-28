@@ -35,7 +35,7 @@ namespace fourfit.sistema_gestao.Mapping
              .HasColumnType("date")
              .IsRequired();
 
-            builder.Property(x => x.Status)
+            builder.Property(x => x.StatusPagamentos)
           .HasColumnType("varchar(10)")
           .IsRequired();
 

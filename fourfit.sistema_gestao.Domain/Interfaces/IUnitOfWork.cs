@@ -9,9 +9,20 @@
         IUserServices UserServices { get; }
         IProfessoresServices ProfessoresServices { get; }
         IColaboradoresServices ColaboradoresServices { get; }
-        ICheckinServices CheckinServices { get; }
+        ICheckinsServices CheckinsServices { get; }
+        IMensalidadesServices MensalidadesServices { get; }
         IModalidadesServices ModalidadesServices { get; }
+        IAvaliacaoFisicaServices AvaliacaoFisicaServices { get; }
         IDespesasServices DespesasServices { get; }
+        ITipoPlanoServices TipoPlanoServices { get; }
         IInvestimentosServices InvestimentosServices { get; }
+        IHorariosServices HorariosServices { get; }
+        IContasBancariasServices ContasBancariasServices { get; }
+        IFornecedoresServices FornecedoresServices { get; }
+        IPersonalRecordServices PersonalRecordServices { get; }
+        IParqServices ParqServices { get; }
+        IProdutoServices ProdutosServices { get; }
+        IAulaExperimentalServices AulaExperimentalServices { get; }
+        IImpostosServices ImpostosServices { get; }
     }
 }

@@ -27,8 +27,11 @@ namespace fourfit.sistema_gestao.Context
         public DbSet<Checkins> Checkins { get; set; }
         public DbSet<Horarios> Horarios { get; set; }
         public DbSet<Mensalidades> Mensalidades { get; set; }
+        public DbSet<Modalidades> Modalidades { get; set; }
         public DbSet<AvaliacaoFisica> AvaliacaoFisica { get; set; }
         public DbSet<Parq> Parq { get; set; }
+        public DbSet<TipoPlano> Planos { get; set; }
+        public DbSet<AulaExperimental> AulaExperimental { get; set; }
 
 
         public DbSet<Despesas> Despesas { get; set; }
@@ -39,14 +42,14 @@ namespace fourfit.sistema_gestao.Context
 
         public DbSet<Produtos> Produtos { get; set; }
         public DbSet<Categorias> Categorias { get; set; }
-        public DbSet<ControleEstoque> ControleEstoque { get; set; }
+        public DbSet<Estoque> ControleEstoque { get; set; }
 
         //public DbSet<entidadeEmailConfiguracoes>? EmailConfiguracoes { get; set; }
         //public DbSet<entidadeEmailAddress>? EmailAddress { get; set; }
         //public DbSet<entidadeEmailPasswordAccount>? EmailPasswordAccount { get; set; }
         //public DbSet<TipoPagamento> TipoPagamento { get; set; }
         //public DbSet<TipoPagamentoPc> TipoPagamentoPc { get; set; }
-        //public DbSet<TipoPlano> TipoPlano { get; set; }
+        
 
         //public DbSet<AlunosPesquisa> AlunosPesquisa { get; set; }
 
@@ -61,9 +64,12 @@ namespace fourfit.sistema_gestao.Context
             builder.Entity<Checkins>(new CheckinsConfiguration().Configure);
             builder.Entity<Horarios>(new HorariosConfiguration().Configure);
             builder.Entity<Mensalidades>(new MensalidadesConfiguration().Configure);
+            builder.Entity<Modalidades>(new ModalidadesConfiguration().Configure);
             builder.Entity<AvaliacaoFisica>(new AvaliacaoFisicaConfiguration().Configure);
             builder.Entity<Parq>(new ParqConfiguration().Configure);
             builder.Entity<PersonalRecord>(new PersonalRecordConfiguration().Configure);
+            builder.Entity<TipoPlano>(new TipoPlanoConfiguration().Configure);
+            builder.Entity<AulaExperimental>(new AulaExperimentalConfiguration().Configure);
 
 
             builder.Entity<Despesas>(new DespesasConfiguration().Configure);
@@ -75,7 +81,7 @@ namespace fourfit.sistema_gestao.Context
 
             builder.Entity<Produtos>(new ProdutosConfiguration().Configure);
             builder.Entity<Categorias>(new CategoriasConfiguration().Configure);
-            builder.Entity<ControleEstoque>(new ControleEstoqueConfiguration().Configure);
+            builder.Entity<Estoque>(new ControleEstoqueConfiguration().Configure);
 
             base.OnModelCreating(builder);
         }

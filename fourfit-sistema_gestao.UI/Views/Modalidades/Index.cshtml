@@ -47,15 +47,15 @@
                     {
                         <tr>
                             <td>@item.Nome</td>
-                            <td>@item.Descricao</td>
-                            @if (item.Ativo == true)
+                            @* <td>@item.Descricao</td> *@
+                            @* @if (item.Ativo == true)
                             {
                                 <td style="color:darkslategrey">ATIVO</td>
                             }
                             else
                             {
                                 <td style="color:red">INATIVO</td>
-                            }
+                            } *@
                             <td>
                                 <button class="btn btn-outline-warning" title="Editar" onclick="window.location.href ='@Url.Action("AlterarModalidades","Modalidades", new {Id = item.Id})'">
                                     <i class="fa-solid fa-user-pen"></i>

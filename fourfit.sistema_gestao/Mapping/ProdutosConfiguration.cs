@@ -16,11 +16,11 @@ namespace fourfit.sistema_gestao.Mapping
                 .WithMany(a => a.Produtos)
                 .HasForeignKey(a => a.CategoriasId);
 
-            builder.HasOne(x => x.ControleEstoque)
+            builder.HasOne(x => x.Estoque)
                 .WithMany(a => a.Produtos)
-                .HasForeignKey(a => a.ControleEstoqueId);
+                .HasForeignKey(a => a.EstoqueId);
 
-            builder.Property(x => x.Nome)
+            builder.Property(x => x.NomeProduto)
               .HasColumnType("varchar(100)")
               .IsRequired();
 

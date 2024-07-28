@@ -38,7 +38,7 @@ namespace fourfit.sistema_gestao.Mapping
             builder.Property(x => x.LimiteAlunos)
                 .IsRequired();
 
-            builder.Property(x => x.Ativo)
+            builder.Property(x => x.Status)
            .HasColumnType("varchar(10)")
            .IsRequired();
 

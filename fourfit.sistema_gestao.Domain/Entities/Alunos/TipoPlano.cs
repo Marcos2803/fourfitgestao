@@ -3,9 +3,16 @@
     public class TipoPlano
     {
         public int Id { get; set; }
-        public string DescTipoPlano { get; set; }
-
+        public string NomePlano { get; set; }
+        public string Descricao { get; set; }
+        public int DiaPorSemana { get; set; }
+        public int DuracaoMes { get; set; }
+        public int DuracaoDia { get; set; }
+        public decimal ValorPlano { get; set; }
+        public string Status { get; set; }
         public virtual ICollection<Mensalidades> Mensalidades { get; set; }
+
+        public virtual ICollection<Modalidades> Modalidades { get; set; }
 
 
 

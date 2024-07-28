@@ -20,6 +20,7 @@ namespace fourfit.sistema_gestao.Repositories.Repository
 
             var resultado = await _dataContext.Set<Modalidades>()
                 .Include(x => x.Horarios)
+                .Include(x => x.PlanosId)
                 .ToListAsync();
 
             if (resultado != null)
@@ -42,6 +43,11 @@ namespace fourfit.sistema_gestao.Repositories.Repository
             }
             return null;
 
+        }
+       
+        public async Task<Modalidades> ObterModalidadesPorId(int Id)
+        {
+            return await _dataContext.Set<Modalidades>().FindAsync(Id);
         }
     }
 }

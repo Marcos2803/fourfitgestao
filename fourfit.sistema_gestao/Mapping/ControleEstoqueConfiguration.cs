@@ -4,9 +4,9 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace fourfit.sistema_gestao.Mapping
 {
-    public class ControleEstoqueConfiguration : IEntityTypeConfiguration<ControleEstoque>
+    public class ControleEstoqueConfiguration : IEntityTypeConfiguration<Estoque>
     {
-        public void Configure(EntityTypeBuilder<ControleEstoque> builder)
+        public void Configure(EntityTypeBuilder<Estoque> builder)
         {
             builder.ToTable("ControleEstoque");
             builder.HasKey("Id");

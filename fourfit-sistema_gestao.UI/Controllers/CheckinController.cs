@@ -18,7 +18,7 @@ namespace fourfit_sistema_gestao.UI.Controllers
         }
         public async Task<IActionResult> Index()
         {
-            var resultado = await _unitOfwork.CheckinServices.ObterCheckinExistentes();
+            var resultado = await _unitOfwork.CheckinsServices.ObterCheckinExistentes();
             return View(resultado.ToList());
         }
 

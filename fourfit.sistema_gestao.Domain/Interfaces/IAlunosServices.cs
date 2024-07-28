@@ -1,6 +1,6 @@
 ﻿using fourfit.sistema_gestao.Domain.Entities.Alunos;
 using fourfit.sistema_gestao.Domain.Interfaces.Base;
-using System.Xml.Schema;
+
 
 namespace fourfit.sistema_gestao.Domain.Interfaces
 {

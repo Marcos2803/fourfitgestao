@@ -10,5 +10,6 @@ namespace fourfit_sistema_gestao.Api.Models.Professores
         public string SobreNome { get; set; }
         public int? Cref { get; set; }
         public string Especialidade { get; set; }
+        public string Email { get; set; }
     }
 }

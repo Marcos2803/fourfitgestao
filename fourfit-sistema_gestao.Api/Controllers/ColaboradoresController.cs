@@ -34,7 +34,7 @@ namespace fourfit_sistema_gestao.Api.Controllers
                     UserId = model.UserId,
                     DataCadastro = DateTime.Now,
                     Foto = model.Foto,
-                    Ativo = true,
+                    Status = model.Status,
                     Cpf = model.Cpf,
                     Celular = model.Celular,
                     Cep = model.Cep,
@@ -76,6 +76,7 @@ namespace fourfit_sistema_gestao.Api.Controllers
                 Id = colaboradoresComUsuarios.Id,
                 PrimeiroNome = colaboradoresComUsuarios.User.PrimeiroNome,
                 SobreNome = colaboradoresComUsuarios.User.SobreNome,
+                Email = colaboradoresComUsuarios.User.Email,
                 Cpf = colaboradoresComUsuarios.Cpf,
                 Celular = colaboradoresComUsuarios.Celular,
                 Cep = colaboradoresComUsuarios.Cep,
@@ -116,6 +117,7 @@ namespace fourfit_sistema_gestao.Api.Controllers
 
                 usuario.PrimeiroNome = model.PrimeiroNome;
                 usuario.SobreNome = model.SobreNome;
+                usuario.Email = model.Email;
                 colaboradores.Cpf = model.Cpf;
                 colaboradores.Celular = model.Celular;
                 colaboradores.Cep = model.Cep;

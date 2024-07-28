@@ -45,7 +45,7 @@ namespace fourfit_sistema_gestao.UI.Controllers
                     UserId = colaboradoresViewModel.UserId,
                     Foto = colaboradoresViewModel.Foto,
                   
-                    Ativo = true
+                    
                 };
                 await _unitOfwork.ColaboradoresServices.Cadastro(model);
                 TempData["Msg"] = "Colaborador cadastrado com sucesso!";

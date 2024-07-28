@@ -14,8 +14,9 @@ namespace fourfit.sistema_gestao.Domain.Entities.Alunos
         public TimeSpan HoraFim { get; set; }
         public string Descricao { get; set; }
         public int LimiteAlunos { get; set; }
-        public bool Ativo { get; set; }
+        public string Status { get; set; }
 
         public ICollection<Checkins> Checkins { get; set; }
+        public ICollection<AulaExperimental> AulaExperimental{ get; set; }
     }
 }

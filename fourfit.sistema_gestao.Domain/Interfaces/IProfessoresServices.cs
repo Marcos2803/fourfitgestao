@@ -10,6 +10,10 @@ namespace fourfit.sistema_gestao.Domain.Interfaces
 
         Task<EntidadeProfessores> ObterProfessoresUsuariosPorId(int Id);
 
+        //Task<EntidadeProfessores> ObterProfessoresPorId(int Id);
+
+        Task<EntidadeProfessores> ObterProfessoresPorId(int ProfessoresId);
+
 
     }
 }

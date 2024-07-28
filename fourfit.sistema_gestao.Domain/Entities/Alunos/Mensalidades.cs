@@ -20,7 +20,7 @@ namespace fourfit.sistema_gestao.Domain.Entities.Alunos
         public string MesReferente { get; set; }
         public DateTime DataInicialPlano { get; set; }
         public DateTime? DataPagamento { get; set; }
-        public string StatusPagamento { get; set; }
+        public string StatusPagamentos { get; set; }
 
     }
 }

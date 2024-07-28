@@ -7,9 +7,9 @@ namespace fourfit.sistema_gestao.Domain.Entities.Store.ControleEstoque
         public int Id { get; set; }
         public int CategoriasId { get; set; }
         public Categorias Categorias { get; set; }
-        public int ControleEstoqueId { get; set; }
-        public ControleEstoque ControleEstoque { get; set; }
-        public string Nome { get; set; }
+        public int EstoqueId { get; set; }
+        public Estoque Estoque { get; set; }
+        public string NomeProduto { get; set; }
         public decimal PrecoCusto { get; set; }
         public decimal PrecoVenda { get; set; }
 

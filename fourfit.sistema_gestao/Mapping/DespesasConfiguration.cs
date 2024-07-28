@@ -25,7 +25,7 @@ namespace fourfit.sistema_gestao.Mapping
                .HasForeignKey(a => a.TipoDespesasId);
 
             builder.Property(x => x.Descricao)
-            .HasColumnType("varchar(30)")
+            .HasColumnType("varchar(50)")
              .IsRequired();
 
             builder.Property(x => x.ValorDespesa)
@@ -40,9 +40,9 @@ namespace fourfit.sistema_gestao.Mapping
              .HasColumnType("date")
              .IsRequired();
 
-            builder.Property(x => x.Status)
-          .HasColumnType("varchar(10)")
-          .IsRequired();
+            builder.Property(x => x.StatusPagamentos)
+             .HasColumnType("varchar(10)")
+             .IsRequired();
 
             builder.Property(x => x.Observacao)
                 .HasColumnType("varchar(100)")

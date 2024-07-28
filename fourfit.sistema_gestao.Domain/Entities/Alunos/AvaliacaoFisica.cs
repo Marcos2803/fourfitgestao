@@ -6,8 +6,8 @@ namespace fourfit.sistema_gestao.Domain.Entities.Alunos
         public int Id { get; set; }
         public int AlunosId { get; set; }
         public EntidadeAlunos Alunos { get; set; }
-        public DateTime Data { get; set; }
-        public DateTime Idade { get; set; }
+        public DateTime DataAvaliacao { get; set; }
+        public int Idade { get; set; }
         public decimal Altura { get; set; }
         public decimal Peso { get; set; }
         public decimal PercentualGordura { get; set; }
@@ -15,7 +15,7 @@ namespace fourfit.sistema_gestao.Domain.Entities.Alunos
         public decimal? TaxaMetabolica { get; set; }
         public decimal? GorduraVisceral { get; set; }
         public decimal? Imc { get; set; }
-        public string? IdadeCorporal { get; set; }
+        public int? IdadeCorporal { get; set; }
         public decimal? BicepsRelaxadoD { get; set; }
         public decimal? BicepsRelaxadoE { get; set; }
         public decimal? BicepsContraidoD { get; set; }

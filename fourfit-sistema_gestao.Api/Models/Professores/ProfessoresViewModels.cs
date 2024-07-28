@@ -7,7 +7,7 @@ namespace fourfit_sistema_gestao.Api.Models.Professores
         public int Id { get; set; }
         public string? UserId { get; set; }
         public byte[]? Foto { get; set; }
-        public bool Ativo { get; set; }
+        public string Status { get; set; }
         public int? Cref { get; set; }
         public string? Especialidade { get; set; }
         public DateTime DataCadastro { get; set; }

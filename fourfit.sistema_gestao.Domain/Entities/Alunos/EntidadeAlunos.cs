@@ -10,7 +10,7 @@ namespace fourfit.sistema_gestao.Domain.Entities.Alunos
         public User User { get; set; }
         public DateTime DataCadastro { get; set; }
         public byte[]? Foto { get; set; }
-        public bool Ativo { get; set; }
+        public string Status { get; set; }
 
         public ICollection<Checkins> Checkins { get; set; }
         public ICollection<Mensalidades> Mensalidades { get; set; }

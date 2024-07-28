@@ -15,7 +15,7 @@ namespace fourfit.sistema_gestao.Domain.Entities.Financas
         public int ValorDespesa { get; set; }
         public DateTime DataVencimento { get; set; }
         public DateTime DataPagamento { get; set; }
-        public bool Status { get; set; }
+        public string StatusPagamentos { get; set; }
         public string Observacao { get; set; }
     }
 }

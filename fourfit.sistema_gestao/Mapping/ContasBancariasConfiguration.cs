@@ -16,7 +16,7 @@ namespace fourfit.sistema_gestao.Mapping
           .IsRequired();
 
             builder.Property(x => x.Descricao)
-          .HasColumnType("varchar(10)")
+          .HasColumnType("varchar(50)")
           .IsRequired();
 
             builder.Property(x => x.Status)

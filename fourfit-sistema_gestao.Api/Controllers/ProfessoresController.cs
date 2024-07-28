@@ -1,7 +1,5 @@
-﻿using fourfit.sistema_gestao.Domain.Entities;
-using fourfit.sistema_gestao.Domain.Entities.Profission;
+﻿using fourfit.sistema_gestao.Domain.Entities.Profission;
 using fourfit.sistema_gestao.Domain.Interfaces;
-using fourfit_sistema_gestao.Api.Models.Alunos;
 using fourfit_sistema_gestao.Api.Models.Professores;
 using fourfit_sistema_gestao.Api.Validation;
 using Microsoft.AspNetCore.Mvc;
@@ -36,7 +34,7 @@ namespace fourfit_sistema_gestao.Api.Controllers
                     UserId = model.UserId,
                     DataCadastro = DateTime.Now,
                     Foto = model.Foto,
-                    Ativo = true,
+                    Status = model.Status,
                     Cref = model.Cref,
                     Especialidade = model.Especialidade,
                     Cpf = model.Cpf,
@@ -80,6 +78,7 @@ namespace fourfit_sistema_gestao.Api.Controllers
                 Id = professoresComUsuarios.Id,
                 PrimeiroNome = professoresComUsuarios.User.PrimeiroNome,
                 SobreNome = professoresComUsuarios.User.SobreNome,
+                Email = professoresComUsuarios.User.Email,
                 Cpf = professoresComUsuarios.Cpf,
                 Cref = professoresComUsuarios.Cref,
                 Especialidade = professoresComUsuarios.Especialidade,
@@ -126,6 +125,7 @@ namespace fourfit_sistema_gestao.Api.Controllers
 
                 usuario.PrimeiroNome = model.PrimeiroNome;
                 usuario.SobreNome = model.SobreNome;
+                usuario.Email = model.Email;
                 professores.Cpf = model.Cpf;
                 professores.Celular = model.Celular;
                 professores.Cep = model.Cep;

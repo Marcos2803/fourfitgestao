@@ -230,6 +230,33 @@ namespace fourfit.sistema_gestao.Migrations
                     b.ToTable("AspNetUsers", (string)null);
                 });
 
+            modelBuilder.Entity("fourfit.sistema_gestao.Domain.Entities.Alunos.AulaExperimental", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime>("DataHExperimental")
+                        .HasColumnType("date");
+
+                    b.Property<int>("HorariosId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("HorariosId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("AulaExperimental", (string)null);
+                });
+
             modelBuilder.Entity("fourfit.sistema_gestao.Domain.Entities.Alunos.AvaliacaoFisica", b =>
                 {
                     b.Property<int>("Id")
@@ -288,18 +315,18 @@ namespace fourfit.sistema_gestao.Migrations
                         .IsRequired()
                         .HasColumnType("decimal(5,2)");
 
-                    b.Property<DateTime>("Data")
+                    b.Property<DateTime>("DataAvaliacao")
                         .HasColumnType("date");
 
                     b.Property<decimal?>("GorduraVisceral")
                         .IsRequired()
                         .HasColumnType("decimal(5,2)");
 
-                    b.Property<DateTime>("Idade")
-                        .HasColumnType("datetime2");
+                    b.Property<int>("Idade")
+                        .HasColumnType("int");
 
-                    b.Property<string>("IdadeCorporal")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int?>("IdadeCorporal")
+                        .HasColumnType("int");
 
                     b.Property<decimal?>("Imc")
                         .IsRequired()
@@ -376,10 +403,6 @@ namespace fourfit.sistema_gestao.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<string>("Ativo")
-                        .IsRequired()
-                        .HasColumnType("varchar(10)");
-
                     b.Property<string>("Bairro")
                         .IsRequired()
                         .HasColumnType("varchar(100)");
@@ -420,6 +443,10 @@ namespace fourfit.sistema_gestao.Migrations
                         .IsRequired()
                         .HasColumnType("varchar(7)");
 
+                    b.Property<string>("Status")
+                        .IsRequired()
+                        .HasColumnType("varchar(10)");
+
                     b.Property<string>("UserId")
                         .IsRequired()
                         .HasColumnType("nvarchar(450)");
@@ -456,10 +483,6 @@ namespace fourfit.sistema_gestao.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<string>("Ativo")
-                        .IsRequired()
-                        .HasColumnType("varchar(10)");
-
                     b.Property<string>("Descricao")
                         .IsRequired()
                         .HasColumnType("varchar(255)");
@@ -482,6 +505,10 @@ namespace fourfit.sistema_gestao.Migrations
 
                     b.Property<int>("ProfessoresId")
                         .HasColumnType("int");
+
+                    b.Property<string>("Status")
+                        .IsRequired()
+                        .HasColumnType("varchar(10)");
 
                     b.HasKey("Id");
 
@@ -523,9 +550,9 @@ namespace fourfit.sistema_gestao.Migrations
                     b.Property<int>("PlanoId")
                         .HasColumnType("int");
 
-                    b.Property<string>("StatusPagamento")
+                    b.Property<string>("StatusPagamentos")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("varchar(10)");
 
                     b.Property<decimal?>("ValorMatricula")
                         .IsRequired()
@@ -556,24 +583,30 @@ namespace fourfit.sistema_gestao.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<bool>("Ativo")
-                        .HasColumnType("bit");
+                    b.Property<string>("AceitaCheckin")
+                        .IsRequired()
+                        .HasColumnType("varchar(10)");
 
                     b.Property<string>("Descricao")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("varchar(50)");
 
                     b.Property<string>("Nome")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("PermiteCheckin")
+                    b.Property<int>("PlanosId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Status")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("varchar(20)");
 
                     b.HasKey("Id");
 
-                    b.ToTable("Modalidades");
+                    b.HasIndex("PlanosId");
+
+                    b.ToTable("Modalidades", (string)null);
                 });
 
             modelBuilder.Entity("fourfit.sistema_gestao.Domain.Entities.Alunos.Parq", b =>
@@ -656,13 +689,33 @@ namespace fourfit.sistema_gestao.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<string>("DescTipoPlano")
+                    b.Property<string>("Descricao")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("varchar(70)");
+
+                    b.Property<int>("DiaPorSemana")
+                        .HasColumnType("int");
+
+                    b.Property<int>("DuracaoDia")
+                        .HasColumnType("int");
+
+                    b.Property<int>("DuracaoMes")
+                        .HasColumnType("int");
+
+                    b.Property<string>("NomePlano")
+                        .IsRequired()
+                        .HasColumnType("varchar(70)");
+
+                    b.Property<string>("Status")
+                        .IsRequired()
+                        .HasColumnType("varchar(10)");
+
+                    b.Property<decimal>("ValorPlano")
+                        .HasColumnType(" decimal(18, 2)");
 
                     b.HasKey("Id");
 
-                    b.ToTable("TipoPlano");
+                    b.ToTable("TipoPlano", (string)null);
                 });
 
             modelBuilder.Entity("fourfit.sistema_gestao.Domain.Entities.Financas.ContasBancarias", b =>
@@ -679,7 +732,7 @@ namespace fourfit.sistema_gestao.Migrations
 
                     b.Property<string>("Descricao")
                         .IsRequired()
-                        .HasColumnType("varchar(10)");
+                        .HasColumnType("varchar(50)");
 
                     b.Property<string>("Status")
                         .IsRequired()
@@ -709,13 +762,13 @@ namespace fourfit.sistema_gestao.Migrations
 
                     b.Property<string>("Descricao")
                         .IsRequired()
-                        .HasColumnType("varchar(30)");
+                        .HasColumnType("varchar(50)");
 
                     b.Property<string>("Observacao")
                         .IsRequired()
                         .HasColumnType("varchar(100)");
 
-                    b.Property<string>("Status")
+                    b.Property<string>("StatusPagamentos")
                         .IsRequired()
                         .HasColumnType("varchar(10)");
 
@@ -747,9 +800,6 @@ namespace fourfit.sistema_gestao.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<bool>("Ativo")
-                        .HasColumnType("bit");
-
                     b.Property<string>("CpfCnpj")
                         .IsRequired()
                         .HasColumnType("varchar(18)");
@@ -765,6 +815,10 @@ namespace fourfit.sistema_gestao.Migrations
                     b.Property<string>("Observacao")
                         .IsRequired()
                         .HasColumnType("varchar(255)");
+
+                    b.Property<string>("Status")
+                        .IsRequired()
+                        .HasColumnType("varchar(10)");
 
                     b.Property<string>("Telefone")
                         .IsRequired()
@@ -787,7 +841,7 @@ namespace fourfit.sistema_gestao.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<string>("Tipo")
+                    b.Property<string>("NomeImposto")
                         .IsRequired()
                         .HasColumnType("varchar(30)");
 
@@ -821,7 +875,7 @@ namespace fourfit.sistema_gestao.Migrations
                         .IsRequired()
                         .HasColumnType("varchar(100)");
 
-                    b.Property<string>("Status")
+                    b.Property<string>("StatusPagamentos")
                         .IsRequired()
                         .HasColumnType("varchar(10)");
 
@@ -909,10 +963,6 @@ namespace fourfit.sistema_gestao.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<string>("Ativo")
-                        .IsRequired()
-                        .HasColumnType("varchar(10)");
-
                     b.Property<string>("Bairro")
                         .HasColumnType("nvarchar(max)");
 
@@ -946,6 +996,10 @@ namespace fourfit.sistema_gestao.Migrations
                     b.Property<int?>("Numero")
                         .HasColumnType("int");
 
+                    b.Property<string>("Status")
+                        .IsRequired()
+                        .HasColumnType("varchar(10)");
+
                     b.Property<string>("UserId")
                         .HasColumnType("nvarchar(450)");
 
@@ -963,10 +1017,6 @@ namespace fourfit.sistema_gestao.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("Ativo")
-                        .IsRequired()
-                        .HasColumnType("varchar(10)");
 
                     b.Property<string>("Bairro")
                         .HasColumnType("nvarchar(max)");
@@ -1009,6 +1059,10 @@ namespace fourfit.sistema_gestao.Migrations
                     b.Property<int?>("Numero")
                         .HasColumnType("int");
 
+                    b.Property<string>("Status")
+                        .IsRequired()
+                        .HasColumnType("varchar(10)");
+
                     b.Property<string>("UserId")
                         .HasColumnType("nvarchar(450)");
 
@@ -1027,7 +1081,7 @@ namespace fourfit.sistema_gestao.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<string>("Nome")
+                    b.Property<string>("NomeCategoria")
                         .IsRequired()
                         .HasColumnType("varchar(50)");
 
@@ -1036,7 +1090,7 @@ namespace fourfit.sistema_gestao.Migrations
                     b.ToTable("Categorias", (string)null);
                 });
 
-            modelBuilder.Entity("fourfit.sistema_gestao.Domain.Entities.Store.ControleEstoque.ControleEstoque", b =>
+            modelBuilder.Entity("fourfit.sistema_gestao.Domain.Entities.Store.ControleEstoque.Estoque", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -1066,10 +1120,10 @@ namespace fourfit.sistema_gestao.Migrations
                     b.Property<int>("CategoriasId")
                         .HasColumnType("int");
 
-                    b.Property<int>("ControleEstoqueId")
+                    b.Property<int>("EstoqueId")
                         .HasColumnType("int");
 
-                    b.Property<string>("Nome")
+                    b.Property<string>("NomeProduto")
                         .IsRequired()
                         .HasColumnType("varchar(100)");
 
@@ -1083,7 +1137,7 @@ namespace fourfit.sistema_gestao.Migrations
 
                     b.HasIndex("CategoriasId");
 
-                    b.HasIndex("ControleEstoqueId");
+                    b.HasIndex("EstoqueId");
 
                     b.ToTable("Produtos", (string)null);
                 });
@@ -1137,6 +1191,25 @@ namespace fourfit.sistema_gestao.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("fourfit.sistema_gestao.Domain.Entities.Alunos.AulaExperimental", b =>
+                {
+                    b.HasOne("fourfit.sistema_gestao.Domain.Entities.Alunos.Horarios", "Horarios")
+                        .WithMany("AulaExperimental")
+                        .HasForeignKey("HorariosId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("fourfit.sistema_gestao.Domain.Entities.Account.User", "User")
+                        .WithMany("AulaExperimental")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Horarios");
+
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("fourfit.sistema_gestao.Domain.Entities.Alunos.AvaliacaoFisica", b =>
@@ -1230,6 +1303,17 @@ namespace fourfit.sistema_gestao.Migrations
                     b.Navigation("ContasBancarias");
 
                     b.Navigation("Pagamentos");
+
+                    b.Navigation("Planos");
+                });
+
+            modelBuilder.Entity("fourfit.sistema_gestao.Domain.Entities.Alunos.Modalidades", b =>
+                {
+                    b.HasOne("fourfit.sistema_gestao.Domain.Entities.Alunos.TipoPlano", "Planos")
+                        .WithMany("Modalidades")
+                        .HasForeignKey("PlanosId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Planos");
                 });
@@ -1374,20 +1458,22 @@ namespace fourfit.sistema_gestao.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("fourfit.sistema_gestao.Domain.Entities.Store.ControleEstoque.ControleEstoque", "ControleEstoque")
+                    b.HasOne("fourfit.sistema_gestao.Domain.Entities.Store.ControleEstoque.Estoque", "Estoque")
                         .WithMany("Produtos")
-                        .HasForeignKey("ControleEstoqueId")
+                        .HasForeignKey("EstoqueId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Categorias");
 
-                    b.Navigation("ControleEstoque");
+                    b.Navigation("Estoque");
                 });
 
             modelBuilder.Entity("fourfit.sistema_gestao.Domain.Entities.Account.User", b =>
                 {
                     b.Navigation("Alunos");
+
+                    b.Navigation("AulaExperimental");
 
                     b.Navigation("Professores");
 
@@ -1414,6 +1500,8 @@ namespace fourfit.sistema_gestao.Migrations
 
             modelBuilder.Entity("fourfit.sistema_gestao.Domain.Entities.Alunos.Horarios", b =>
                 {
+                    b.Navigation("AulaExperimental");
+
                     b.Navigation("Checkins");
                 });
 
@@ -1425,6 +1513,8 @@ namespace fourfit.sistema_gestao.Migrations
             modelBuilder.Entity("fourfit.sistema_gestao.Domain.Entities.Alunos.TipoPlano", b =>
                 {
                     b.Navigation("Mensalidades");
+
+                    b.Navigation("Modalidades");
                 });
 
             modelBuilder.Entity("fourfit.sistema_gestao.Domain.Entities.Financas.ContasBancarias", b =>
@@ -1480,7 +1570,7 @@ namespace fourfit.sistema_gestao.Migrations
                     b.Navigation("Produtos");
                 });
 
-            modelBuilder.Entity("fourfit.sistema_gestao.Domain.Entities.Store.ControleEstoque.ControleEstoque", b =>
+            modelBuilder.Entity("fourfit.sistema_gestao.Domain.Entities.Store.ControleEstoque.Estoque", b =>
                 {
                     b.Navigation("Produtos");
                 });

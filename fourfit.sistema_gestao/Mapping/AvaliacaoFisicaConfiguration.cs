@@ -15,7 +15,7 @@ namespace fourfit.sistema_gestao.Mapping
                   .WithMany(a => a.AvaliacoesFisicas)
                   .HasForeignKey(a => a.AlunosId);
 
-            builder.Property(x => x.Data)
+            builder.Property(x => x.DataAvaliacao)
            .HasColumnType("date")
            .IsRequired();
 

@@ -2,6 +2,7 @@
 using fourfit.sistema_gestao.Domain.Interfaces;
 using fourfit_sistema_gestao.Api.Models.Alunos;
 using fourfit_sistema_gestao.Api.Validation;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.Annotations;
 
@@ -19,7 +20,8 @@ namespace fourfit_sistema_gestao.Api.Controllers
         }
         [HttpPost]
         [Route("Register")]
-        [SwaggerResponse(statusCode: 200, description: "Alunos cadastrado com sucesso", Type = typeof(AlunosViewModels))]
+        //[Authorize]
+        [SwaggerResponse(statusCode: 200, description: "Aluno cadastrado com sucesso", Type = typeof(AlunosViewModels))]
         [SwaggerResponse(statusCode: 400, description: "Campos obrigatórios", Type = typeof(ValidarCampos))]
         [SwaggerResponse(statusCode: 500, description: "Erro internet", Type = typeof(ErrosGenericos))]
         [SwaggerResponse(statusCode: 401, description: "Não autorizado", Type = typeof(ValidarCampos))]
@@ -33,7 +35,7 @@ namespace fourfit_sistema_gestao.Api.Controllers
                     UserId = model.UserId,
                     DataCadastro = DateTime.Now,
                     Foto = model.Foto,
-                    Ativo = true,
+                    Status = model.Status,
                     Cpf = model.Cpf,
                     Celular = model.Celular,
                     Cep = model.Cep,
@@ -48,7 +50,7 @@ namespace fourfit_sistema_gestao.Api.Controllers
 
                 await _unitOfWork.AlunosServices.Cadastro(alunos);
                 await _unitOfWork.AlunosServices.Salvar();
-                return Ok($"Aluno cadastrados com sucesso");
+                return Ok($"Aluno cadastrado com sucesso");
             }
             catch (Exception ex)
             {
@@ -92,11 +94,11 @@ namespace fourfit_sistema_gestao.Api.Controllers
 
         [HttpPut]
         [Route("Update")]
-        [SwaggerResponse(statusCode: 200, description: "Aluno atualizado com sucesso", Type = typeof(AlunosViewModels))]
+        [SwaggerResponse(statusCode: 200, description: "Aluno atualizado com sucesso", Type = typeof(AlunosUpdateViewModels))]
         [SwaggerResponse(statusCode: 400, description: "Campos obrigatórios", Type = typeof(ValidarCampos))]
         [SwaggerResponse(statusCode: 500, description: "Erro internet", Type = typeof(ErrosGenericos))]
         [SwaggerResponse(statusCode: 401, description: "Não autorizado", Type = typeof(ValidarCampos))]
-        [SwaggerResponse(statusCode: 404, description: "Aluno não encontrado", Type = typeof(AlunosViewModels))]
+        [SwaggerResponse(statusCode: 404, description: "Aluno não encontrado", Type = typeof(AlunosUpdateViewModels))]
         public async Task<IActionResult> Update(AlunosUpdateViewModels model)
         {
             try

@@ -20,7 +20,7 @@ namespace fourfit_sistema_gestao.Api.Controllers
                     Id = 1,
                     UserId = "teste",
                     //DataInicio = DateTime.Now,
-                    Ativo = true,
+                    
                    
 
 
@@ -30,7 +30,7 @@ namespace fourfit_sistema_gestao.Api.Controllers
                     Id = 2,
                     UserId = "teste",
                     //DataInicio = DateTime.Now,
-                    Ativo = true,
+                    
                     
 
 
