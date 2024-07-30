@@ -7,7 +7,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace fourfit.sistema_gestao.Repositories.Repository
 {
-    public class ProdutosRepository : BaseRepository<Produtos>, IProdutoServices
+    public class ProdutosRepository : BaseRepository<Produtos>, IProdutosServices
     {
         private readonly DataContext _dataContext;
 

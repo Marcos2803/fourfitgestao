@@ -16,7 +16,7 @@ namespace fourfit.sistema_gestao.Mapping
                 .HasForeignKey(a => a.UserId);
 
             builder.Property(x => x.DataNacimento)
-              .HasColumnType("varchar(10)")
+              .HasColumnType("date")
               .IsRequired();
 
             builder.Property(x => x.Status)

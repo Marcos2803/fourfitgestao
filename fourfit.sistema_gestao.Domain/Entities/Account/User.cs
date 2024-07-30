@@ -1,5 +1,6 @@
 ﻿using fourfit.sistema_gestao.Domain.Entities.Alunos;
 using fourfit.sistema_gestao.Domain.Entities.Profission;
+using fourfit.sistema_gestao.Domain.Entities.Store.Venda;
 using Microsoft.AspNetCore.Identity;
 namespace fourfit.sistema_gestao.Domain.Entities.Account
 {
@@ -13,6 +14,7 @@ namespace fourfit.sistema_gestao.Domain.Entities.Account
         public ICollection<EntidadeProfessores> Professores { get; set; }
         public ICollection<EntidadeColaboradores> colaboradores { get; set; }
         public ICollection<AulaExperimental> AulaExperimental { get; set; }
+        public ICollection<Vendas> Vendas { get; set; }
 
 
     }

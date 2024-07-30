@@ -1,9 +1,8 @@
 ﻿using fourfit.sistema_gestao.Context;
-using fourfit.sistema_gestao.Domain.Entities.Alunos;
 using fourfit.sistema_gestao.Domain.Entities.Financas;
 using fourfit.sistema_gestao.Domain.Interfaces;
 using fourfit.sistema_gestao.Repositories.Repository.Base;
-using Microsoft.EntityFrameworkCore;
+
 
 namespace fourfit.sistema_gestao.Repositories.Repository
 {
@@ -14,10 +13,15 @@ namespace fourfit.sistema_gestao.Repositories.Repository
         {
             _dataContext = dataContext;
         }
-
-        public async Task<IEnumerable<Impostos>> ObterImpostosPorId()
+        public async Task<IEnumerable<Impostos>> ObterImpostosExistentes()
 
         {
+            throw new NotImplementedException();
+        }
+
+        public async Task<Impostos> ObterImpostosPorId(int Id)
+        {
+
             return await _dataContext.Set<Impostos>().FindAsync(Id);
         }
     }

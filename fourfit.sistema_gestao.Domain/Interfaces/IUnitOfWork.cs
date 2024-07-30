@@ -21,8 +21,11 @@
         IFornecedoresServices FornecedoresServices { get; }
         IPersonalRecordServices PersonalRecordServices { get; }
         IParqServices ParqServices { get; }
-        IProdutoServices ProdutosServices { get; }
+        IProdutosServices ProdutosServices { get; }
         IAulaExperimentalServices AulaExperimentalServices { get; }
         IImpostosServices ImpostosServices { get; }
+        IVendasServices VendasServices { get; }
+        IPagamentosServices PagamentosServices { get; }
+
     }
 }

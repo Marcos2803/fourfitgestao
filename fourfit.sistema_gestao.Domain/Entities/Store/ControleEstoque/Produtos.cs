@@ -1,4 +1,5 @@
-﻿
+﻿using fourfit.sistema_gestao.Domain.Entities.Store.Venda;
+
 
 namespace fourfit.sistema_gestao.Domain.Entities.Store.ControleEstoque
 {
@@ -12,6 +13,8 @@ namespace fourfit.sistema_gestao.Domain.Entities.Store.ControleEstoque
         public string NomeProduto { get; set; }
         public decimal PrecoCusto { get; set; }
         public decimal PrecoVenda { get; set; }
+
+        public ICollection<Vendas> Vendas { get; set; }
 
     }
 }

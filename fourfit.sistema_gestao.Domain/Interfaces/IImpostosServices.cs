@@ -7,7 +7,8 @@ namespace fourfit.sistema_gestao.Domain.Interfaces
     public interface IImpostosServices : IBaseServices<Impostos>
     {
         Task<IEnumerable<Impostos>> ObterImpostosExistentes();
-
         Task<Impostos> ObterImpostosPorId(int Id);
+
+        //Task<Impostos> ObterImpostosPorId(int Id);
     }
 }

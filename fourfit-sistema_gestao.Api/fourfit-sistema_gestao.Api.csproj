@@ -29,4 +29,8 @@
     <ProjectReference Include="..\fourfit.sistema_gestao\fourfit.sistema_gestao.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Controllers\Alunos\" />
+  </ItemGroup>
+
 </Project>

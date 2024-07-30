@@ -3,6 +3,7 @@ using fourfit.sistema_gestao.Domain.Entities.Alunos;
 using fourfit.sistema_gestao.Domain.Entities.Financas;
 using fourfit.sistema_gestao.Domain.Entities.Profission;
 using fourfit.sistema_gestao.Domain.Entities.Store.ControleEstoque;
+using fourfit.sistema_gestao.Domain.Entities.Store.Venda;
 using fourfit.sistema_gestao.Mapping;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
@@ -39,17 +40,20 @@ namespace fourfit.sistema_gestao.Context
         public DbSet<Investimentos> Investimentos { get; set; }
         public DbSet<Fornecedores> Fornecedores { get; set; }
         public DbSet<ContasBancarias> ContasBancarias { get; set; }
+        public DbSet<Impostos> Impostos { get; set; }
 
         public DbSet<Produtos> Produtos { get; set; }
         public DbSet<Categorias> Categorias { get; set; }
         public DbSet<Estoque> ControleEstoque { get; set; }
+        public DbSet<Vendas> Vendas { get; set; }
+        public DbSet<Pagamentos> Pagamentos { get; set; }
 
         //public DbSet<entidadeEmailConfiguracoes>? EmailConfiguracoes { get; set; }
         //public DbSet<entidadeEmailAddress>? EmailAddress { get; set; }
         //public DbSet<entidadeEmailPasswordAccount>? EmailPasswordAccount { get; set; }
         //public DbSet<TipoPagamento> TipoPagamento { get; set; }
         //public DbSet<TipoPagamentoPc> TipoPagamentoPc { get; set; }
-        
+
 
         //public DbSet<AlunosPesquisa> AlunosPesquisa { get; set; }
 
@@ -81,7 +85,9 @@ namespace fourfit.sistema_gestao.Context
 
             builder.Entity<Produtos>(new ProdutosConfiguration().Configure);
             builder.Entity<Categorias>(new CategoriasConfiguration().Configure);
-            builder.Entity<Estoque>(new ControleEstoqueConfiguration().Configure);
+            builder.Entity<Estoque>(new EstoqueConfiguration().Configure);
+            builder.Entity<Vendas>(new VendasConfiguration().Configure);
+            builder.Entity<Pagamentos>(new PagamentosConfiguration().Configure);
 
             base.OnModelCreating(builder);
         }

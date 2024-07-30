@@ -472,7 +472,7 @@ namespace fourfit.sistema_gestao.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Exercicios");
+                    b.ToTable("Exercicios", (string)null);
                 });
 
             modelBuilder.Entity("fourfit.sistema_gestao.Domain.Entities.Alunos.Horarios", b =>
@@ -935,7 +935,7 @@ namespace fourfit.sistema_gestao.Migrations
 
                     b.HasIndex("TipoPagamentoPcId");
 
-                    b.ToTable("TipoPagamento");
+                    b.ToTable("TipoPagamento", (string)null);
                 });
 
             modelBuilder.Entity("fourfit.sistema_gestao.Domain.Entities.Financas.TipoPagamentoPc", b =>
@@ -952,7 +952,7 @@ namespace fourfit.sistema_gestao.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("TipoPagamentoPc");
+                    b.ToTable("TipoPagamentoPc", (string)null);
                 });
 
             modelBuilder.Entity("fourfit.sistema_gestao.Domain.Entities.Profission.EntidadeColaboradores", b =>
@@ -1140,6 +1140,88 @@ namespace fourfit.sistema_gestao.Migrations
                     b.HasIndex("EstoqueId");
 
                     b.ToTable("Produtos", (string)null);
+                });
+
+            modelBuilder.Entity("fourfit.sistema_gestao.Domain.Entities.Store.Venda.Pagamentos", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("ContasBancariasId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("DataPagamento")
+                        .HasColumnType("date");
+
+                    b.Property<decimal?>("Desconto")
+                        .IsRequired()
+                        .HasColumnType(" decimal(18, 2)");
+
+                    b.Property<string>("StatusPagamentos")
+                        .IsRequired()
+                        .HasColumnType("varchar(10)");
+
+                    b.Property<int>("TipoPagamentoPcId")
+                        .HasColumnType("int");
+
+                    b.Property<decimal>("Troco")
+                        .HasColumnType(" decimal(18, 2)");
+
+                    b.Property<decimal>("ValorComDesconto")
+                        .HasColumnType(" decimal(18, 2)");
+
+                    b.Property<decimal>("ValorPago")
+                        .HasColumnType(" decimal(18, 2)");
+
+                    b.Property<decimal>("ValorVenda")
+                        .HasColumnType(" decimal(18, 2)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ContasBancariasId");
+
+                    b.HasIndex("TipoPagamentoPcId");
+
+                    b.ToTable("Pagamentos", (string)null);
+                });
+
+            modelBuilder.Entity("fourfit.sistema_gestao.Domain.Entities.Store.Venda.Vendas", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime>("DataVenda")
+                        .HasColumnType("date");
+
+                    b.Property<int>("PagamentosId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ProdutosId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("StatusPagamentos")
+                        .IsRequired()
+                        .HasColumnType("varchar(10)");
+
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("PagamentosId");
+
+                    b.HasIndex("ProdutosId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Vendas", (string)null);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -1469,6 +1551,52 @@ namespace fourfit.sistema_gestao.Migrations
                     b.Navigation("Estoque");
                 });
 
+            modelBuilder.Entity("fourfit.sistema_gestao.Domain.Entities.Store.Venda.Pagamentos", b =>
+                {
+                    b.HasOne("fourfit.sistema_gestao.Domain.Entities.Financas.ContasBancarias", "ContasBancarias")
+                        .WithMany("Pagamentos")
+                        .HasForeignKey("ContasBancariasId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("fourfit.sistema_gestao.Domain.Entities.Financas.TipoPagamentoPc", "TipoPagamentoPc")
+                        .WithMany("Pagamentos")
+                        .HasForeignKey("TipoPagamentoPcId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("ContasBancarias");
+
+                    b.Navigation("TipoPagamentoPc");
+                });
+
+            modelBuilder.Entity("fourfit.sistema_gestao.Domain.Entities.Store.Venda.Vendas", b =>
+                {
+                    b.HasOne("fourfit.sistema_gestao.Domain.Entities.Store.Venda.Pagamentos", "Pagamentos")
+                        .WithMany("Vendas")
+                        .HasForeignKey("PagamentosId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("fourfit.sistema_gestao.Domain.Entities.Store.ControleEstoque.Produtos", "Produtos")
+                        .WithMany("Vendas")
+                        .HasForeignKey("ProdutosId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("fourfit.sistema_gestao.Domain.Entities.Account.User", "User")
+                        .WithMany("Vendas")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Pagamentos");
+
+                    b.Navigation("Produtos");
+
+                    b.Navigation("User");
+                });
+
             modelBuilder.Entity("fourfit.sistema_gestao.Domain.Entities.Account.User", b =>
                 {
                     b.Navigation("Alunos");
@@ -1476,6 +1604,8 @@ namespace fourfit.sistema_gestao.Migrations
                     b.Navigation("AulaExperimental");
 
                     b.Navigation("Professores");
+
+                    b.Navigation("Vendas");
 
                     b.Navigation("colaboradores");
                 });
@@ -1524,6 +1654,8 @@ namespace fourfit.sistema_gestao.Migrations
                     b.Navigation("Investimentos");
 
                     b.Navigation("Mensalidades");
+
+                    b.Navigation("Pagamentos");
                 });
 
             modelBuilder.Entity("fourfit.sistema_gestao.Domain.Entities.Financas.Fornecedores", b =>
@@ -1552,6 +1684,8 @@ namespace fourfit.sistema_gestao.Migrations
 
             modelBuilder.Entity("fourfit.sistema_gestao.Domain.Entities.Financas.TipoPagamentoPc", b =>
                 {
+                    b.Navigation("Pagamentos");
+
                     b.Navigation("TipoPagamento");
                 });
 
@@ -1573,6 +1707,16 @@ namespace fourfit.sistema_gestao.Migrations
             modelBuilder.Entity("fourfit.sistema_gestao.Domain.Entities.Store.ControleEstoque.Estoque", b =>
                 {
                     b.Navigation("Produtos");
+                });
+
+            modelBuilder.Entity("fourfit.sistema_gestao.Domain.Entities.Store.ControleEstoque.Produtos", b =>
+                {
+                    b.Navigation("Vendas");
+                });
+
+            modelBuilder.Entity("fourfit.sistema_gestao.Domain.Entities.Store.Venda.Pagamentos", b =>
+                {
+                    b.Navigation("Vendas");
                 });
 #pragma warning restore 612, 618
         }

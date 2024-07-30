@@ -32,8 +32,11 @@ namespace fourfit.sistema_gestao.Repositories.Repository
         private IFornecedoresServices _fornecedoresServices;
         private IPersonalRecordServices _personalrecordServices;
         private IParqServices _parqServices;
-        private IProdutoServices _produtosServices;
-        
+        private IProdutosServices _produtosServices;
+        private IImpostosServices _impostosServices;
+        private IVendasServices _vendasServices;
+        private IPagamentosServices _pagamentosServices;
+
 
         public IAlunosServices AlunosServices => _alunosServices ??= new AlunosRepository(_dataContext);
 
@@ -75,8 +78,12 @@ namespace fourfit.sistema_gestao.Repositories.Repository
 
         public IParqServices ParqServices => _parqServices ??= new ParqRepository(_dataContext);
 
-        public IProdutoServices ProdutosServices => _produtosServices ??= new ProdutosRepository(_dataContext);
+        public IProdutosServices ProdutosServices => _produtosServices ??= new ProdutosRepository(_dataContext);
 
-        
+        public IImpostosServices ImpostosServices => _impostosServices ??= new ImpostosRepository(_dataContext);
+
+        public IVendasServices VendasServices => _vendasServices ??= new VendasRepository(_dataContext);
+
+        public IPagamentosServices PagamentosServices => _pagamentosServices ??= new PagamentosRepository(_dataContext);
     }    
 }
