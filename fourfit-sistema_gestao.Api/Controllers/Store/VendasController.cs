@@ -36,7 +36,7 @@ namespace fourfit_sistema_gestao.Api.Controllers.Store
                 {
                     UserId = model.UserId,
                     DataVenda = DateTime.Now,
-                    ProdutosId = model.ProdutosId,
+                    VendaItens = model.VendaItens,
                     PagamentosId = model.PagamentosId,
                     StatusPagamentos = model.StatusPagamentos,
 

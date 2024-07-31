@@ -13,11 +13,10 @@ namespace fourfit.sistema_gestao.Domain.Entities.Store.Venda
         public int Id { get; set; }
         public string UserId { get; set; }
         public User User { get; set; }
-        public int ProdutosId { get; set; }
-        public Produtos Produtos { get; set; }
         public int PagamentosId { get; set; }
         public Pagamentos Pagamentos { get; set; }
         public DateTime DataVenda { get; set; }
+        public List<VendaItens> VendaItens { get; set; } = new List<VendaItens>();
         public string StatusPagamentos { get; set; }
     }
 }

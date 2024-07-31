@@ -22,7 +22,7 @@ namespace fourfit.sistema_gestao.Repositories.Repository
 
             var resultado = await _dataContext.Set<Vendas>()
                 .Include(x => x.User)
-                .Include(x => x.Produtos)
+                .Include(x => x.VendaItens)
                 .Include(x => x.Pagamentos)
                 .ToListAsync();
 
@@ -38,7 +38,7 @@ namespace fourfit.sistema_gestao.Repositories.Repository
         {
             var resultado = await _dataContext.Set<Vendas>()
                 .Include(x => x.User).Where(x => x.Id == Id)
-                .Include(x => x.Produtos).Where(x => x.Id == Id)
+                .Include(x => x.VendaItens).Where(x => x.Id == Id)
                 .Include(x => x.Pagamentos).Where(x => x.Id == Id)
                 .FirstOrDefaultAsync();
 

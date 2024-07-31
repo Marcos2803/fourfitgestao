@@ -14,7 +14,7 @@ namespace fourfit.sistema_gestao.Domain.Entities.Store.ControleEstoque
         public decimal PrecoCusto { get; set; }
         public decimal PrecoVenda { get; set; }
 
-        public ICollection<Vendas> Vendas { get; set; }
+        public ICollection<VendaItens> VendaItens { get; set; }
 
     }
 }

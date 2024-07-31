@@ -46,6 +46,7 @@ namespace fourfit.sistema_gestao.Context
         public DbSet<Categorias> Categorias { get; set; }
         public DbSet<Estoque> ControleEstoque { get; set; }
         public DbSet<Vendas> Vendas { get; set; }
+        public DbSet<VendaItens> VendaItens { get; set; }
         public DbSet<Pagamentos> Pagamentos { get; set; }
 
         //public DbSet<entidadeEmailConfiguracoes>? EmailConfiguracoes { get; set; }
@@ -87,6 +88,7 @@ namespace fourfit.sistema_gestao.Context
             builder.Entity<Categorias>(new CategoriasConfiguration().Configure);
             builder.Entity<Estoque>(new EstoqueConfiguration().Configure);
             builder.Entity<Vendas>(new VendasConfiguration().Configure);
+            builder.Entity<VendaItens>(new VendaItensConfiguration().Configure);
             builder.Entity<Pagamentos>(new PagamentosConfiguration().Configure);
 
             base.OnModelCreating(builder);

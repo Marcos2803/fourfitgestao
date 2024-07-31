@@ -15,9 +15,6 @@ namespace fourfit.sistema_gestao.Mapping
                 .WithMany(a => a.Vendas)
                 .HasForeignKey(a => a.UserId);
 
-            builder.HasOne(x => x.Produtos)
-                .WithMany(a => a.Vendas)
-                .HasForeignKey(a => a.ProdutosId);
 
             builder.HasOne(x => x.Pagamentos)
                 .WithMany(a => a.Vendas)

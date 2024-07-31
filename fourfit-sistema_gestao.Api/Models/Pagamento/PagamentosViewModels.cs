@@ -7,7 +7,7 @@ namespace fourfit_sistema_gestao.Api.Models.Pagamento
         public int Id { get; set; }
         public int TipoPagamentoPcId { get; set; }
         public int ContasBancariasId { get; set; }
-        public DateTime DataPagamento { get; set; }
+        public DateTime? DataPagamento { get; set; }
         public decimal ValorVenda { get; set; }
         public decimal? Desconto { get; set; }
         public decimal ValorComDesconto { get; set; }
