@@ -12,11 +12,11 @@ namespace fourfit.sistema_gestao.Mapping
             builder.HasKey("Id");
 
 
-            builder.Property(x => x.QuantidadeEstoque)
-                .IsRequired();
+            //builder.Property(x => x.QuantidadeEstoque)
+            //    .IsRequired();
 
-            builder.Property(x => x.EstoqueMinimo)
-                .IsRequired();
+            //builder.Property(x => x.EstoqueMinimo)
+            //    .IsRequired();
         }
     }
 }

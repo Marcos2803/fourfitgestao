@@ -1,12 +1,11 @@
-﻿using fourfit.sistema_gestao.Domain.Entities.Alunos;
+﻿
 using fourfit.sistema_gestao.Domain.Entities.Store.Venda;
 using fourfit.sistema_gestao.Domain.Interfaces;
-using fourfit_sistema_gestao.Api.Models.Alunos;
 using fourfit_sistema_gestao.Api.Models.Venda;
 using fourfit_sistema_gestao.Api.Validation;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.Annotations;
+using System.Transactions;
 
 namespace fourfit_sistema_gestao.Api.Controllers.Store
 {
@@ -30,27 +29,65 @@ namespace fourfit_sistema_gestao.Api.Controllers.Store
         [SwaggerResponse(statusCode: 404, description: "Usuário nao autenticado", Type = typeof(VendasViewModels))]
         public async Task<IActionResult> Register(VendasViewModels model)
         {
-            try
-            {
-                var vendas = new Vendas
+            //using (var transactionScope = new TransactionScope(TransactionScopeAsyncFlowOption.Enabled))
+
+
+                try
                 {
-                    UserId = model.UserId,
-                    DataVenda = DateTime.Now,
-                    VendaItens = model.VendaItens,
-                    PagamentosId = model.PagamentosId,
-                    StatusPagamentos = model.StatusPagamentos,
+                    var user = await _unitOfWork.UserServices.ObterPorUserId(model.UserId);
+                    if (user == null)
+                    {
+                        return NotFound("Usuário não encontrado");
+                    }
 
-                };
+                    var vendaItens = new List<VendaItens>();
+                    foreach (var item in model.VendaItens)
+                    {
+                        var produto = await _unitOfWork.ProdutosServices.ObterProdutosPorId(item.ProdutosId);
+                        if (produto == null)
+                        {
+                            return NotFound("Produto não encontrado");
+                        }
 
-                await _unitOfWork.VendasServices.Cadastro(vendas);
-                await _unitOfWork.VendasServices.Salvar();
+                        if (produto.QuantidadeEstoque < item.Quantidade)
+                        {
+                        return NotFound("Estoque insuficiente ");
+                        }
+                        produto.QuantidadeEstoque -= item.Quantidade;
+
+                        vendaItens.Add(new VendaItens
+                        {
+
+                            ProdutosId = item.ProdutosId,
+                            Quantidade = item.Quantidade,
+                            Produtos = produto 
+                        });
+                     await _unitOfWork.ProdutosServices.Atualizar(produto);
+                    }
+                    var vendas = new Vendas
+                    {
+                        UserId = model.UserId,
+                        DataVenda = DateTime.Now,
+                        VendaItens = vendaItens,
+                        StatusPagamentos = model.StatusPagamentos,
+
+                    };
+
+                    await _unitOfWork.VendasServices.Cadastro(vendas);
+                    await _unitOfWork.VendasServices.Salvar();
+
+                //// Confirmar a transação se tudo ocorrer bem
+                //transactionScope.Complete();
+                
                 return Ok($"Venda cadastrado com sucesso");
-            }
-            catch (Exception ex)
-            {
+                }
+                catch (Exception ex)
+                {
 
-                throw new Exception(ex.Message);
-            }
+                    throw new Exception(ex.Message);
+                }
+
+
 
         }
 

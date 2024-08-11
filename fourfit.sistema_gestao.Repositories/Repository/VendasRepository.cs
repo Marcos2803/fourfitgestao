@@ -4,6 +4,7 @@ using fourfit.sistema_gestao.Domain.Entities.Store.Venda;
 using fourfit.sistema_gestao.Domain.Interfaces;
 using fourfit.sistema_gestao.Repositories.Repository.Base;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Storage;
 
 namespace fourfit.sistema_gestao.Repositories.Repository
 {
@@ -50,5 +51,6 @@ namespace fourfit.sistema_gestao.Repositories.Repository
             return null;
 
         }
+       
     }
 }

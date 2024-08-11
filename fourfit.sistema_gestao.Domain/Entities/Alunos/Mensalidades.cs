@@ -11,8 +11,8 @@ namespace fourfit.sistema_gestao.Domain.Entities.Alunos
         public EntidadeAlunos Alunos { get; set; }
         public int PlanoId { get; set; }
         public TipoPlano Planos { get; set; }
-        public int PagamentosId { get; set; }
-        public TipoPagamento Pagamentos { get; set; }
+        public int FormaPagamentoId { get; set; }
+        public FormaPagamento FormaPagamento { get; set; }
         public int ContasBancariasId { get; set; }
         public ContasBancarias ContasBancarias { get; set; }
         public decimal ValorMensalidade { get; set; }

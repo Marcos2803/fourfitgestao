@@ -1,4 +1,6 @@
-﻿namespace fourfit.sistema_gestao.Domain.Interfaces.Base
+﻿using fourfit.sistema_gestao.Domain.Entities.Alunos;
+
+namespace fourfit.sistema_gestao.Domain.Interfaces.Base
 {
     public interface IBaseServices<TEntity> where TEntity: class
     {
@@ -9,5 +11,10 @@
         Task<IEnumerable<TEntity>> ObterTodos();
         Task Deletar(int Id);
         Task Salvar();
+        
+        
+
+
     }
+
 }

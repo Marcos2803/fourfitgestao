@@ -5,7 +5,7 @@ namespace fourfit_sistema_gestao.Api.Models.Investimento
     public class InvestimentosViewModels
     {
         public int Id { get; set; }
-        public int TipoPagamentoId { get; set; }
+        public int FormaPagamentoId { get; set; }
         public int ContasBancariasId { get; set; }
         public string Descricao { get; set; }
         public int ValorInvestido { get; set; }

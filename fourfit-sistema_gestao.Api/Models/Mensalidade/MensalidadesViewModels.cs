@@ -8,7 +8,7 @@ namespace fourfit_sistema_gestao.Api.Models.Mensalidade
         public int Id { get; set; }
         public int AlunosId { get; set; }
         public int PlanoId { get; set; }
-        public int PagamentosId { get; set; }
+        public int FormaPagamentoId { get; set; }
         public int ContasBancariasId { get; set; }
         public decimal ValorMensalidade { get; set; }
         public decimal? ValorMatricula { get; set; }

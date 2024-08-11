@@ -3,7 +3,7 @@ using fourfit.sistema_gestao.Domain.Interfaces.Base;
 
 namespace fourfit.sistema_gestao.Domain.Interfaces
 {
-    public interface ITipoPagamentoPcServices:IBaseServices<TipoPagamentoPc>
+    public interface IFormaPagamentoServices:IBaseServices<FormaPagamento>
     {
     }
 }

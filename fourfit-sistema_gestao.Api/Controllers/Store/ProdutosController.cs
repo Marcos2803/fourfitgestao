@@ -30,15 +30,21 @@ namespace fourfit_sistema_gestao.Api.Controllers.Store
         {
             try
             {
+                var categoria = await _unitOfWork.CategoriasServices.ObterPorId(model.CategoriasId);
+                if (categoria == null)
+                {
+                    return NotFound("Categoria não encontrada");
+                }
                 var produtos = new Produtos
                 {
                     Id = model.Id,
                     CategoriasId = model.CategoriasId,
-                    EstoqueId= model.EstoqueId,
                     NomeProduto= model.NomeProduto,
                     PrecoCusto = model.PrecoCusto,
                     PrecoVenda = model.PrecoVenda,
-                    
+                    QuantidadeEstoque = model.QuantidadeEstoque,
+                    EstoqueMinimo = model.EstoqueMinimo,
+
                 };
 
                 await _unitOfWork.ProdutosServices.Cadastro(produtos);
@@ -48,7 +54,7 @@ namespace fourfit_sistema_gestao.Api.Controllers.Store
             catch (Exception ex)
             {
 
-                throw new Exception(ex.Message);
+                return StatusCode(500, "Erro interno: " + ex.Message);
             }
 
         }
@@ -70,11 +76,12 @@ namespace fourfit_sistema_gestao.Api.Controllers.Store
             {
                 Id = produtos.Id,
                 CategoriasId = produtos.CategoriasId,
-                EstoqueId = produtos.EstoqueId,
                 NomeProduto = produtos.NomeProduto,
                 PrecoCusto = produtos.PrecoCusto,
                 PrecoVenda = produtos.PrecoVenda,
-               
+                QuantidadeEstoque = produtos.QuantidadeEstoque,
+                EstoqueMinimo = produtos.EstoqueMinimo,
+
             };
 
             return Ok(produtosView);
@@ -100,10 +107,11 @@ namespace fourfit_sistema_gestao.Api.Controllers.Store
 
                 produtos.NomeProduto = model.NomeProduto;
                 produtos.CategoriasId = model.CategoriasId;
-                produtos.EstoqueId = model.EstoqueId;
                 produtos.PrecoCusto = model.PrecoCusto;
                 produtos.PrecoVenda = model.PrecoVenda;
-                                
+                produtos.QuantidadeEstoque = model.QuantidadeEstoque;
+                produtos.EstoqueMinimo = model.EstoqueMinimo;
+
 
                 await _unitOfWork.ProdutosServices.Atualizar(produtos);
                 await _unitOfWork.ProdutosServices.Salvar();

@@ -33,7 +33,7 @@ namespace fourfit_sistema_gestao.Api.Controllers.Store
                 {
                     Id = model.Id,
                     DataPagamento = DateTime.Now,
-                    TipoPagamentoPcId = model.TipoPagamentoPcId,
+                    FormaPagamentoId = model.FormaPagamentoId,
                     ContasBancariasId = model.ContasBancariasId,
                     StatusPagamentos = model.StatusPagamentos,
                     ValorVenda = model.ValorVenda,

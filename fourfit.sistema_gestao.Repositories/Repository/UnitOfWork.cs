@@ -15,8 +15,7 @@ namespace fourfit.sistema_gestao.Repositories.Repository
         private IAlunosServices _alunosServices;
         private IAulaExperimentalServices _aulaExperimetalServices;
         private ITipoPlanoServices _tipoPlano;
-        private ITipoPagamentoServices _tipoPagamento;
-        private ITipoPagamentoPcServices _tipoPagamentoPc;
+        private IFormaPagamentoServices _formaPagamentoServices;
         private IUserServices _userServices;
         private IProfessoresServices _professoresServices;
         private IColaboradoresServices _colaboradoresServices;
@@ -35,7 +34,10 @@ namespace fourfit.sistema_gestao.Repositories.Repository
         private IProdutosServices _produtosServices;
         private IImpostosServices _impostosServices;
         private IVendasServices _vendasServices;
+        private IVendaItensServices _vendaItensServices;
         private IPagamentosServices _pagamentosServices;
+        private ICategoriasServices _categoriasServices;
+        private IEstoqueServices _estoqueServices;
 
 
         public IAlunosServices AlunosServices => _alunosServices ??= new AlunosRepository(_dataContext);
@@ -44,9 +46,9 @@ namespace fourfit.sistema_gestao.Repositories.Repository
 
         public ITipoPlanoServices TipoPlano => _tipoPlano ??= new TipoPlanoRepository(_dataContext);
 
-        public ITipoPagamentoServices TipoPagamento => _tipoPagamento ??= new TipoPagamentoRepository(_dataContext);
 
-        public ITipoPagamentoPcServices TipoPagamentoPc => _tipoPagamentoPc ??= new TipoPagamentoPcRepository(_dataContext);
+
+        public IFormaPagamentoServices FormaPagamento => _formaPagamentoServices ??= new FormaPagamentoRepository(_dataContext);
 
         public IUserServices UserServices => _userServices ??= new UserRepository(_dataContext);
 
@@ -85,5 +87,11 @@ namespace fourfit.sistema_gestao.Repositories.Repository
         public IVendasServices VendasServices => _vendasServices ??= new VendasRepository(_dataContext);
 
         public IPagamentosServices PagamentosServices => _pagamentosServices ??= new PagamentosRepository(_dataContext);
-    }    
+
+        public IVendaItensServices VendaItensServices => _vendaItensServices ??= new VendaItensRepository(_dataContext);
+
+        public ICategoriasServices CategoriasServices => _categoriasServices ??= new CategoriasRepository(_dataContext);
+
+        public IEstoqueServices EstoqueServices => _estoqueServices ??= new EstoqueRepository(_dataContext);
+    }
 }

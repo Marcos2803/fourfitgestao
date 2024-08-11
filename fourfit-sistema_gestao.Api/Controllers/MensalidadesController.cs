@@ -34,7 +34,7 @@ namespace fourfit_sistema_gestao.Api.Controllers
                     Id = model.Id,
                     AlunosId = model.AlunosId,
                     PlanoId = model.PlanoId,
-                    PagamentosId = model.PagamentosId,
+                    FormaPagamentoId = model.FormaPagamentoId,
                     ContasBancariasId = model.ContasBancariasId,
                     ValorMensalidade = model.ValorMensalidade,
                     ValorMatricula = model.ValorMatricula,

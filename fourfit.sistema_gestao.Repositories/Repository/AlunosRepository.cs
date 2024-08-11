@@ -1,4 +1,5 @@
 ﻿using fourfit.sistema_gestao.Context;
+using fourfit.sistema_gestao.Domain.Entities.Account;
 using fourfit.sistema_gestao.Domain.Entities.Alunos;
 using fourfit.sistema_gestao.Domain.Interfaces;
 using fourfit.sistema_gestao.Repositories.Repository.Base;
@@ -38,19 +39,39 @@ namespace fourfit.sistema_gestao.Repositories.Repository
                 .ToListAsync();
         }
 
+        public async Task<EntidadeAlunos> ObterAlunoPorUserId(string userId)
+        {
+            var result = await _dataContext.Set<EntidadeAlunos>()
+                .Include(x => x.User)
+                .Where(x => x.UserId == userId)
+                .FirstOrDefaultAsync();
+
+            if (result != null)
+            {
+                return result;
+            }
+            return null;
+        }
+
         public async Task<EntidadeAlunos> ObterAlunosUsuariosPorId(int Id)
         {
             var resultado = await _dataContext.Set<EntidadeAlunos>()
                 .Include(x => x.User).Where(x => x.Id == Id).FirstOrDefaultAsync();
-                
+
 
             if (resultado != null)
             {
-                return  resultado;
+                return resultado;
             }
             return null;
-                
+
         }
+        //public async Task<bool> ObterAlunoPorUserId(string userId)
+        //{
+        //    return await _dataContext.Set<EntidadeAlunos>().AnyAsync(a => a.UserId == userId);
+        //}
+
+
 
         //public async Task Remover(EntidadeAlunos aluno)
         //{

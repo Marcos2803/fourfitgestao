@@ -19,7 +19,7 @@ namespace fourfit.sistema_gestao.Repositories.Repository
         public async Task<IEnumerable<Pagamentos>> ObterPagamentosExistentes()
         {
             var resultado = await _dataContext.Set<Pagamentos>()
-              .Include(x => x.TipoPagamentoPc)
+              .Include(x => x.FormaPagamento)
               .Include(x => x.ContasBancarias)
               .ToListAsync();
 
@@ -34,7 +34,7 @@ namespace fourfit.sistema_gestao.Repositories.Repository
         public async Task<Pagamentos> ObterPagamentosPorId(int Id)
         {
             var resultado = await _dataContext.Set<Pagamentos>()
-             .Include(x => x.TipoPagamentoPc).Where(x => x.Id == Id)
+             .Include(x => x.FormaPagamento).Where(x => x.Id == Id)
              .Include(x => x.ContasBancarias).Where(x => x.Id == Id)
              .FirstOrDefaultAsync();
 

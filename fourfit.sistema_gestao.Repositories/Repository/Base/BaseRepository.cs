@@ -13,6 +13,7 @@ namespace fourfit.sistema_gestao.Repositories.Repository.Base
             _dataContext = dataContext;
         }
 
+
         public async Task Cadastro(TEntity entity)
         {
             await _dataContext.Set<TEntity>().AddAsync(entity);
@@ -55,5 +56,7 @@ namespace fourfit.sistema_gestao.Repositories.Repository.Base
         {
             await _dataContext.SaveChangesAsync();
         }
+
+
     }
 }

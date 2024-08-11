@@ -33,7 +33,7 @@ namespace fourfit_sistema_gestao.Api.Controllers.Financas
                 var despesas = new Despesas
                 {
                     Id = model.Id,
-                    TipoPagamentoId = model.TipoPagamentoId,
+                    FormaPagamentoId = model.FormaPagamentoId,
                     ContasBancariasId = model.ContasBancariasId,
                     TipoDespesasId = model.TipoDespesasId,
                     Descricao = model.Descricao,

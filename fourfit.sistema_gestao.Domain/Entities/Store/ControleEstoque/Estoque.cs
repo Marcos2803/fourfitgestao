@@ -3,10 +3,10 @@
     public class Estoque
     {
         public int Id { get; set; }
-        public int QuantidadeEstoque { get; set; }
-        public int EstoqueMinimo { get; set; }
+        //public int QuantidadeEstoque { get; set; }
+        //public int EstoqueMinimo { get; set; }
 
-        public virtual ICollection<Produtos> Produtos { get; set; }
+       
 
 
     }

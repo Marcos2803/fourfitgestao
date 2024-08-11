@@ -2,7 +2,6 @@
 using fourfit.sistema_gestao.Domain.Interfaces;
 using fourfit_sistema_gestao.Api.Models.Alunos;
 using fourfit_sistema_gestao.Api.Validation;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.Annotations;
 
@@ -30,6 +29,12 @@ namespace fourfit_sistema_gestao.Api.Controllers
         {
             try
             {
+                var alunoExistente = await _unitOfWork.AlunosServices.ObterAlunoPorUserId(model.UserId);
+                if (alunoExistente != null)
+                {
+                    return NotFound("Já existe um aluno cadastrado com esse usuário.");
+                }
+
                 var alunos = new EntidadeAlunos
                 {
                     UserId = model.UserId,
@@ -47,6 +52,7 @@ namespace fourfit_sistema_gestao.Api.Controllers
                     DataNacimento = model.DataNacimento,
 
                 };
+                
 
                 await _unitOfWork.AlunosServices.Cadastro(alunos);
                 await _unitOfWork.AlunosServices.Salvar();
@@ -64,7 +70,7 @@ namespace fourfit_sistema_gestao.Api.Controllers
         [SwaggerResponse(200, "Informações do aluno obtidas com sucesso", typeof(AlunosUpdateViewModels))]
         [SwaggerResponse(404, "Aluno não encontrado")]
         public async Task<IActionResult> Update(int id)
-        {
+         {
             var alunosComUsuarios = await _unitOfWork.AlunosServices.ObterAlunosUsuariosPorId(id);
 
             if (alunosComUsuarios == null)

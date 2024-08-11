@@ -21,7 +21,6 @@ namespace fourfit.sistema_gestao.Repositories.Repository
         {
 
             var resultado = await _dataContext.Set<Produtos>()
-                .Include(x => x.Estoque)
                 .Include(x => x.Categorias)
                 .ToListAsync();
 
@@ -36,7 +35,6 @@ namespace fourfit.sistema_gestao.Repositories.Repository
         public async Task<Produtos> ObterProdutosPorId(int Id)
         {
             var resultado = await _dataContext.Set<Produtos>()
-                .Include(x => x.Estoque).Where(x => x.Id == Id)
                 .Include(x => x.Categorias).Where(x => x.Id == Id)
                 .FirstOrDefaultAsync();
                

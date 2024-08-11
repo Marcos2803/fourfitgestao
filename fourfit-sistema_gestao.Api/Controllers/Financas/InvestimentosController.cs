@@ -34,7 +34,7 @@ namespace fourfit_sistema_gestao.Api.Controllers.Financas
                 var investimentos = new Investimentos
                 {
                     Id = model.Id,
-                    TipoPagamentoId = model.TipoPagamentoId,
+                    FormaPagamentoId = model.FormaPagamentoId,
                     ContasBancariasId = model.ContasBancariasId,
                     Descricao = model.Descricao,
                     ValorInvestido = model.ValorInvestido,

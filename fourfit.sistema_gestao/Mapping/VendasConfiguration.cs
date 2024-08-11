@@ -11,14 +11,6 @@ namespace fourfit.sistema_gestao.Mapping
             builder.ToTable("Vendas");
             builder.HasKey("Id");
 
-            builder.HasOne(x => x.User)
-                .WithMany(a => a.Vendas)
-                .HasForeignKey(a => a.UserId);
-
-
-            builder.HasOne(x => x.Pagamentos)
-                .WithMany(a => a.Vendas)
-                .HasForeignKey(a => a.PagamentosId);
 
             builder.Property(x => x.DataVenda)
               .HasColumnType("date")

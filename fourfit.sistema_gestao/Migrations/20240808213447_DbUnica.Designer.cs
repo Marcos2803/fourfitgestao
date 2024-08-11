@@ -12,8 +12,8 @@ using fourfit.sistema_gestao.Context;
 namespace fourfit.sistema_gestao.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20240729233349_vendas")]
-    partial class vendas
+    [Migration("20240808213447_DbUnica")]
+    partial class DbUnica
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -442,9 +442,9 @@ namespace fourfit.sistema_gestao.Migrations
                     b.Property<byte[]>("Foto")
                         .HasColumnType("varbinary(max)");
 
-                    b.Property<string>("Numero")
+                    b.Property<int?>("Numero")
                         .IsRequired()
-                        .HasColumnType("varchar(7)");
+                        .HasColumnType("int");
 
                     b.Property<string>("Status")
                         .IsRequired()
@@ -543,12 +543,12 @@ namespace fourfit.sistema_gestao.Migrations
                         .IsRequired()
                         .HasColumnType("date");
 
+                    b.Property<int>("FormaPagamentoId")
+                        .HasColumnType("int");
+
                     b.Property<string>("MesReferente")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("PagamentosId")
-                        .HasColumnType("int");
 
                     b.Property<int>("PlanoId")
                         .HasColumnType("int");
@@ -571,7 +571,7 @@ namespace fourfit.sistema_gestao.Migrations
 
                     b.HasIndex("ContasBancariasId");
 
-                    b.HasIndex("PagamentosId");
+                    b.HasIndex("FormaPagamentoId");
 
                     b.HasIndex("PlanoId");
 
@@ -767,6 +767,9 @@ namespace fourfit.sistema_gestao.Migrations
                         .IsRequired()
                         .HasColumnType("varchar(50)");
 
+                    b.Property<int>("FormaPagamentoId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Observacao")
                         .IsRequired()
                         .HasColumnType("varchar(100)");
@@ -778,9 +781,6 @@ namespace fourfit.sistema_gestao.Migrations
                     b.Property<int>("TipoDespesasId")
                         .HasColumnType("int");
 
-                    b.Property<int>("TipoPagamentoId")
-                        .HasColumnType("int");
-
                     b.Property<decimal>("ValorDespesa")
                         .HasColumnType(" decimal(18, 2)");
 
@@ -788,11 +788,28 @@ namespace fourfit.sistema_gestao.Migrations
 
                     b.HasIndex("ContasBancariasId");
 
+                    b.HasIndex("FormaPagamentoId");
+
                     b.HasIndex("TipoDespesasId");
 
-                    b.HasIndex("TipoPagamentoId");
-
                     b.ToTable("Despesas", (string)null);
+                });
+
+            modelBuilder.Entity("fourfit.sistema_gestao.Domain.Entities.Financas.FormaPagamento", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Tipo")
+                        .IsRequired()
+                        .HasColumnType("varchar(20)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("FormaPagamento", (string)null);
                 });
 
             modelBuilder.Entity("fourfit.sistema_gestao.Domain.Entities.Financas.Fornecedores", b =>
@@ -874,6 +891,9 @@ namespace fourfit.sistema_gestao.Migrations
                         .IsRequired()
                         .HasColumnType("varchar(30)");
 
+                    b.Property<int>("FormaPagamentoId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Observacao")
                         .IsRequired()
                         .HasColumnType("varchar(100)");
@@ -882,9 +902,6 @@ namespace fourfit.sistema_gestao.Migrations
                         .IsRequired()
                         .HasColumnType("varchar(10)");
 
-                    b.Property<int>("TipoPagamentoId")
-                        .HasColumnType("int");
-
                     b.Property<decimal>("ValorInvestido")
                         .HasColumnType(" decimal(18, 2)");
 
@@ -892,7 +909,7 @@ namespace fourfit.sistema_gestao.Migrations
 
                     b.HasIndex("ContasBancariasId");
 
-                    b.HasIndex("TipoPagamentoId");
+                    b.HasIndex("FormaPagamentoId");
 
                     b.ToTable("Investimentos", (string)null);
                 });
@@ -921,41 +938,6 @@ namespace fourfit.sistema_gestao.Migrations
                     b.HasIndex("ImpostosId");
 
                     b.ToTable("TipoDespesas", (string)null);
-                });
-
-            modelBuilder.Entity("fourfit.sistema_gestao.Domain.Entities.Financas.TipoPagamento", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<int>("TipoPagamentoPcId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("TipoPagamentoPcId");
-
-                    b.ToTable("TipoPagamento");
-                });
-
-            modelBuilder.Entity("fourfit.sistema_gestao.Domain.Entities.Financas.TipoPagamentoPc", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("Tipo")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("TipoPagamentoPc");
                 });
 
             modelBuilder.Entity("fourfit.sistema_gestao.Domain.Entities.Profission.EntidadeColaboradores", b =>
@@ -1156,21 +1138,25 @@ namespace fourfit.sistema_gestao.Migrations
                     b.Property<int>("ContasBancariasId")
                         .HasColumnType("int");
 
-                    b.Property<DateTime>("DataPagamento")
+                    b.Property<DateTime?>("DataPagamento")
+                        .IsRequired()
                         .HasColumnType("date");
 
                     b.Property<decimal?>("Desconto")
                         .IsRequired()
                         .HasColumnType(" decimal(18, 2)");
 
+                    b.Property<int>("FormaPagamentoId")
+                        .HasColumnType("int");
+
                     b.Property<string>("StatusPagamentos")
                         .IsRequired()
                         .HasColumnType("varchar(10)");
 
-                    b.Property<int>("TipoPagamentoPcId")
-                        .HasColumnType("int");
-
                     b.Property<decimal>("Troco")
+                        .HasColumnType(" decimal(18, 2)");
+
+                    b.Property<decimal>("ValorComDesconto")
                         .HasColumnType(" decimal(18, 2)");
 
                     b.Property<decimal>("ValorPago")
@@ -1179,13 +1165,44 @@ namespace fourfit.sistema_gestao.Migrations
                     b.Property<decimal>("ValorVenda")
                         .HasColumnType(" decimal(18, 2)");
 
+                    b.Property<int>("VendasId")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
 
                     b.HasIndex("ContasBancariasId");
 
-                    b.HasIndex("TipoPagamentoPcId");
+                    b.HasIndex("FormaPagamentoId");
+
+                    b.HasIndex("VendasId");
 
                     b.ToTable("Pagamentos", (string)null);
+                });
+
+            modelBuilder.Entity("fourfit.sistema_gestao.Domain.Entities.Store.Venda.VendaItens", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("ProdutosId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Quantidade")
+                        .HasColumnType("int");
+
+                    b.Property<int>("VendasId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ProdutosId");
+
+                    b.HasIndex("VendasId");
+
+                    b.ToTable("VendaItens", (string)null);
                 });
 
             modelBuilder.Entity("fourfit.sistema_gestao.Domain.Entities.Store.Venda.Vendas", b =>
@@ -1199,12 +1216,6 @@ namespace fourfit.sistema_gestao.Migrations
                     b.Property<DateTime>("DataVenda")
                         .HasColumnType("date");
 
-                    b.Property<int>("PagamentosId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("ProdutosId")
-                        .HasColumnType("int");
-
                     b.Property<string>("StatusPagamentos")
                         .IsRequired()
                         .HasColumnType("varchar(10)");
@@ -1214,10 +1225,6 @@ namespace fourfit.sistema_gestao.Migrations
                         .HasColumnType("nvarchar(450)");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("PagamentosId");
-
-                    b.HasIndex("ProdutosId");
 
                     b.HasIndex("UserId");
 
@@ -1368,9 +1375,9 @@ namespace fourfit.sistema_gestao.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("fourfit.sistema_gestao.Domain.Entities.Financas.TipoPagamento", "Pagamentos")
+                    b.HasOne("fourfit.sistema_gestao.Domain.Entities.Financas.FormaPagamento", "FormaPagamento")
                         .WithMany("Mensalidades")
-                        .HasForeignKey("PagamentosId")
+                        .HasForeignKey("FormaPagamentoId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -1384,7 +1391,7 @@ namespace fourfit.sistema_gestao.Migrations
 
                     b.Navigation("ContasBancarias");
 
-                    b.Navigation("Pagamentos");
+                    b.Navigation("FormaPagamento");
 
                     b.Navigation("Planos");
                 });
@@ -1438,23 +1445,23 @@ namespace fourfit.sistema_gestao.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("fourfit.sistema_gestao.Domain.Entities.Financas.FormaPagamento", "FormaPagamento")
+                        .WithMany("Despesas")
+                        .HasForeignKey("FormaPagamentoId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("fourfit.sistema_gestao.Domain.Entities.Financas.TipoDespesas", "TipoDespesas")
                         .WithMany("Despesas")
                         .HasForeignKey("TipoDespesasId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("fourfit.sistema_gestao.Domain.Entities.Financas.TipoPagamento", "TipoPagamento")
-                        .WithMany("Despesas")
-                        .HasForeignKey("TipoPagamentoId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.Navigation("ContasBancarias");
 
-                    b.Navigation("TipoDespesas");
+                    b.Navigation("FormaPagamento");
 
-                    b.Navigation("TipoPagamento");
+                    b.Navigation("TipoDespesas");
                 });
 
             modelBuilder.Entity("fourfit.sistema_gestao.Domain.Entities.Financas.Investimentos", b =>
@@ -1465,15 +1472,15 @@ namespace fourfit.sistema_gestao.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("fourfit.sistema_gestao.Domain.Entities.Financas.TipoPagamento", "TipoPagamento")
+                    b.HasOne("fourfit.sistema_gestao.Domain.Entities.Financas.FormaPagamento", "FormaPagamento")
                         .WithMany("Investimentos")
-                        .HasForeignKey("TipoPagamentoId")
+                        .HasForeignKey("FormaPagamentoId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("ContasBancarias");
 
-                    b.Navigation("TipoPagamento");
+                    b.Navigation("FormaPagamento");
                 });
 
             modelBuilder.Entity("fourfit.sistema_gestao.Domain.Entities.Financas.TipoDespesas", b =>
@@ -1501,17 +1508,6 @@ namespace fourfit.sistema_gestao.Migrations
                     b.Navigation("Fornecedores");
 
                     b.Navigation("Impostos");
-                });
-
-            modelBuilder.Entity("fourfit.sistema_gestao.Domain.Entities.Financas.TipoPagamento", b =>
-                {
-                    b.HasOne("fourfit.sistema_gestao.Domain.Entities.Financas.TipoPagamentoPc", "TipoPagamentoPc")
-                        .WithMany("TipoPagamento")
-                        .HasForeignKey("TipoPagamentoPcId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("TipoPagamentoPc");
                 });
 
             modelBuilder.Entity("fourfit.sistema_gestao.Domain.Entities.Profission.EntidadeColaboradores", b =>
@@ -1559,40 +1555,51 @@ namespace fourfit.sistema_gestao.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("fourfit.sistema_gestao.Domain.Entities.Financas.TipoPagamentoPc", "TipoPagamentoPc")
+                    b.HasOne("fourfit.sistema_gestao.Domain.Entities.Financas.FormaPagamento", "FormaPagamento")
                         .WithMany("Pagamentos")
-                        .HasForeignKey("TipoPagamentoPcId")
+                        .HasForeignKey("FormaPagamentoId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("fourfit.sistema_gestao.Domain.Entities.Store.Venda.Vendas", "Vendas")
+                        .WithMany("Pagamentos")
+                        .HasForeignKey("VendasId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("ContasBancarias");
 
-                    b.Navigation("TipoPagamentoPc");
+                    b.Navigation("FormaPagamento");
+
+                    b.Navigation("Vendas");
                 });
 
-            modelBuilder.Entity("fourfit.sistema_gestao.Domain.Entities.Store.Venda.Vendas", b =>
+            modelBuilder.Entity("fourfit.sistema_gestao.Domain.Entities.Store.Venda.VendaItens", b =>
                 {
-                    b.HasOne("fourfit.sistema_gestao.Domain.Entities.Store.Venda.Pagamentos", "Pagamentos")
-                        .WithMany("Vendas")
-                        .HasForeignKey("PagamentosId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("fourfit.sistema_gestao.Domain.Entities.Store.ControleEstoque.Produtos", "Produtos")
-                        .WithMany("Vendas")
+                        .WithMany("VendaItens")
                         .HasForeignKey("ProdutosId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("fourfit.sistema_gestao.Domain.Entities.Store.Venda.Vendas", "vendas")
+                        .WithMany("VendaItens")
+                        .HasForeignKey("VendasId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Produtos");
+
+                    b.Navigation("vendas");
+                });
+
+            modelBuilder.Entity("fourfit.sistema_gestao.Domain.Entities.Store.Venda.Vendas", b =>
+                {
                     b.HasOne("fourfit.sistema_gestao.Domain.Entities.Account.User", "User")
                         .WithMany("Vendas")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("Pagamentos");
-
-                    b.Navigation("Produtos");
 
                     b.Navigation("User");
                 });
@@ -1658,6 +1665,17 @@ namespace fourfit.sistema_gestao.Migrations
                     b.Navigation("Pagamentos");
                 });
 
+            modelBuilder.Entity("fourfit.sistema_gestao.Domain.Entities.Financas.FormaPagamento", b =>
+                {
+                    b.Navigation("Despesas");
+
+                    b.Navigation("Investimentos");
+
+                    b.Navigation("Mensalidades");
+
+                    b.Navigation("Pagamentos");
+                });
+
             modelBuilder.Entity("fourfit.sistema_gestao.Domain.Entities.Financas.Fornecedores", b =>
                 {
                     b.Navigation("TipoDespesas");
@@ -1671,22 +1689,6 @@ namespace fourfit.sistema_gestao.Migrations
             modelBuilder.Entity("fourfit.sistema_gestao.Domain.Entities.Financas.TipoDespesas", b =>
                 {
                     b.Navigation("Despesas");
-                });
-
-            modelBuilder.Entity("fourfit.sistema_gestao.Domain.Entities.Financas.TipoPagamento", b =>
-                {
-                    b.Navigation("Despesas");
-
-                    b.Navigation("Investimentos");
-
-                    b.Navigation("Mensalidades");
-                });
-
-            modelBuilder.Entity("fourfit.sistema_gestao.Domain.Entities.Financas.TipoPagamentoPc", b =>
-                {
-                    b.Navigation("Pagamentos");
-
-                    b.Navigation("TipoPagamento");
                 });
 
             modelBuilder.Entity("fourfit.sistema_gestao.Domain.Entities.Profission.EntidadeColaboradores", b =>
@@ -1711,12 +1713,14 @@ namespace fourfit.sistema_gestao.Migrations
 
             modelBuilder.Entity("fourfit.sistema_gestao.Domain.Entities.Store.ControleEstoque.Produtos", b =>
                 {
-                    b.Navigation("Vendas");
+                    b.Navigation("VendaItens");
                 });
 
-            modelBuilder.Entity("fourfit.sistema_gestao.Domain.Entities.Store.Venda.Pagamentos", b =>
+            modelBuilder.Entity("fourfit.sistema_gestao.Domain.Entities.Store.Venda.Vendas", b =>
                 {
-                    b.Navigation("Vendas");
+                    b.Navigation("Pagamentos");
+
+                    b.Navigation("VendaItens");
                 });
 #pragma warning restore 612, 618
         }

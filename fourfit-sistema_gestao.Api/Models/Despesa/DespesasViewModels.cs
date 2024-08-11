@@ -5,7 +5,7 @@ namespace fourfit_sistema_gestao.Api.Models.Despesa
     public class DespesasViewModels 
     {
         public int Id { get; set; }
-        public int TipoPagamentoId { get; set; }
+        public int FormaPagamentoId { get; set; }
         public int ContasBancariasId { get; set; }
         public int TipoDespesasId { get; set; }
         public string Descricao { get; set; }

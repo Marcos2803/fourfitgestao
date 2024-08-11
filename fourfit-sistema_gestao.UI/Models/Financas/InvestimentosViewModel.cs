@@ -10,8 +10,7 @@ namespace fourfit_sistema_gestao.UI.Models.Financas
         public int Valor { get; set; }
         public DateTime Vencimento { get; set; }
         public DateTime Pagamento { get; set; }
-        public int TipoPagamentoId { get; set; }
-        public TipoPagamento TipoPagamento { get; set; }
+        public int FormaPagamentoId { get; set; }
         public bool Ativo { get; set; }
         public string Observacao { get; set; }
     }

@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace fourfit.sistema_gestao.Migrations
 {
     /// <inheritdoc />
-    public partial class TbUnica : Migration
+    public partial class DbUnica : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -58,7 +58,7 @@ namespace fourfit.sistema_gestao.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Nome = table.Column<string>(type: "varchar(50)", nullable: false)
+                    NomeCategoria = table.Column<string>(type: "varchar(50)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -72,7 +72,7 @@ namespace fourfit.sistema_gestao.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Bancos = table.Column<string>(type: "varchar(50)", nullable: false),
-                    Descricao = table.Column<string>(type: "varchar(10)", nullable: false),
+                    Descricao = table.Column<string>(type: "varchar(50)", nullable: false),
                     Status = table.Column<string>(type: "varchar(10)", nullable: false)
                 },
                 constraints: table =>
@@ -108,6 +108,19 @@ namespace fourfit.sistema_gestao.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "FormaPagamento",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Tipo = table.Column<string>(type: "varchar(20)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_FormaPagamento", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Fornecedores",
                 columns: table => new
                 {
@@ -137,19 +150,6 @@ namespace fourfit.sistema_gestao.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Impostos", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "TipoPagamentoPc",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Tipo = table.Column<string>(type: "nvarchar(max)", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_TipoPagamentoPc", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -206,7 +206,7 @@ namespace fourfit.sistema_gestao.Migrations
                     Celular = table.Column<string>(type: "varchar(14)", nullable: false),
                     Cep = table.Column<string>(type: "varchar(10)", nullable: false),
                     Endereco = table.Column<string>(type: "varchar(255)", nullable: false),
-                    Numero = table.Column<string>(type: "varchar(7)", nullable: false),
+                    Numero = table.Column<int>(type: "int", nullable: false),
                     Bairro = table.Column<string>(type: "varchar(100)", nullable: false),
                     Cidade = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Estado = table.Column<string>(type: "varchar(50)", nullable: false),
@@ -371,14 +371,35 @@ namespace fourfit.sistema_gestao.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Vendas",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    DataVenda = table.Column<DateTime>(type: "date", nullable: false),
+                    StatusPagamentos = table.Column<string>(type: "varchar(10)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Vendas", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Vendas_AspNetUsers_UserId",
+                        column: x => x.UserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Produtos",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     CategoriasId = table.Column<int>(type: "int", nullable: false),
-                    ControleEstoqueId = table.Column<int>(type: "int", nullable: false),
-                    Nome = table.Column<string>(type: "varchar(100)", nullable: false),
+                    EstoqueId = table.Column<int>(type: "int", nullable: false),
+                    NomeProduto = table.Column<string>(type: "varchar(100)", nullable: false),
                     PrecoCusto = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     PrecoVenda = table.Column<decimal>(type: "decimal(18,2)", nullable: false)
                 },
@@ -392,28 +413,41 @@ namespace fourfit.sistema_gestao.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Produtos_ControleEstoque_ControleEstoqueId",
-                        column: x => x.ControleEstoqueId,
+                        name: "FK_Produtos_ControleEstoque_EstoqueId",
+                        column: x => x.EstoqueId,
                         principalTable: "ControleEstoque",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
-                name: "TipoPagamento",
+                name: "Investimentos",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    TipoPagamentoPcId = table.Column<int>(type: "int", nullable: false)
+                    FormaPagamentoId = table.Column<int>(type: "int", nullable: false),
+                    ContasBancariasId = table.Column<int>(type: "int", nullable: false),
+                    Descricao = table.Column<string>(type: "varchar(30)", nullable: false),
+                    ValorInvestido = table.Column<decimal>(type: " decimal(18,2)", nullable: false),
+                    DataVencimento = table.Column<DateTime>(type: "date", nullable: false),
+                    DataPagamento = table.Column<DateTime>(type: "date", nullable: false),
+                    StatusPagamentos = table.Column<string>(type: "varchar(10)", nullable: false),
+                    Observacao = table.Column<string>(type: "varchar(100)", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_TipoPagamento", x => x.Id);
+                    table.PrimaryKey("PK_Investimentos", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_TipoPagamento_TipoPagamentoPc_TipoPagamentoPcId",
-                        column: x => x.TipoPagamentoPcId,
-                        principalTable: "TipoPagamentoPc",
+                        name: "FK_Investimentos_ContasBancarias_ContasBancariasId",
+                        column: x => x.ContasBancariasId,
+                        principalTable: "ContasBancarias",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Investimentos_FormaPagamento_FormaPagamentoId",
+                        column: x => x.FormaPagamentoId,
+                        principalTable: "FormaPagamento",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -486,6 +520,52 @@ namespace fourfit.sistema_gestao.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Mensalidades",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    AlunosId = table.Column<int>(type: "int", nullable: false),
+                    PlanoId = table.Column<int>(type: "int", nullable: false),
+                    FormaPagamentoId = table.Column<int>(type: "int", nullable: false),
+                    ContasBancariasId = table.Column<int>(type: "int", nullable: false),
+                    ValorMensalidade = table.Column<string>(type: " varchar(12)", nullable: false),
+                    ValorMatricula = table.Column<decimal>(type: " decimal(18,2)", nullable: false),
+                    MesReferente = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    DataInicialPlano = table.Column<DateTime>(type: "date", nullable: false),
+                    DataPagamento = table.Column<DateTime>(type: "date", nullable: false),
+                    StatusPagamentos = table.Column<string>(type: "varchar(10)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Mensalidades", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Mensalidades_Alunos_AlunosId",
+                        column: x => x.AlunosId,
+                        principalTable: "Alunos",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Mensalidades_ContasBancarias_ContasBancariasId",
+                        column: x => x.ContasBancariasId,
+                        principalTable: "ContasBancarias",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Mensalidades_FormaPagamento_FormaPagamentoId",
+                        column: x => x.FormaPagamentoId,
+                        principalTable: "FormaPagamento",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Mensalidades_TipoPlano_PlanoId",
+                        column: x => x.PlanoId,
+                        principalTable: "TipoPlano",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Parq",
                 columns: table => new
                 {
@@ -546,9 +626,9 @@ namespace fourfit.sistema_gestao.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
+                    FornecedoresId = table.Column<int>(type: "int", nullable: false),
                     ImpostosId = table.Column<int>(type: "int", nullable: false),
-                    ColaboradoresId = table.Column<int>(type: "int", nullable: false),
-                    FornecedoresId = table.Column<int>(type: "int", nullable: false)
+                    ColaboradoresId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -574,79 +654,68 @@ namespace fourfit.sistema_gestao.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Investimentos",
+                name: "Pagamentos",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    TipoPagamentoId = table.Column<int>(type: "int", nullable: false),
+                    FormaPagamentoId = table.Column<int>(type: "int", nullable: false),
                     ContasBancariasId = table.Column<int>(type: "int", nullable: false),
-                    Descricao = table.Column<string>(type: "varchar(30)", nullable: false),
-                    ValorInvestido = table.Column<decimal>(type: " decimal(18,2)", nullable: false),
-                    DataVencimento = table.Column<DateTime>(type: "date", nullable: false),
+                    VendasId = table.Column<int>(type: "int", nullable: false),
                     DataPagamento = table.Column<DateTime>(type: "date", nullable: false),
-                    StatusPagamentos = table.Column<string>(type: "varchar(10)", nullable: false),
-                    Observacao = table.Column<string>(type: "varchar(100)", nullable: false)
+                    ValorVenda = table.Column<decimal>(type: " decimal(18,2)", nullable: false),
+                    Desconto = table.Column<decimal>(type: " decimal(18,2)", nullable: false),
+                    ValorComDesconto = table.Column<decimal>(type: " decimal(18,2)", nullable: false),
+                    ValorPago = table.Column<decimal>(type: " decimal(18,2)", nullable: false),
+                    Troco = table.Column<decimal>(type: " decimal(18,2)", nullable: false),
+                    StatusPagamentos = table.Column<string>(type: "varchar(10)", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Investimentos", x => x.Id);
+                    table.PrimaryKey("PK_Pagamentos", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Investimentos_ContasBancarias_ContasBancariasId",
+                        name: "FK_Pagamentos_ContasBancarias_ContasBancariasId",
                         column: x => x.ContasBancariasId,
                         principalTable: "ContasBancarias",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Investimentos_TipoPagamento_TipoPagamentoId",
-                        column: x => x.TipoPagamentoId,
-                        principalTable: "TipoPagamento",
+                        name: "FK_Pagamentos_FormaPagamento_FormaPagamentoId",
+                        column: x => x.FormaPagamentoId,
+                        principalTable: "FormaPagamento",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Pagamentos_Vendas_VendasId",
+                        column: x => x.VendasId,
+                        principalTable: "Vendas",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
-                name: "Mensalidades",
+                name: "VendaItens",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    AlunosId = table.Column<int>(type: "int", nullable: false),
-                    PlanoId = table.Column<int>(type: "int", nullable: false),
-                    PagamentosId = table.Column<int>(type: "int", nullable: false),
-                    ContasBancariasId = table.Column<int>(type: "int", nullable: false),
-                    ValorMensalidade = table.Column<string>(type: " varchar(12)", nullable: false),
-                    ValorMatricula = table.Column<decimal>(type: " decimal(18,2)", nullable: false),
-                    MesReferente = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    DataInicialPlano = table.Column<DateTime>(type: "date", nullable: false),
-                    DataPagamento = table.Column<DateTime>(type: "date", nullable: false),
-                    StatusPagamentos = table.Column<string>(type: "varchar(10)", nullable: false)
+                    ProdutosId = table.Column<int>(type: "int", nullable: false),
+                    VendasId = table.Column<int>(type: "int", nullable: false),
+                    Quantidade = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Mensalidades", x => x.Id);
+                    table.PrimaryKey("PK_VendaItens", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Mensalidades_Alunos_AlunosId",
-                        column: x => x.AlunosId,
-                        principalTable: "Alunos",
+                        name: "FK_VendaItens_Produtos_ProdutosId",
+                        column: x => x.ProdutosId,
+                        principalTable: "Produtos",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Mensalidades_ContasBancarias_ContasBancariasId",
-                        column: x => x.ContasBancariasId,
-                        principalTable: "ContasBancarias",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_Mensalidades_TipoPagamento_PagamentosId",
-                        column: x => x.PagamentosId,
-                        principalTable: "TipoPagamento",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_Mensalidades_TipoPlano_PlanoId",
-                        column: x => x.PlanoId,
-                        principalTable: "TipoPlano",
+                        name: "FK_VendaItens_Vendas_VendasId",
+                        column: x => x.VendasId,
+                        principalTable: "Vendas",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -689,10 +758,10 @@ namespace fourfit.sistema_gestao.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    TipoPagamentoId = table.Column<int>(type: "int", nullable: false),
+                    FormaPagamentoId = table.Column<int>(type: "int", nullable: false),
                     ContasBancariasId = table.Column<int>(type: "int", nullable: false),
                     TipoDespesasId = table.Column<int>(type: "int", nullable: false),
-                    Descricao = table.Column<string>(type: "varchar(30)", nullable: false),
+                    Descricao = table.Column<string>(type: "varchar(50)", nullable: false),
                     ValorDespesa = table.Column<decimal>(type: " decimal(18,2)", nullable: false),
                     DataVencimento = table.Column<DateTime>(type: "date", nullable: false),
                     DataPagamento = table.Column<DateTime>(type: "date", nullable: false),
@@ -709,15 +778,42 @@ namespace fourfit.sistema_gestao.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
+                        name: "FK_Despesas_FormaPagamento_FormaPagamentoId",
+                        column: x => x.FormaPagamentoId,
+                        principalTable: "FormaPagamento",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
                         name: "FK_Despesas_TipoDespesas_TipoDespesasId",
                         column: x => x.TipoDespesasId,
                         principalTable: "TipoDespesas",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "AulaExperimental",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    HorariosId = table.Column<int>(type: "int", nullable: false),
+                    DataHExperimental = table.Column<DateTime>(type: "date", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_AulaExperimental", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Despesas_TipoPagamento_TipoPagamentoId",
-                        column: x => x.TipoPagamentoId,
-                        principalTable: "TipoPagamento",
+                        name: "FK_AulaExperimental_AspNetUsers_UserId",
+                        column: x => x.UserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_AulaExperimental_Horarios_HorariosId",
+                        column: x => x.HorariosId,
+                        principalTable: "Horarios",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -794,6 +890,16 @@ namespace fourfit.sistema_gestao.Migrations
                 filter: "[NormalizedUserName] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
+                name: "IX_AulaExperimental_HorariosId",
+                table: "AulaExperimental",
+                column: "HorariosId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_AulaExperimental_UserId",
+                table: "AulaExperimental",
+                column: "UserId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_AvaliacaoFisica_AlunosId",
                 table: "AvaliacaoFisica",
                 column: "AlunosId");
@@ -819,14 +925,14 @@ namespace fourfit.sistema_gestao.Migrations
                 column: "ContasBancariasId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Despesas_FormaPagamentoId",
+                table: "Despesas",
+                column: "FormaPagamentoId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Despesas_TipoDespesasId",
                 table: "Despesas",
                 column: "TipoDespesasId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Despesas_TipoPagamentoId",
-                table: "Despesas",
-                column: "TipoPagamentoId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Horarios_ModalidadesId",
@@ -844,9 +950,9 @@ namespace fourfit.sistema_gestao.Migrations
                 column: "ContasBancariasId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Investimentos_TipoPagamentoId",
+                name: "IX_Investimentos_FormaPagamentoId",
                 table: "Investimentos",
-                column: "TipoPagamentoId");
+                column: "FormaPagamentoId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Mensalidades_AlunosId",
@@ -859,9 +965,9 @@ namespace fourfit.sistema_gestao.Migrations
                 column: "ContasBancariasId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Mensalidades_PagamentosId",
+                name: "IX_Mensalidades_FormaPagamentoId",
                 table: "Mensalidades",
-                column: "PagamentosId");
+                column: "FormaPagamentoId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Mensalidades_PlanoId",
@@ -872,6 +978,21 @@ namespace fourfit.sistema_gestao.Migrations
                 name: "IX_Modalidades_PlanosId",
                 table: "Modalidades",
                 column: "PlanosId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Pagamentos_ContasBancariasId",
+                table: "Pagamentos",
+                column: "ContasBancariasId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Pagamentos_FormaPagamentoId",
+                table: "Pagamentos",
+                column: "FormaPagamentoId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Pagamentos_VendasId",
+                table: "Pagamentos",
+                column: "VendasId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Parq_AlunoId",
@@ -894,9 +1015,9 @@ namespace fourfit.sistema_gestao.Migrations
                 column: "CategoriasId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Produtos_ControleEstoqueId",
+                name: "IX_Produtos_EstoqueId",
                 table: "Produtos",
-                column: "ControleEstoqueId");
+                column: "EstoqueId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Professores_UserId",
@@ -914,9 +1035,19 @@ namespace fourfit.sistema_gestao.Migrations
                 column: "ImpostosId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_TipoPagamento_TipoPagamentoPcId",
-                table: "TipoPagamento",
-                column: "TipoPagamentoPcId");
+                name: "IX_VendaItens_ProdutosId",
+                table: "VendaItens",
+                column: "ProdutosId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_VendaItens_VendasId",
+                table: "VendaItens",
+                column: "VendasId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Vendas_UserId",
+                table: "Vendas",
+                column: "UserId");
         }
 
         /// <inheritdoc />
@@ -938,6 +1069,9 @@ namespace fourfit.sistema_gestao.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
+                name: "AulaExperimental");
+
+            migrationBuilder.DropTable(
                 name: "AvaliacaoFisica");
 
             migrationBuilder.DropTable(
@@ -953,13 +1087,16 @@ namespace fourfit.sistema_gestao.Migrations
                 name: "Mensalidades");
 
             migrationBuilder.DropTable(
+                name: "Pagamentos");
+
+            migrationBuilder.DropTable(
                 name: "Parq");
 
             migrationBuilder.DropTable(
                 name: "PersonalRecord");
 
             migrationBuilder.DropTable(
-                name: "Produtos");
+                name: "VendaItens");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");
@@ -974,7 +1111,7 @@ namespace fourfit.sistema_gestao.Migrations
                 name: "ContasBancarias");
 
             migrationBuilder.DropTable(
-                name: "TipoPagamento");
+                name: "FormaPagamento");
 
             migrationBuilder.DropTable(
                 name: "Alunos");
@@ -983,10 +1120,10 @@ namespace fourfit.sistema_gestao.Migrations
                 name: "Exercicios");
 
             migrationBuilder.DropTable(
-                name: "Categorias");
+                name: "Produtos");
 
             migrationBuilder.DropTable(
-                name: "ControleEstoque");
+                name: "Vendas");
 
             migrationBuilder.DropTable(
                 name: "Modalidades");
@@ -1004,7 +1141,10 @@ namespace fourfit.sistema_gestao.Migrations
                 name: "Impostos");
 
             migrationBuilder.DropTable(
-                name: "TipoPagamentoPc");
+                name: "Categorias");
+
+            migrationBuilder.DropTable(
+                name: "ControleEstoque");
 
             migrationBuilder.DropTable(
                 name: "TipoPlano");

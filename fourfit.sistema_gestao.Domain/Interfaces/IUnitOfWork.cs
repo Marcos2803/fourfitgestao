@@ -1,11 +1,11 @@
-﻿namespace fourfit.sistema_gestao.Domain.Interfaces
+﻿
+namespace fourfit.sistema_gestao.Domain.Interfaces
 {
     public interface IUnitOfWork
     {
         IAlunosServices AlunosServices { get; }
         ITipoPlanoServices TipoPlano { get; }
-        ITipoPagamentoServices TipoPagamento { get; }
-        ITipoPagamentoPcServices TipoPagamentoPc { get; }
+        IFormaPagamentoServices FormaPagamento { get; }
         IUserServices UserServices { get; }
         IProfessoresServices ProfessoresServices { get; }
         IColaboradoresServices ColaboradoresServices { get; }
@@ -25,7 +25,11 @@
         IAulaExperimentalServices AulaExperimentalServices { get; }
         IImpostosServices ImpostosServices { get; }
         IVendasServices VendasServices { get; }
+        IVendaItensServices VendaItensServices { get; }
         IPagamentosServices PagamentosServices { get; }
+        ICategoriasServices CategoriasServices { get; }
+        IEstoqueServices EstoqueServices { get; }
+
 
     }
 }

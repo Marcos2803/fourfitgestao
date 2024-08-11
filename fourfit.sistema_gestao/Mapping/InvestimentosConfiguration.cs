@@ -11,9 +11,9 @@ namespace fourfit.sistema_gestao.Mapping
             builder.ToTable("Investimentos");
             builder.HasKey(x => x.Id);
 
-            builder.HasOne(x => x.TipoPagamento)
+            builder.HasOne(x => x.FormaPagamento)
                .WithMany(a => a.Investimentos)
-               .HasForeignKey(a => a.TipoPagamentoId);
+               .HasForeignKey(a => a.FormaPagamentoId);
 
             builder.HasOne(x => x.ContasBancarias)
                .WithMany(a => a.Investimentos)

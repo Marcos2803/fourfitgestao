@@ -48,14 +48,11 @@ namespace fourfit.sistema_gestao.Context
         public DbSet<Vendas> Vendas { get; set; }
         public DbSet<VendaItens> VendaItens { get; set; }
         public DbSet<Pagamentos> Pagamentos { get; set; }
+        public DbSet<FormaPagamento> FormaPagamento { get; set; }
 
         //public DbSet<entidadeEmailConfiguracoes>? EmailConfiguracoes { get; set; }
         //public DbSet<entidadeEmailAddress>? EmailAddress { get; set; }
         //public DbSet<entidadeEmailPasswordAccount>? EmailPasswordAccount { get; set; }
-        //public DbSet<TipoPagamento> TipoPagamento { get; set; }
-        //public DbSet<TipoPagamentoPc> TipoPagamentoPc { get; set; }
-
-
         //public DbSet<AlunosPesquisa> AlunosPesquisa { get; set; }
 
 
@@ -90,6 +87,7 @@ namespace fourfit.sistema_gestao.Context
             builder.Entity<Vendas>(new VendasConfiguration().Configure);
             builder.Entity<VendaItens>(new VendaItensConfiguration().Configure);
             builder.Entity<Pagamentos>(new PagamentosConfiguration().Configure);
+            builder.Entity<FormaPagamento>(new FormaPagamentoConfiguration().Configure);
 
             base.OnModelCreating(builder);
         }

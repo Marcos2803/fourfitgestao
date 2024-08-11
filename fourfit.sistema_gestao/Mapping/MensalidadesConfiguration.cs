@@ -29,9 +29,9 @@ namespace fourfit.sistema_gestao.Mapping
                 .WithMany(a => a.Mensalidades)
                 .HasForeignKey(a => a.ContasBancariasId);
 
-            builder.HasOne(x => x.Pagamentos)
+            builder.HasOne(x => x.FormaPagamento)
                .WithMany(a => a.Mensalidades)
-               .HasForeignKey(a => a.PagamentosId);
+               .HasForeignKey(a => a.FormaPagamentoId);
 
             builder.Property(x => x.ValorMensalidade)
          .HasColumnType(" decimal(18, 2)")

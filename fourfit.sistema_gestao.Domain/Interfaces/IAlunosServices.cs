@@ -8,9 +8,13 @@ namespace fourfit.sistema_gestao.Domain.Interfaces
     {
         Task<IEnumerable<EntidadeAlunos>> ObterAlunosPorCpf(string cpf);
 
+        Task<EntidadeAlunos> ObterAlunoPorUserId(string UserId);
+
         Task<IEnumerable<EntidadeAlunos>> ObterAlunosExistentes();
 
         Task<EntidadeAlunos> ObterAlunosUsuariosPorId(int Id);
 
     }
+
+
 }
