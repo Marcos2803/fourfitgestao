@@ -1,12 +1,6 @@
 ﻿using fourfit.sistema_gestao.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Design;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.Serialization.DataContracts;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace fourfit.sistema_gestao.Factory
 {

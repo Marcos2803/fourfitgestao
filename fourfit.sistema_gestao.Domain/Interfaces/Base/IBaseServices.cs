@@ -1,4 +1,5 @@
 ﻿using fourfit.sistema_gestao.Domain.Entities.Alunos;
+using fourfit.sistema_gestao.Domain.Entities.Store.Venda;
 
 namespace fourfit.sistema_gestao.Domain.Interfaces.Base
 {
@@ -11,8 +12,10 @@ namespace fourfit.sistema_gestao.Domain.Interfaces.Base
         Task<IEnumerable<TEntity>> ObterTodos();
         Task Deletar(int Id);
         Task Salvar();
+
         
-        
+
+
 
 
     }

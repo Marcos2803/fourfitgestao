@@ -7,6 +7,6 @@ namespace fourfit.sistema_gestao.Domain.Interfaces
     {
         Task<IEnumerable<ContasBancarias>> ObterContasBancariasExistentes();
 
-        Task<ContasBancarias> ObterContasBancariasPorId(int Id);
+        Task<ContasBancarias> ObterContasBancariasPorId(int? Id);
     }
 }

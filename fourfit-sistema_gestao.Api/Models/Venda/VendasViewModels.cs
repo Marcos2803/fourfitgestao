@@ -1,4 +1,6 @@
-﻿using fourfit.sistema_gestao.Domain.Entities.Store.Venda;
+﻿
+using fourfit.sistema_gestao.Domain.Enumerables;
+using fourfit_sistema_gestao.Api.Models.Pagamento;
 
 namespace fourfit_sistema_gestao.Api.Models.Venda
 {
@@ -7,10 +9,10 @@ namespace fourfit_sistema_gestao.Api.Models.Venda
         public int Id { get; set; }
         public string UserId { get; set; }
         public IEnumerable<VendaItensViewModels> VendaItens { get; set; }
-        //public List<VendaItens> VendaItens { get; set; } = new List<VendaItens>();
-        public int PagamentosId { get; set; }
-        //public VendaItens VendaItens { get; set; }
+        public IEnumerable<PagamentosViewModels> Pagamentos { get; set; }
         public DateTime DataVenda { get; set; }
-        public string StatusPagamentos { get; set; }
+        //public string StatusPagamento { get; set; }
+        public StatusPagamentosEnum StatusPagamento { get; set; }
+
     }
 }

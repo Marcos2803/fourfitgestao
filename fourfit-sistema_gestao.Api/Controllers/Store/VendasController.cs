@@ -1,11 +1,12 @@
 ﻿
 using fourfit.sistema_gestao.Domain.Entities.Store.Venda;
+using fourfit.sistema_gestao.Domain.Enumerables;
 using fourfit.sistema_gestao.Domain.Interfaces;
 using fourfit_sistema_gestao.Api.Models.Venda;
 using fourfit_sistema_gestao.Api.Validation;
 using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.Annotations;
-using System.Transactions;
+using System.Collections.Generic;
 
 namespace fourfit_sistema_gestao.Api.Controllers.Store
 {
@@ -32,60 +33,138 @@ namespace fourfit_sistema_gestao.Api.Controllers.Store
             //using (var transactionScope = new TransactionScope(TransactionScopeAsyncFlowOption.Enabled))
 
 
-                try
+            try
+            {
+                var user = await _unitOfWork.UserServices.ObterPorUserId(model.UserId);
+                if (user == null)
                 {
-                    var user = await _unitOfWork.UserServices.ObterPorUserId(model.UserId);
-                    if (user == null)
+                    return NotFound("Usuário não encontrado");
+                }
+
+                var vendaItens = new List<VendaItens>();
+                decimal valorTotalVenda = 0;
+                foreach (var item in model.VendaItens)
+                {
+                    var produto = await _unitOfWork.ProdutosServices.ObterProdutosPorId(item.ProdutosId);
+                    if (produto == null)
                     {
-                        return NotFound("Usuário não encontrado");
+                        return NotFound("Produto não encontrado");
                     }
 
-                    var vendaItens = new List<VendaItens>();
-                    foreach (var item in model.VendaItens)
+                    if (produto.QuantidadeEstoque < item.Quantidade)
                     {
-                        var produto = await _unitOfWork.ProdutosServices.ObterProdutosPorId(item.ProdutosId);
-                        if (produto == null)
-                        {
-                            return NotFound("Produto não encontrado");
-                        }
-
-                        if (produto.QuantidadeEstoque < item.Quantidade)
-                        {
                         return NotFound("Estoque insuficiente ");
-                        }
-                        produto.QuantidadeEstoque -= item.Quantidade;
+                    }
+                    produto.QuantidadeEstoque -= item.Quantidade;
 
-                        vendaItens.Add(new VendaItens
+                    valorTotalVenda += produto.PrecoVenda * item.Quantidade;
+
+                    vendaItens.Add(new VendaItens
+                    {
+
+                        ProdutosId = item.ProdutosId,
+                        Quantidade = item.Quantidade,
+                        Produtos = produto
+                    });
+                    await _unitOfWork.ProdutosServices.Atualizar(produto);
+
+
+                }
+
+                var vendas = new Vendas
+                {
+                    UserId = model.UserId,
+                    DataVenda = DateTime.Now,
+                    VendaItens = vendaItens,
+                    StatusPagamento = model.StatusPagamento,
+
+
+                };
+
+               
+
+                await _unitOfWork.VendasServices.Cadastro(vendas);
+                await _unitOfWork.VendasServices.Salvar();
+
+                var vendasId = vendas.Id;
+
+
+
+                var pagamentos = new List<Pagamentos>();
+                foreach (var pagamentoModel in model.Pagamentos)
+                {
+                    if (model.StatusPagamento == StatusPagamentosEnum.Pago)
+                    {
+
+                        var contasBancarias = await _unitOfWork.ContasBancariasServices.ObterContasBancariasPorId(pagamentoModel.ContasBancariasId);
+                        if (contasBancarias == null)
+                        {
+                            return NotFound("Contas bancarias não encontrado");
+                        }
+
+                        var formaPagamento = await _unitOfWork.FormaPagamentoServices.ObterFormaPagamentoPorId(pagamentoModel.FormaPagamentoId);
+                        if (formaPagamento == null)
+                        {
+                            return NotFound("Forma de pagamento não encontrado");
+                        }
+
+                        var pagamento = new Pagamentos
                         {
 
-                            ProdutosId = item.ProdutosId,
-                            Quantidade = item.Quantidade,
-                            Produtos = produto 
-                        });
-                     await _unitOfWork.ProdutosServices.Atualizar(produto);
+                            VendasId = vendasId,
+                            ContasBancariasId = pagamentoModel.ContasBancariasId,
+                            FormaPagamentoId = pagamentoModel.FormaPagamentoId,
+                            ValorVenda = valorTotalVenda,
+                            Desconto = pagamentoModel.Desconto,
+                            ValorComDesconto = pagamentoModel.ValorComDesconto,
+                            ValorPago = pagamentoModel.ValorPago,
+                            Troco = pagamentoModel.Troco,
+                            StatusPagamento = pagamentoModel.StatusPagamento,
+                            DataPagamento = DateTime.Now,
+
+                        };
+                        await _unitOfWork.PagamentosServices.Cadastro(pagamento);
+                        await _unitOfWork.PagamentosServices.Salvar();
                     }
-                    var vendas = new Vendas
+                    else 
                     {
-                        UserId = model.UserId,
-                        DataVenda = DateTime.Now,
-                        VendaItens = vendaItens,
-                        StatusPagamentos = model.StatusPagamentos,
 
-                    };
+                        var pagamentoPendente = new Pagamentos
+                        {
+                            VendasId = vendas.Id,
+                            ContasBancariasId = null,
+                            FormaPagamentoId = null,
+                            ValorVenda = valorTotalVenda,
+                            Desconto = pagamentoModel.Desconto ?? 0,
+                            ValorComDesconto = pagamentoModel.ValorComDesconto ?? 0,
+                            ValorPago = pagamentoModel.ValorPago ?? 0,
+                            Troco = pagamentoModel.Troco ?? 0,
+                            StatusPagamento = pagamentoModel.StatusPagamento,
+                            DataPagamento = DateTime.MinValue,
 
-                    await _unitOfWork.VendasServices.Cadastro(vendas);
-                    await _unitOfWork.VendasServices.Salvar();
+
+                        };
+                        await _unitOfWork.PagamentosServices.Cadastro(pagamentoPendente);
+                        await _unitOfWork.PagamentosServices.Salvar();
+                    }
+
+
+
+                }
+
+
+
 
                 //// Confirmar a transação se tudo ocorrer bem
                 //transactionScope.Complete();
-                
+                //return RedirectToAction("ControllerPagamentos", "Register");
                 return Ok($"Venda cadastrado com sucesso");
-                }
-                catch (Exception ex)
-                {
+            }
+            catch (Exception ex)
+            {
 
-                    throw new Exception(ex.Message);
-                }
+                throw new Exception(ex.Message);
+            }
 
 
 

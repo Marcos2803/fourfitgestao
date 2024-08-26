@@ -1,6 +1,6 @@
 ﻿using fourfit.sistema_gestao.Domain.Entities.Store.Venda;
 using fourfit.sistema_gestao.Domain.Interfaces.Base;
-using Microsoft.EntityFrameworkCore.Storage;
+
 
 
 namespace fourfit.sistema_gestao.Domain.Interfaces
@@ -9,7 +9,8 @@ namespace fourfit.sistema_gestao.Domain.Interfaces
     {
         Task<IEnumerable<Vendas>> ObterVendasExistentes();
         Task<Vendas> ObterVendasPorId(int Id);
-       
         
+
+
     }
 }

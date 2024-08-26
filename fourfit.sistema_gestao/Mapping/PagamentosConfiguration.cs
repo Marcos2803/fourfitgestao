@@ -48,7 +48,7 @@ namespace fourfit.sistema_gestao.Mapping
               .HasColumnType(" decimal(18, 2)")
               .IsRequired();
 
-            builder.Property(x => x.StatusPagamentos)
+            builder.Property(x => x.StatusPagamento)
               .HasColumnType("varchar(10)")
               .IsRequired();
         }

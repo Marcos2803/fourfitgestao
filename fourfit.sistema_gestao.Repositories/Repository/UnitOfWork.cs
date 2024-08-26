@@ -1,5 +1,10 @@
 ﻿using fourfit.sistema_gestao.Context;
 using fourfit.sistema_gestao.Domain.Interfaces;
+using fourfit.sistema_gestao.Repositories.Repository.Account;
+using fourfit.sistema_gestao.Repositories.Repository.Alunos;
+using fourfit.sistema_gestao.Repositories.Repository.Financas;
+using fourfit.sistema_gestao.Repositories.Repository.Profision;
+using fourfit.sistema_gestao.Repositories.Repository.Store;
 
 namespace fourfit.sistema_gestao.Repositories.Repository
 {
@@ -46,10 +51,6 @@ namespace fourfit.sistema_gestao.Repositories.Repository
 
         public ITipoPlanoServices TipoPlano => _tipoPlano ??= new TipoPlanoRepository(_dataContext);
 
-
-
-        public IFormaPagamentoServices FormaPagamento => _formaPagamentoServices ??= new FormaPagamentoRepository(_dataContext);
-
         public IUserServices UserServices => _userServices ??= new UserRepository(_dataContext);
 
         public IProfessoresServices ProfessoresServices => _professoresServices ??= new ProfessoresRepository(_dataContext);
@@ -93,5 +94,7 @@ namespace fourfit.sistema_gestao.Repositories.Repository
         public ICategoriasServices CategoriasServices => _categoriasServices ??= new CategoriasRepository(_dataContext);
 
         public IEstoqueServices EstoqueServices => _estoqueServices ??= new EstoqueRepository(_dataContext);
+
+        public IFormaPagamentoServices FormaPagamentoServices => _formaPagamentoServices ??= new FormaPagamentoRepository(_dataContext);
     }
 }

@@ -1,5 +1,6 @@
 ﻿using fourfit.sistema_gestao.Domain.Entities.Account;
 using fourfit.sistema_gestao.Domain.Entities.Store.ControleEstoque;
+using fourfit.sistema_gestao.Domain.Enumerables;
 
 
 namespace fourfit.sistema_gestao.Domain.Entities.Store.Venda
@@ -10,7 +11,8 @@ namespace fourfit.sistema_gestao.Domain.Entities.Store.Venda
         public string UserId { get; set; }
         public User User { get; set; }
         public DateTime DataVenda { get; set; }
-        public string StatusPagamentos { get; set; }
+        //public string StatusPagamento { get; set; }
+        public StatusPagamentosEnum StatusPagamento { get; set; }
 
         public ICollection<VendaItens> VendaItens { get; set; }
         public ICollection<Pagamentos> Pagamentos { get; set; }

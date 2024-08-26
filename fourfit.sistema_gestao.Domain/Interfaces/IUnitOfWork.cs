@@ -4,8 +4,8 @@ namespace fourfit.sistema_gestao.Domain.Interfaces
     public interface IUnitOfWork
     {
         IAlunosServices AlunosServices { get; }
-        ITipoPlanoServices TipoPlano { get; }
-        IFormaPagamentoServices FormaPagamento { get; }
+        ITipoPlanoServices TipoPlanoServices { get; }
+        IFormaPagamentoServices FormaPagamentoServices { get; }
         IUserServices UserServices { get; }
         IProfessoresServices ProfessoresServices { get; }
         IColaboradoresServices ColaboradoresServices { get; }
@@ -14,7 +14,6 @@ namespace fourfit.sistema_gestao.Domain.Interfaces
         IModalidadesServices ModalidadesServices { get; }
         IAvaliacaoFisicaServices AvaliacaoFisicaServices { get; }
         IDespesasServices DespesasServices { get; }
-        ITipoPlanoServices TipoPlanoServices { get; }
         IInvestimentosServices InvestimentosServices { get; }
         IHorariosServices HorariosServices { get; }
         IContasBancariasServices ContasBancariasServices { get; }
