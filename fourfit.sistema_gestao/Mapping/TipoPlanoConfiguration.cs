@@ -12,7 +12,7 @@ namespace fourfit.sistema_gestao.Mapping
             builder.ToTable("TipoPlano");
             builder.HasKey("Id");
 
-            builder.Property(x => x.Status)
+            builder.Property(x => x.StatusPlanos)
            .HasColumnType("varchar(10)")
            .IsRequired();
 

@@ -50,5 +50,9 @@ namespace fourfit.sistema_gestao.Repositories.Repository.Store
 
         }
 
+       
+
+    
+
     }
 }

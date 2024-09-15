@@ -18,7 +18,6 @@ namespace fourfit.sistema_gestao.Domain.Entities.Store.Venda
         public decimal? ValorComDesconto { get; set; }
         public decimal? ValorPago { get; set; }
         public decimal? Troco { get; set; }
-        //public string StatusPagamento { get; set; }
         public StatusPagamentosEnum StatusPagamento { get; set; }
 
 

@@ -1,4 +1,6 @@
-﻿namespace fourfit_sistema_gestao.Api.Models.Planos
+﻿using fourfit.sistema_gestao.Domain.Enumerables;
+
+namespace fourfit_sistema_gestao.Api.Models.Planos
 {
     public class PlanosUpdateViewModels
     {
@@ -9,6 +11,6 @@
         public int DuracaoMes { get; set; }
         public int DuracaoDia { get; set; }
         public decimal ValorPlano { get; set; }
-        public string Status { get; set; }
+        public StatusPlanosEnum StatusPlanos { get; set; }
     }
 }

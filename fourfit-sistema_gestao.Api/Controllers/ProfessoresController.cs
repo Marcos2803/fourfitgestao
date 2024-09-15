@@ -29,6 +29,12 @@ namespace fourfit_sistema_gestao.Api.Controllers
         {
             try
             {
+                var professorExistente = await _unitOfWork.ProfessoresServices.ObterProfessoresUserId(model.UserId);
+                if (professorExistente != null)
+                {
+                    return NotFound("Já existe um professores cadastrado com esse usuário.");
+                }
+
                 var professores = new EntidadeProfessores 
                 {
                     UserId = model.UserId,

@@ -8,5 +8,7 @@ namespace fourfit.sistema_gestao.Domain.Interfaces
         Task<IEnumerable<Mensalidades>> ObterMensalidadesExistentes();
 
         Task<Mensalidades> ObterMensalidadesPorId(int Id);
+
+        Task<Mensalidades> PossuiMensalidadeAtiva(int alunoId);
     }
 }

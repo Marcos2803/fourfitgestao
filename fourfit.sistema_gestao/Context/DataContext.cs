@@ -29,6 +29,7 @@ namespace fourfit.sistema_gestao.Context
         public DbSet<Horarios> Horarios { get; set; }
         public DbSet<Mensalidades> Mensalidades { get; set; }
         public DbSet<Modalidades> Modalidades { get; set; }
+        public DbSet<Parcelas> ParcelaMensalidades { get; set; }
         public DbSet<AvaliacaoFisica> AvaliacaoFisica { get; set; }
         public DbSet<Parq> Parq { get; set; }
         public DbSet<TipoPlano> Planos { get; set; }
@@ -66,6 +67,7 @@ namespace fourfit.sistema_gestao.Context
             builder.Entity<Checkins>(new CheckinsConfiguration().Configure);
             builder.Entity<Horarios>(new HorariosConfiguration().Configure);
             builder.Entity<Mensalidades>(new MensalidadesConfiguration().Configure);
+            builder.Entity<Parcelas>(new ParcelasConfiguration().Configure);
             builder.Entity<Modalidades>(new ModalidadesConfiguration().Configure);
             builder.Entity<AvaliacaoFisica>(new AvaliacaoFisicaConfiguration().Configure);
             builder.Entity<Parq>(new ParqConfiguration().Configure);

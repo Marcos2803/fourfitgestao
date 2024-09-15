@@ -12,5 +12,6 @@ namespace fourfit.sistema_gestao.Domain.Entities.Financas
         public virtual ICollection<Mensalidades> Mensalidades { get; set; }
         public virtual ICollection<Despesas> Despesas { get; set; }
         public virtual ICollection<Investimentos> Investimentos { get; set; }
+        public ICollection<Parcelas> ParcelaMensalidades { get; set; }
     }
 }

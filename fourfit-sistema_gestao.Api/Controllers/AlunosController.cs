@@ -1,6 +1,8 @@
 ﻿using fourfit.sistema_gestao.Domain.Entities.Alunos;
+using fourfit.sistema_gestao.Domain.Enumerables;
 using fourfit.sistema_gestao.Domain.Interfaces;
 using fourfit_sistema_gestao.Api.Models.Alunos;
+using Microsoft.AspNetCore.Authorization;
 using fourfit_sistema_gestao.Api.Validation;
 using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.Annotations;
@@ -19,7 +21,7 @@ namespace fourfit_sistema_gestao.Api.Controllers
         }
         [HttpPost]
         [Route("Register")]
-        //[Authorize]
+        [Authorize]
         [SwaggerResponse(statusCode: 200, description: "Aluno cadastrado com sucesso", Type = typeof(AlunosViewModels))]
         [SwaggerResponse(statusCode: 400, description: "Campos obrigatórios", Type = typeof(ValidarCampos))]
         [SwaggerResponse(statusCode: 500, description: "Erro internet", Type = typeof(ErrosGenericos))]
@@ -40,7 +42,6 @@ namespace fourfit_sistema_gestao.Api.Controllers
                     UserId = model.UserId,
                     DataCadastro = DateTime.Now,
                     Foto = model.Foto,
-                    Status = model.Status,
                     Cpf = model.Cpf,
                     Celular = model.Celular,
                     Cep = model.Cep,
@@ -50,6 +51,7 @@ namespace fourfit_sistema_gestao.Api.Controllers
                     Cidade = model.Cidade,
                     Estado = model.Estado,
                     DataNacimento = model.DataNacimento,
+                    StatusAlunos = StatusAlunosEnum.Pendente,
 
                 };
                 

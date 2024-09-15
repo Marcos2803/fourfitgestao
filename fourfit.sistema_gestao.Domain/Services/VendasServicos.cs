@@ -3,24 +3,25 @@ using fourfit.sistema_gestao.Domain.Interfaces;
 
 
 
-namespace fourfit.sistema_gestao.Domain.Services
+namespace fourfit.sistema_gestao.Domain.Interfaces.Services
 {
-    public class VendasServicos 
+    public class VendasServicos
     {
-       
-        public decimal CalcularValorTotal(IEnumerable<VendaItens> itens)
+
+        public async Task<decimal> CalcularValorTotal(IEnumerable<VendaItens> itens)
         {
             decimal valorTotal = 0;
             foreach (var item in itens)
             {
                 valorTotal += item.Produtos.PrecoVenda * item.Quantidade;
+                
             }
             return valorTotal;
         }
 
         public decimal AplicarDesconto(decimal valorTotal, decimal percentualDesconto)
         {
-            return valorTotal - (valorTotal * (percentualDesconto / 100));
+            return valorTotal - valorTotal * (percentualDesconto / 100);
         }
     }
 }

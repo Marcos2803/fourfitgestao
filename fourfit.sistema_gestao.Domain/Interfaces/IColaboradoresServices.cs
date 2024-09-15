@@ -8,6 +8,8 @@ namespace fourfit.sistema_gestao.Domain.Interfaces
     {
         Task<IEnumerable<EntidadeColaboradores>> ObterColaboradoresExistentes();
 
+        Task<EntidadeColaboradores> ObterColaboradorPorUserId(string UserId);
+
         Task<EntidadeColaboradores> ObterColaboradoresUsuariosPorId(int Id);
     }
 }

@@ -284,3 +284,4 @@ C:\projetos\fourfit-sistema_gestao\fourfit-sistema_gestao.Api\obj\Debug\net8.0\r
 C:\projetos\fourfit-sistema_gestao\fourfit-sistema_gestao.Api\obj\Debug\net8.0\fourfit-sistema_gestao.Api.pdb
 C:\projetos\fourfit-sistema_gestao\fourfit-sistema_gestao.Api\obj\Debug\net8.0\fourfit-sistema_gestao.Api.genruntimeconfig.cache
 C:\projetos\fourfit-sistema_gestao\fourfit-sistema_gestao.Api\obj\Debug\net8.0\ref\fourfit-sistema_gestao.Api.dll
+C:\projetos\fourfit-sistema_gestao\fourfit-sistema_gestao.Api\obj\Debug\net8.0\fourfit-sistema_gestao.Api.MvcApplicationPartsAssemblyInfo.cs

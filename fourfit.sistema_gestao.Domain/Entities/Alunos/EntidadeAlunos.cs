@@ -1,4 +1,5 @@
 ﻿using fourfit.sistema_gestao.Domain.Entities.Account;
+using fourfit.sistema_gestao.Domain.Enumerables;
 
 
 namespace fourfit.sistema_gestao.Domain.Entities.Alunos
@@ -10,7 +11,7 @@ namespace fourfit.sistema_gestao.Domain.Entities.Alunos
         public User User { get; set; }
         public DateTime DataCadastro { get; set; }
         public byte[]? Foto { get; set; }
-        public string Status { get; set; }
+        public StatusAlunosEnum StatusAlunos { get; set; }
 
         public ICollection<Checkins> Checkins { get; set; }
         public ICollection<Mensalidades> Mensalidades { get; set; }

@@ -443,7 +443,7 @@ namespace fourfit.sistema_gestao.Migrations
                         .IsRequired()
                         .HasColumnType("int");
 
-                    b.Property<string>("Status")
+                    b.Property<string>("StatusAlunos")
                         .IsRequired()
                         .HasColumnType("varchar(10)");
 
@@ -548,6 +548,9 @@ namespace fourfit.sistema_gestao.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("PlanoId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("StatusMensalidades")
                         .HasColumnType("int");
 
                     b.Property<string>("StatusPagamentos")
@@ -1212,9 +1215,8 @@ namespace fourfit.sistema_gestao.Migrations
                     b.Property<DateTime>("DataVenda")
                         .HasColumnType("date");
 
-                    b.Property<string>("StatusPagamento")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("StatusPagamento")
+                        .HasColumnType("int");
 
                     b.Property<string>("UserId")
                         .IsRequired()

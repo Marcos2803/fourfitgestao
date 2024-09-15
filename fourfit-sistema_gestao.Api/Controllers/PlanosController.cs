@@ -1,6 +1,6 @@
 ﻿using fourfit.sistema_gestao.Domain.Entities.Alunos;
+using fourfit.sistema_gestao.Domain.Enumerables;
 using fourfit.sistema_gestao.Domain.Interfaces;
-using fourfit_sistema_gestao.Api.Models.Alunos;
 using fourfit_sistema_gestao.Api.Models.Planos;
 using fourfit_sistema_gestao.Api.Validation;
 using Microsoft.AspNetCore.Mvc;
@@ -40,7 +40,7 @@ namespace fourfit_sistema_gestao.Api.Controllers
                     DuracaoMes = model.DuracaoMes,
                     DuracaoDia = model.DuracaoDia,
                     ValorPlano = model.ValorPlano,
-                    Status = model.Status,
+                    StatusPlanos = StatusPlanosEnum.Ativo,
 
                 };
 
@@ -78,7 +78,7 @@ namespace fourfit_sistema_gestao.Api.Controllers
                 DuracaoMes = planos.DuracaoMes,
                 DuracaoDia = planos.DuracaoDia,
                 ValorPlano = planos.ValorPlano,
-                Status = planos.Status,
+                StatusPlanos = planos.StatusPlanos,
             };
 
             return Ok(planosView);
@@ -107,7 +107,7 @@ namespace fourfit_sistema_gestao.Api.Controllers
                 planos.DuracaoMes = model.DuracaoMes;
                 planos.DuracaoDia = model.DuracaoDia;
                 planos.ValorPlano = model.ValorPlano;
-                planos.Status = model.Status;
+                planos.StatusPlanos = model.StatusPlanos;
 
                 await _unitOfWork.TipoPlanoServices.Atualizar(planos);
                 await _unitOfWork.TipoPlanoServices.Salvar();

@@ -12,8 +12,8 @@ using fourfit.sistema_gestao.Context;
 namespace fourfit.sistema_gestao.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20240808213447_DbUnica")]
-    partial class DbUnica
+    [Migration("20240829213651_DBUnica")]
+    partial class DBUnica
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -446,7 +446,7 @@ namespace fourfit.sistema_gestao.Migrations
                         .IsRequired()
                         .HasColumnType("int");
 
-                    b.Property<string>("Status")
+                    b.Property<string>("StatusAlunos")
                         .IsRequired()
                         .HasColumnType("varchar(10)");
 
@@ -1083,12 +1083,6 @@ namespace fourfit.sistema_gestao.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("EstoqueMinimo")
-                        .HasColumnType("int");
-
-                    b.Property<int>("QuantidadeEstoque")
-                        .HasColumnType("int");
-
                     b.HasKey("Id");
 
                     b.ToTable("ControleEstoque", (string)null);
@@ -1105,7 +1099,7 @@ namespace fourfit.sistema_gestao.Migrations
                     b.Property<int>("CategoriasId")
                         .HasColumnType("int");
 
-                    b.Property<int>("EstoqueId")
+                    b.Property<int>("EstoqueMinimo")
                         .HasColumnType("int");
 
                     b.Property<string>("NomeProduto")
@@ -1118,11 +1112,12 @@ namespace fourfit.sistema_gestao.Migrations
                     b.Property<decimal>("PrecoVenda")
                         .HasColumnType("decimal(18,2)");
 
+                    b.Property<int>("QuantidadeEstoque")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
 
                     b.HasIndex("CategoriasId");
-
-                    b.HasIndex("EstoqueId");
 
                     b.ToTable("Produtos", (string)null);
                 });
@@ -1135,7 +1130,7 @@ namespace fourfit.sistema_gestao.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("ContasBancariasId")
+                    b.Property<int?>("ContasBancariasId")
                         .HasColumnType("int");
 
                     b.Property<DateTime?>("DataPagamento")
@@ -1146,23 +1141,27 @@ namespace fourfit.sistema_gestao.Migrations
                         .IsRequired()
                         .HasColumnType(" decimal(18, 2)");
 
-                    b.Property<int>("FormaPagamentoId")
+                    b.Property<int?>("FormaPagamentoId")
                         .HasColumnType("int");
 
-                    b.Property<string>("StatusPagamentos")
+                    b.Property<string>("StatusPagamento")
                         .IsRequired()
                         .HasColumnType("varchar(10)");
 
-                    b.Property<decimal>("Troco")
+                    b.Property<decimal?>("Troco")
+                        .IsRequired()
                         .HasColumnType(" decimal(18, 2)");
 
-                    b.Property<decimal>("ValorComDesconto")
+                    b.Property<decimal?>("ValorComDesconto")
+                        .IsRequired()
                         .HasColumnType(" decimal(18, 2)");
 
-                    b.Property<decimal>("ValorPago")
+                    b.Property<decimal?>("ValorPago")
+                        .IsRequired()
                         .HasColumnType(" decimal(18, 2)");
 
-                    b.Property<decimal>("ValorVenda")
+                    b.Property<decimal?>("ValorVenda")
+                        .IsRequired()
                         .HasColumnType(" decimal(18, 2)");
 
                     b.Property<int>("VendasId")
@@ -1216,9 +1215,8 @@ namespace fourfit.sistema_gestao.Migrations
                     b.Property<DateTime>("DataVenda")
                         .HasColumnType("date");
 
-                    b.Property<string>("StatusPagamentos")
-                        .IsRequired()
-                        .HasColumnType("varchar(10)");
+                    b.Property<int>("StatusPagamento")
+                        .HasColumnType("int");
 
                     b.Property<string>("UserId")
                         .IsRequired()
@@ -1536,30 +1534,18 @@ namespace fourfit.sistema_gestao.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("fourfit.sistema_gestao.Domain.Entities.Store.ControleEstoque.Estoque", "Estoque")
-                        .WithMany("Produtos")
-                        .HasForeignKey("EstoqueId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.Navigation("Categorias");
-
-                    b.Navigation("Estoque");
                 });
 
             modelBuilder.Entity("fourfit.sistema_gestao.Domain.Entities.Store.Venda.Pagamentos", b =>
                 {
                     b.HasOne("fourfit.sistema_gestao.Domain.Entities.Financas.ContasBancarias", "ContasBancarias")
                         .WithMany("Pagamentos")
-                        .HasForeignKey("ContasBancariasId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("ContasBancariasId");
 
                     b.HasOne("fourfit.sistema_gestao.Domain.Entities.Financas.FormaPagamento", "FormaPagamento")
                         .WithMany("Pagamentos")
-                        .HasForeignKey("FormaPagamentoId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("FormaPagamentoId");
 
                     b.HasOne("fourfit.sistema_gestao.Domain.Entities.Store.Venda.Vendas", "Vendas")
                         .WithMany("Pagamentos")
@@ -1582,7 +1568,7 @@ namespace fourfit.sistema_gestao.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("fourfit.sistema_gestao.Domain.Entities.Store.Venda.Vendas", "vendas")
+                    b.HasOne("fourfit.sistema_gestao.Domain.Entities.Store.Venda.Vendas", "Vendas")
                         .WithMany("VendaItens")
                         .HasForeignKey("VendasId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -1590,7 +1576,7 @@ namespace fourfit.sistema_gestao.Migrations
 
                     b.Navigation("Produtos");
 
-                    b.Navigation("vendas");
+                    b.Navigation("Vendas");
                 });
 
             modelBuilder.Entity("fourfit.sistema_gestao.Domain.Entities.Store.Venda.Vendas", b =>
@@ -1702,11 +1688,6 @@ namespace fourfit.sistema_gestao.Migrations
                 });
 
             modelBuilder.Entity("fourfit.sistema_gestao.Domain.Entities.Store.ControleEstoque.Categorias", b =>
-                {
-                    b.Navigation("Produtos");
-                });
-
-            modelBuilder.Entity("fourfit.sistema_gestao.Domain.Entities.Store.ControleEstoque.Estoque", b =>
                 {
                     b.Navigation("Produtos");
                 });

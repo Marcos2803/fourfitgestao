@@ -8,5 +8,7 @@ namespace fourfit.sistema_gestao.Domain.Interfaces
     {
         Task<IEnumerable<VendaItens>> ObterIntensExistentes();
         Task<VendaItens> ObterItensPorId(int Id);
+        Task<decimal> CalcularValorTotal(IEnumerable<VendaItens> itens);
+        //Task<IEnumerable<VendaItens>> CalcularValorTotal();
     }
 }

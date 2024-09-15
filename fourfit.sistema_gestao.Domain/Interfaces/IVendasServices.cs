@@ -12,5 +12,6 @@ namespace fourfit.sistema_gestao.Domain.Interfaces
         
 
 
+
     }
 }

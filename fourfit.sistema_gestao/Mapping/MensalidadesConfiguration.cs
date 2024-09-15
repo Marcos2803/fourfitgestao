@@ -1,11 +1,7 @@
 ﻿using fourfit.sistema_gestao.Domain.Entities.Alunos;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace fourfit.sistema_gestao.Mapping
 {
@@ -57,7 +53,7 @@ namespace fourfit.sistema_gestao.Mapping
           .HasColumnType("date")
           .IsRequired();
 
-            builder.Property(m => m.StatusPagamentos)
+            builder.Property(x => x.StatusPagamentos)
                 .HasColumnType("varchar(10)")
                 .IsRequired();
 

@@ -1,6 +1,5 @@
 ﻿using fourfit.sistema_gestao.Domain.Entities.Profission;
 using fourfit.sistema_gestao.Domain.Interfaces;
-using fourfit_sistema_gestao.Api.Models.Alunos;
 using fourfit_sistema_gestao.Api.Models.Colaboradores;
 using fourfit_sistema_gestao.Api.Validation;
 using Microsoft.AspNetCore.Mvc;
@@ -29,6 +28,11 @@ namespace fourfit_sistema_gestao.Api.Controllers
         {
             try
             {
+                var colaboradorExistente = await _unitOfWork.ColaboradoresServices.ObterColaboradorPorUserId(model.UserId);
+                if (colaboradorExistente != null)
+                {
+                    return NotFound("Já existe um colaborador cadastrado com esse usuário.");
+                }
                 var colaboradores = new EntidadeColaboradores
                 {
                     UserId = model.UserId,

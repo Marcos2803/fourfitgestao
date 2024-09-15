@@ -1,4 +1,5 @@
 ﻿using fourfit.sistema_gestao.Domain.Entities.Alunos;
+using fourfit.sistema_gestao.Domain.Enumerables;
 using fourfit.sistema_gestao.Domain.Interfaces;
 using fourfit_sistema_gestao.Api.Models.Mensalidade;
 using fourfit_sistema_gestao.Api.Validation;
@@ -29,6 +30,24 @@ namespace fourfit_sistema_gestao.Api.Controllers
         {
             try
             {
+                var contasBancarias = await _unitOfWork.ContasBancariasServices.ObterContasBancariasPorId(model.ContasBancariasId);
+                if (contasBancarias == null)
+                {
+                    return NotFound("Contas bancarias não encontrado");
+                }
+
+                var formaPagamento = await _unitOfWork.FormaPagamentoServices.ObterFormaPagamentoPorId(model.FormaPagamentoId);
+                if (formaPagamento == null)
+                {
+                    return NotFound("Forma de pagamento não encontrado");
+                }
+
+                var planos = await _unitOfWork.TipoPlanoServices.ObterPlanosPorId(model.PlanoId);
+
+                if (planos == null)
+                {
+                    return NotFound("Plano não encontrado");
+                }
                 var mensalidades = new Mensalidades
                 {
                     Id = model.Id,
@@ -41,12 +60,20 @@ namespace fourfit_sistema_gestao.Api.Controllers
                     MesReferente = model.MesReferente,
                     DataInicialPlano = model.DataInicialPlano,
                     DataPagamento = model.DataPagamento,
-                    StatusPagamentos = model.StatusPagamentos
+                    StatusPagamentos = model.StatusPagamentos,
+                    StatusMensalidades = model.StatusMensalidades,
 
                 };
 
+
                 await _unitOfWork.MensalidadesServices.Cadastro(mensalidades);
                 await _unitOfWork.MensalidadesServices.Salvar();
+
+                var aluno = await _unitOfWork.AlunosServices.ObterPorId(mensalidades.AlunosId);
+                aluno.StatusAlunos = StatusAlunosEnum.Ativo;
+                await _unitOfWork.AlunosServices.Atualizar(aluno);
+                await _unitOfWork.AlunosServices.Salvar();
+
                 return Ok($"Mensalidade cadastrados com sucesso");
             }
             catch (Exception ex)
@@ -57,38 +84,13 @@ namespace fourfit_sistema_gestao.Api.Controllers
 
         }
 
-        //[HttpGet]
-        //[Route("Update/{id}")]
-        //[SwaggerResponse(200, "Informações do mensalidade obtidas com sucesso", typeof(MensalidadesIndexViewModels))]
-        //[SwaggerResponse(404, "Mensalidade não encontrado")]
-        //public async Task<IActionResult> Update(int id)
-        //{
-        //    var mensalidades = await _unitOfWork.MensalidadesServices.ObterMensalidadesExistentes(id);
-
-        //    if (mensalidades == null)
-        //    {
-        //        return NotFound("Mensalidade não encontrado");
-        //    }
-
-        //    var modalidadesView = new MensalidadesIndexViewModels
-        //    {
-        //        Id = mensalidades.Id,
-        //        AlunosId = mensalidades.AlunosId,
-        //        PlanoId = mensalidades.PlanoId,
-        //        ContasBancariasId = mensalidades.ContaBancariaId,
-        //        PagamentosId = mensalidades.PagamentosId,
-
-
-        //    };
-
-        //    return Ok(modalidadesView);
-        //}
-        [HttpDelete]
-        [Route("Delete/{id}")]
-        [SwaggerResponse(200, "Mensalidade excluído com sucesso")]
+       
+        [HttpPut]
+        [Route("Cancelar/{id}")]
+        [SwaggerResponse(200, "Mensalidade cancelada com sucesso")]
         [SwaggerResponse(404, "Mensalidade não encontrado")]
         [SwaggerResponse(500, "Erro interno")]
-        public async Task<IActionResult> Delete(int id)
+        public async Task<IActionResult> Cancelar(int id)
         {
             try
             {
@@ -98,10 +100,26 @@ namespace fourfit_sistema_gestao.Api.Controllers
                     return NotFound("Mensalidade não encontrado");
                 }
 
-                await _unitOfWork.MensalidadesServices.Deletar(id);
+                mensalidade.StatusMensalidades = StatusMensalidadesEnum.Cancelada;
+                await _unitOfWork.MensalidadesServices.Atualizar(mensalidade);
                 await _unitOfWork.MensalidadesServices.Salvar();
 
-                return Ok("Mensalidade excluído com sucesso");
+
+                var alunoId = mensalidade.AlunosId;
+                var possuiMensalidadeAtiva = await _unitOfWork.MensalidadesServices.PossuiMensalidadeAtiva( alunoId);
+
+                if (possuiMensalidadeAtiva == null)
+                {
+                    var aluno = await _unitOfWork.AlunosServices.ObterPorId(alunoId);
+                    if (aluno != null)
+                    {
+                        aluno.StatusAlunos = StatusAlunosEnum.Inativo;
+                        await _unitOfWork.AlunosServices.Atualizar(aluno);
+                        await _unitOfWork.AlunosServices.Salvar();
+                    }
+                }
+
+                return Ok("Mensalidade cancelada com sucesso");
             }
             catch (Exception ex)
             {

@@ -1,12 +1,12 @@
-﻿
-using fourfit.sistema_gestao.Domain.Entities.Store.Venda;
+﻿using fourfit.sistema_gestao.Domain.Entities.Store.Venda;
 using fourfit.sistema_gestao.Domain.Enumerables;
 using fourfit.sistema_gestao.Domain.Interfaces;
 using fourfit_sistema_gestao.Api.Models.Venda;
 using fourfit_sistema_gestao.Api.Validation;
 using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.Annotations;
-using System.Collections.Generic;
+using System.Transactions;
+
 
 namespace fourfit_sistema_gestao.Api.Controllers.Store
 {
@@ -15,11 +15,14 @@ namespace fourfit_sistema_gestao.Api.Controllers.Store
     public class VendasController : ControllerBase
     {
         private readonly IUnitOfWork _unitOfWork;
+        
 
         public VendasController(IUnitOfWork unitOfWork)
         {
             _unitOfWork = unitOfWork;
+            
         }
+
         [HttpPost]
         [Route("Register")]
         //[Authorize]
@@ -30,7 +33,7 @@ namespace fourfit_sistema_gestao.Api.Controllers.Store
         [SwaggerResponse(statusCode: 404, description: "Usuário nao autenticado", Type = typeof(VendasViewModels))]
         public async Task<IActionResult> Register(VendasViewModels model)
         {
-            //using (var transactionScope = new TransactionScope(TransactionScopeAsyncFlowOption.Enabled))
+            using (var transactionScope = new TransactionScope(TransactionScopeAsyncFlowOption.Enabled))
 
 
             try
@@ -119,7 +122,7 @@ namespace fourfit_sistema_gestao.Api.Controllers.Store
                             ValorComDesconto = pagamentoModel.ValorComDesconto,
                             ValorPago = pagamentoModel.ValorPago,
                             Troco = pagamentoModel.Troco,
-                            StatusPagamento = pagamentoModel.StatusPagamento,
+                            StatusPagamento = StatusPagamentosEnum.Pago,
                             DataPagamento = DateTime.Now,
 
                         };
@@ -139,7 +142,7 @@ namespace fourfit_sistema_gestao.Api.Controllers.Store
                             ValorComDesconto = pagamentoModel.ValorComDesconto ?? 0,
                             ValorPago = pagamentoModel.ValorPago ?? 0,
                             Troco = pagamentoModel.Troco ?? 0,
-                            StatusPagamento = pagamentoModel.StatusPagamento,
+                            StatusPagamento = StatusPagamentosEnum.Pendente,
                             DataPagamento = DateTime.MinValue,
 
 
@@ -152,12 +155,8 @@ namespace fourfit_sistema_gestao.Api.Controllers.Store
 
                 }
 
-
-
-
-                //// Confirmar a transação se tudo ocorrer bem
-                //transactionScope.Complete();
-                //return RedirectToAction("ControllerPagamentos", "Register");
+                transactionScope.Complete();
+              
                 return Ok($"Venda cadastrado com sucesso");
             }
             catch (Exception ex)

@@ -45,5 +45,14 @@ namespace fourfit.sistema_gestao.Repositories.Repository.Store
             return null;
 
         }
+        public async Task<decimal> CalcularValorTotal(IEnumerable<VendaItens> itens)
+        {
+            decimal valorTotal = 0;
+            foreach (var item in itens)
+            {
+                valorTotal += item.Produtos.PrecoVenda * item.Quantidade;
+            }
+            return valorTotal;
+        }
     }
 }

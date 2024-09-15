@@ -1,4 +1,5 @@
 ﻿using fourfit.sistema_gestao.Context;
+using fourfit.sistema_gestao.Domain.Entities.Alunos;
 using fourfit.sistema_gestao.Domain.Entities.Profission;
 using fourfit.sistema_gestao.Domain.Interfaces;
 using fourfit.sistema_gestao.Repositories.Repository.Base;
@@ -38,6 +39,20 @@ namespace fourfit.sistema_gestao.Repositories.Repository.Profision
             if (resultado != null)
             {
                 return resultado;
+            }
+            return null;
+        }
+
+        public async Task<EntidadeColaboradores> ObterColaboradorPorUserId(string userId)
+        {
+            var result = await _dataContext.Set<EntidadeColaboradores>()
+                .Include(x => x.User)
+                .Where(x => x.UserId == userId)
+                .FirstOrDefaultAsync();
+
+            if (result != null)
+            {
+                return result;
             }
             return null;
         }

@@ -5,25 +5,25 @@
 namespace fourfit.sistema_gestao.Migrations
 {
     /// <inheritdoc />
-    public partial class Vendastatus : Migration
+    public partial class StatusMensalidade : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.AddColumn<string>(
-                name: "StatusPagamento",
-                table: "Vendas",
-                type: "nvarchar(max)",
+            migrationBuilder.AddColumn<int>(
+                name: "StatusMensalidades",
+                table: "Mensalidades",
+                type: "int",
                 nullable: false,
-                defaultValue: "");
+                defaultValue: 0);
         }
 
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropColumn(
-                name: "StatusPagamento",
-                table: "Vendas");
+                name: "StatusMensalidades",
+                table: "Mensalidades");
         }
     }
 }

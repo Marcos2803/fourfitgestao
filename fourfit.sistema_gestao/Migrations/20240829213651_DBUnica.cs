@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace fourfit.sistema_gestao.Migrations
 {
     /// <inheritdoc />
-    public partial class DbUnica : Migration
+    public partial class DBUnica : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -85,9 +85,7 @@ namespace fourfit.sistema_gestao.Migrations
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    QuantidadeEstoque = table.Column<int>(type: "int", nullable: false),
-                    EstoqueMinimo = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1")
                 },
                 constraints: table =>
                 {
@@ -201,7 +199,7 @@ namespace fourfit.sistema_gestao.Migrations
                     UserId = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     DataCadastro = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Foto = table.Column<byte[]>(type: "varbinary(max)", nullable: true),
-                    Status = table.Column<string>(type: "varchar(10)", nullable: false),
+                    StatusAlunos = table.Column<string>(type: "varchar(10)", nullable: false),
                     Cpf = table.Column<string>(type: "varchar(14)", nullable: false),
                     Celular = table.Column<string>(type: "varchar(14)", nullable: false),
                     Cep = table.Column<string>(type: "varchar(10)", nullable: false),
@@ -378,7 +376,7 @@ namespace fourfit.sistema_gestao.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     UserId = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     DataVenda = table.Column<DateTime>(type: "date", nullable: false),
-                    StatusPagamentos = table.Column<string>(type: "varchar(10)", nullable: false)
+                    StatusPagamento = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -398,10 +396,11 @@ namespace fourfit.sistema_gestao.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     CategoriasId = table.Column<int>(type: "int", nullable: false),
-                    EstoqueId = table.Column<int>(type: "int", nullable: false),
                     NomeProduto = table.Column<string>(type: "varchar(100)", nullable: false),
                     PrecoCusto = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    PrecoVenda = table.Column<decimal>(type: "decimal(18,2)", nullable: false)
+                    PrecoVenda = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    QuantidadeEstoque = table.Column<int>(type: "int", nullable: false),
+                    EstoqueMinimo = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -410,12 +409,6 @@ namespace fourfit.sistema_gestao.Migrations
                         name: "FK_Produtos_Categorias_CategoriasId",
                         column: x => x.CategoriasId,
                         principalTable: "Categorias",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_Produtos_ControleEstoque_EstoqueId",
-                        column: x => x.EstoqueId,
-                        principalTable: "ControleEstoque",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -659,8 +652,8 @@ namespace fourfit.sistema_gestao.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    FormaPagamentoId = table.Column<int>(type: "int", nullable: false),
-                    ContasBancariasId = table.Column<int>(type: "int", nullable: false),
+                    FormaPagamentoId = table.Column<int>(type: "int", nullable: true),
+                    ContasBancariasId = table.Column<int>(type: "int", nullable: true),
                     VendasId = table.Column<int>(type: "int", nullable: false),
                     DataPagamento = table.Column<DateTime>(type: "date", nullable: false),
                     ValorVenda = table.Column<decimal>(type: " decimal(18,2)", nullable: false),
@@ -668,7 +661,7 @@ namespace fourfit.sistema_gestao.Migrations
                     ValorComDesconto = table.Column<decimal>(type: " decimal(18,2)", nullable: false),
                     ValorPago = table.Column<decimal>(type: " decimal(18,2)", nullable: false),
                     Troco = table.Column<decimal>(type: " decimal(18,2)", nullable: false),
-                    StatusPagamentos = table.Column<string>(type: "varchar(10)", nullable: false)
+                    StatusPagamento = table.Column<string>(type: "varchar(10)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -677,14 +670,12 @@ namespace fourfit.sistema_gestao.Migrations
                         name: "FK_Pagamentos_ContasBancarias_ContasBancariasId",
                         column: x => x.ContasBancariasId,
                         principalTable: "ContasBancarias",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                     table.ForeignKey(
                         name: "FK_Pagamentos_FormaPagamento_FormaPagamentoId",
                         column: x => x.FormaPagamentoId,
                         principalTable: "FormaPagamento",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                     table.ForeignKey(
                         name: "FK_Pagamentos_Vendas_VendasId",
                         column: x => x.VendasId,
@@ -1015,11 +1006,6 @@ namespace fourfit.sistema_gestao.Migrations
                 column: "CategoriasId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Produtos_EstoqueId",
-                table: "Produtos",
-                column: "EstoqueId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_Professores_UserId",
                 table: "Professores",
                 column: "UserId");
@@ -1076,6 +1062,9 @@ namespace fourfit.sistema_gestao.Migrations
 
             migrationBuilder.DropTable(
                 name: "Checkins");
+
+            migrationBuilder.DropTable(
+                name: "ControleEstoque");
 
             migrationBuilder.DropTable(
                 name: "Despesas");
@@ -1142,9 +1131,6 @@ namespace fourfit.sistema_gestao.Migrations
 
             migrationBuilder.DropTable(
                 name: "Categorias");
-
-            migrationBuilder.DropTable(
-                name: "ControleEstoque");
 
             migrationBuilder.DropTable(
                 name: "TipoPlano");

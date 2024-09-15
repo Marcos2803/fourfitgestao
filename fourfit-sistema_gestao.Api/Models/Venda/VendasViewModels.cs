@@ -11,7 +11,6 @@ namespace fourfit_sistema_gestao.Api.Models.Venda
         public IEnumerable<VendaItensViewModels> VendaItens { get; set; }
         public IEnumerable<PagamentosViewModels> Pagamentos { get; set; }
         public DateTime DataVenda { get; set; }
-        //public string StatusPagamento { get; set; }
         public StatusPagamentosEnum StatusPagamento { get; set; }
 
     }

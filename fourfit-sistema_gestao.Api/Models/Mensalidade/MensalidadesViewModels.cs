@@ -1,5 +1,6 @@
 ﻿using fourfit.sistema_gestao.Domain.Entities.Alunos;
 using fourfit.sistema_gestao.Domain.Entities.Financas;
+using fourfit.sistema_gestao.Domain.Enumerables;
 
 namespace fourfit_sistema_gestao.Api.Models.Mensalidade
 {
@@ -15,6 +16,8 @@ namespace fourfit_sistema_gestao.Api.Models.Mensalidade
         public string MesReferente { get; set; }
         public DateTime DataInicialPlano { get; set; }
         public DateTime DataPagamento { get; set; }
-        public string StatusPagamentos { get; set; }
+
+        public StatusMensalidadesEnum StatusMensalidades { get; set; }
+        public StatusPagamentosEnum StatusPagamentos { get; set; }
     }
 }

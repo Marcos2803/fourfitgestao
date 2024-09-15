@@ -1,5 +1,6 @@
 ﻿using fourfit.sistema_gestao.Context;
 using fourfit.sistema_gestao.Domain.Entities.Alunos;
+using fourfit.sistema_gestao.Domain.Enumerables;
 using fourfit.sistema_gestao.Domain.Interfaces;
 using fourfit.sistema_gestao.Repositories.Repository.Base;
 using Microsoft.EntityFrameworkCore;
@@ -47,6 +48,22 @@ namespace fourfit.sistema_gestao.Repositories.Repository.Alunos
             return null;
 
         }
+
+
+        public async Task<Mensalidades> PossuiMensalidadeAtiva(int alunoId)
+        {
+            var result = await _dataContext.Set<Mensalidades>()
+                .Include(x => x.Alunos)
+                .Where(x => x.AlunosId == alunoId && x.StatusMensalidades == StatusMensalidadesEnum.Ativo)
+                .FirstOrDefaultAsync();
+
+            if (result != null)
+            {
+                return result;
+            }
+            return null;
+        }
+
     }
 
 }
