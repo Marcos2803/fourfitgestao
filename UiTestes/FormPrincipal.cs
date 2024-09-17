@@ -6,5 +6,11 @@ namespace UiTestes
         {
             InitializeComponent();
         }
+
+        private void btnAlunos_Click(object sender, EventArgs e)
+        {
+            FormAlunos formAlunos = new FormAlunos();
+            formAlunos.ShowDialog();
+        }
     }
 }
