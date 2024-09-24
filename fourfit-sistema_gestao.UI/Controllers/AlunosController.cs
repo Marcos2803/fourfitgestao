@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace fourfit_sistema_gestao.UI.Controllers
 {
-    [Authorize]
+    //[Authorize]
     public class AlunosController : Controller
     {
 

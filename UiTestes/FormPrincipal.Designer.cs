@@ -30,6 +30,7 @@
         {
             pnlNavBar = new Panel();
             pnlSidbar = new Panel();
+            cbxAlunos = new ComboBox();
             btnAlunos = new FontAwesome.Sharp.IconButton();
             pnlSidbar.SuspendLayout();
             SuspendLayout();
@@ -46,12 +47,21 @@
             // pnlSidbar
             // 
             pnlSidbar.BackColor = Color.FromArgb(0, 64, 64);
+            pnlSidbar.Controls.Add(cbxAlunos);
             pnlSidbar.Controls.Add(btnAlunos);
             pnlSidbar.Dock = DockStyle.Left;
             pnlSidbar.Location = new Point(0, 50);
             pnlSidbar.Name = "pnlSidbar";
             pnlSidbar.Size = new Size(165, 400);
             pnlSidbar.TabIndex = 1;
+            // 
+            // cbxAlunos
+            // 
+            cbxAlunos.FormattingEnabled = true;
+            cbxAlunos.Location = new Point(12, 85);
+            cbxAlunos.Name = "cbxAlunos";
+            cbxAlunos.Size = new Size(150, 23);
+            cbxAlunos.TabIndex = 2;
             // 
             // btnAlunos
             // 
@@ -64,9 +74,9 @@
             btnAlunos.IconFont = FontAwesome.Sharp.IconFont.Auto;
             btnAlunos.IconSize = 30;
             btnAlunos.ImageAlign = ContentAlignment.MiddleLeft;
-            btnAlunos.Location = new Point(12, 23);
+            btnAlunos.Location = new Point(8, 23);
             btnAlunos.Name = "btnAlunos";
-            btnAlunos.Size = new Size(101, 42);
+            btnAlunos.Size = new Size(150, 42);
             btnAlunos.TabIndex = 1;
             btnAlunos.Text = "Alunos";
             btnAlunos.TextAlign = ContentAlignment.MiddleRight;
@@ -85,6 +95,7 @@
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Home";
             WindowState = FormWindowState.Maximized;
+            Load += FormPrincipal_Load;
             pnlSidbar.ResumeLayout(false);
             pnlSidbar.PerformLayout();
             ResumeLayout(false);
@@ -95,5 +106,6 @@
         private Panel pnlNavBar;
         private Panel pnlSidbar;
         private FontAwesome.Sharp.IconButton btnAlunos;
+        private ComboBox cbxAlunos;
     }
 }

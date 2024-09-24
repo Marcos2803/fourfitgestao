@@ -96,6 +96,17 @@ builder.Services.AddSwaggerGen(config =>
     });
 });
 
+builder.Services.AddCors(option =>
+{
+    option.AddPolicy("AllowSpecificOrigin",
+             builder => builder.WithOrigins("http://localhost:5119/")
+              .AllowAnyMethod()
+              .AllowAnyHeader());
+
+
+
+});
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -108,6 +119,9 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 app.UseAuthentication();
 app.UseAuthorization();
+
+
+app.UseCors("AllowSpecificOrigin");
 
 app.MapControllers();
 

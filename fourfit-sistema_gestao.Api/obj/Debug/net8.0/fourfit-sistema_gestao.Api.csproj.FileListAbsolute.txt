@@ -1,10 +1,3 @@
-C:\projetos\fourfit-sistema_gestao\fourfit-sistema_gestao.Api\obj\Debug\net8.0\fourfit-sistema_gestao.Api.csproj.AssemblyReference.cache
-C:\projetos\fourfit-sistema_gestao\fourfit-sistema_gestao.Api\obj\Debug\net8.0\fourfit-sistema_gestao.Api.GeneratedMSBuildEditorConfig.editorconfig
-C:\projetos\fourfit-sistema_gestao\fourfit-sistema_gestao.Api\obj\Debug\net8.0\fourfit-sistema_gestao.Api.AssemblyInfoInputs.cache
-C:\projetos\fourfit-sistema_gestao\fourfit-sistema_gestao.Api\obj\Debug\net8.0\fourfit-sistema_gestao.Api.AssemblyInfo.cs
-C:\projetos\fourfit-sistema_gestao\fourfit-sistema_gestao.Api\obj\Debug\net8.0\fourfit-sistema_gestao.Api.csproj.CoreCompileInputs.cache
-C:\projetos\fourfit-sistema_gestao\fourfit-sistema_gestao.Api\obj\Debug\net8.0\fourfit-sistema_gestao.Api.MvcApplicationPartsAssemblyInfo.cache
-C:\projetos\fourfit-sistema_gestao\fourfit-sistema_gestao.Api\obj\Debug\net8.0\fourfit-sistema_gestao.Api.sourcelink.json
 C:\projetos\fourfit-sistema_gestao\fourfit-sistema_gestao.Api\bin\Debug\net8.0\fourfit-sistema_gestao.UI.deps.json
 C:\projetos\fourfit-sistema_gestao\fourfit-sistema_gestao.Api\bin\Debug\net8.0\fourfit-sistema_gestao.UI.runtimeconfig.json
 C:\projetos\fourfit-sistema_gestao\fourfit-sistema_gestao.Api\bin\Debug\net8.0\metadata\icon-families.json
@@ -270,6 +263,14 @@ C:\projetos\fourfit-sistema_gestao\fourfit-sistema_gestao.Api\bin\Debug\net8.0\f
 C:\projetos\fourfit-sistema_gestao\fourfit-sistema_gestao.Api\bin\Debug\net8.0\fourfit.sistema_gestao.Domain.pdb
 C:\projetos\fourfit-sistema_gestao\fourfit-sistema_gestao.Api\bin\Debug\net8.0\fourfit.sistema_gestao.Repositories.pdb
 C:\projetos\fourfit-sistema_gestao\fourfit-sistema_gestao.Api\bin\Debug\net8.0\fourfit.sistema_gestao.pdb
+C:\projetos\fourfit-sistema_gestao\fourfit-sistema_gestao.Api\obj\Debug\net8.0\fourfit-sistema_gestao.Api.csproj.AssemblyReference.cache
+C:\projetos\fourfit-sistema_gestao\fourfit-sistema_gestao.Api\obj\Debug\net8.0\fourfit-sistema_gestao.Api.GeneratedMSBuildEditorConfig.editorconfig
+C:\projetos\fourfit-sistema_gestao\fourfit-sistema_gestao.Api\obj\Debug\net8.0\fourfit-sistema_gestao.Api.AssemblyInfoInputs.cache
+C:\projetos\fourfit-sistema_gestao\fourfit-sistema_gestao.Api\obj\Debug\net8.0\fourfit-sistema_gestao.Api.AssemblyInfo.cs
+C:\projetos\fourfit-sistema_gestao\fourfit-sistema_gestao.Api\obj\Debug\net8.0\fourfit-sistema_gestao.Api.csproj.CoreCompileInputs.cache
+C:\projetos\fourfit-sistema_gestao\fourfit-sistema_gestao.Api\obj\Debug\net8.0\fourfit-sistema_gestao.Api.MvcApplicationPartsAssemblyInfo.cs
+C:\projetos\fourfit-sistema_gestao\fourfit-sistema_gestao.Api\obj\Debug\net8.0\fourfit-sistema_gestao.Api.MvcApplicationPartsAssemblyInfo.cache
+C:\projetos\fourfit-sistema_gestao\fourfit-sistema_gestao.Api\obj\Debug\net8.0\fourfit-sistema_gestao.Api.sourcelink.json
 C:\projetos\fourfit-sistema_gestao\fourfit-sistema_gestao.Api\obj\Debug\net8.0\staticwebassets.build.json
 C:\projetos\fourfit-sistema_gestao\fourfit-sistema_gestao.Api\obj\Debug\net8.0\staticwebassets.development.json
 C:\projetos\fourfit-sistema_gestao\fourfit-sistema_gestao.Api\obj\Debug\net8.0\staticwebassets\msbuild.fourfit-sistema_gestao.Api.Microsoft.AspNetCore.StaticWebAssets.props
@@ -284,4 +285,3 @@ C:\projetos\fourfit-sistema_gestao\fourfit-sistema_gestao.Api\obj\Debug\net8.0\r
 C:\projetos\fourfit-sistema_gestao\fourfit-sistema_gestao.Api\obj\Debug\net8.0\fourfit-sistema_gestao.Api.pdb
 C:\projetos\fourfit-sistema_gestao\fourfit-sistema_gestao.Api\obj\Debug\net8.0\fourfit-sistema_gestao.Api.genruntimeconfig.cache
 C:\projetos\fourfit-sistema_gestao\fourfit-sistema_gestao.Api\obj\Debug\net8.0\ref\fourfit-sistema_gestao.Api.dll
-C:\projetos\fourfit-sistema_gestao\fourfit-sistema_gestao.Api\obj\Debug\net8.0\fourfit-sistema_gestao.Api.MvcApplicationPartsAssemblyInfo.cs

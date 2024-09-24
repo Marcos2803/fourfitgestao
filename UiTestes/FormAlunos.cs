@@ -1,15 +1,5 @@
-﻿using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Net;
-using System.Security.Policy;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+﻿using System.Text;
+using System.Text.Json;
 using UiTestes.DTO;
 
 namespace UiTestes
@@ -19,36 +9,96 @@ namespace UiTestes
         public FormAlunos()
         {
             InitializeComponent();
-            CarregarComboBoxAlunos();
+            CarregarUsuarios();
         }
 
-        public async Task CarregarComboBoxAlunos()
+
+
+
+        public async Task CarregarUsuarios()
+        {
+            try
+            {
+                var handler = new HttpClientHandler()
+                {
+                    ServerCertificateCustomValidationCallback = (sender, cert, chain, sslPolicyErrors) => { return true; }
+                };
+                using (HttpClient client = new HttpClient())
+                {
+                    client.BaseAddress = new Uri("https://localhost:7069");
+                    var endpoint = "/api/Alunos/BuscarUsuarios";
+                    using (var response = await client.GetAsync(endpoint))
+                    {
+                        if (response.IsSuccessStatusCode)
+                        {
+                            var content = await response.Content.ReadAsStringAsync();
+
+                            var usuarios = JsonSerializer.Deserialize<List<UserDTO>>(content);
+                            //dataGridUsuarios.AutoGenerateColumns = false;
+                            //dataGridUsuarios.DataSource = usuarios.ToList();
+
+                            cbxUsuarios.DataSource = usuarios.ToList(); ;
+                            cbxUsuarios.ValueMember = "id";
+                            cbxUsuarios.DisplayMember = "primeiroNome";
+                            cbxUsuarios.Text = "--Escolha--";
+
+                        }
+                        else
+                        {
+                            throw new Exception("Não foi possível obter os usuários: " + response.StatusCode);
+                        }
+                    }
+
+                }
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }
+        }
+
+        private void grpCadastroAlunos_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private async void btnCadastrar_Click(object sender, EventArgs e)
         {
             using (HttpClient client = new HttpClient())
             {
-                // Definindo a BaseAddress uma vez para todas as requisições
-                client.BaseAddress = new Uri("http://localhost:7069");
-
-                // Caminho da API (relativo)
-                var endpoint = "/api/alunos/BuscarAlunos";
-                HttpResponseMessage response = await client.GetAsync(endpoint);
-
-                if (response.IsSuccessStatusCode)
+                var endpoint = "/api/Auth/Cadastrar";
+                client.BaseAddress = new Uri($"http://localhost:5187");
+                var url = $"http://localhost:5187{endpoint}";
+                var user = new UserDTO
                 {
-                    // Lendo o conteúdo da resposta
-                    var responseContent = await response.Content.ReadAsStringAsync();
+                    primeiroNome = txtCpf.Text,
+                    //email = txtEmail.Text,
+                    //userName = txtEmail.Text,
+                    //emailConfirmed = true,
 
-                    // Desserializando o JSON para uma lista de AlunosDTO
-                    var alunos = JsonConvert.DeserializeObject<List<AlunosDTO>>(responseContent);
-
-                    // Processar a lista de alunos conforme necessário...
-                }
-                else
+                };
+                var jsonContent = JsonSerializer.Serialize(user);
+                var contentString = new StringContent(jsonContent, Encoding.UTF8, "application/json");
+                using (var response = await client.PostAsync(endpoint, contentString))
                 {
-                    // Tratar erro
-                    MessageBox.Show($"Erro: {response.StatusCode}");
+                    if (response.IsSuccessStatusCode)
+                    {
+                        MessageBox.Show("Usuário criado com sucesso!");
+                    }
+                    else
+                    {
+                        throw new Exception("Erro ao criar o usuário: " + response.StatusCode);
+                    }
                 }
+
             }
+        }
+
+        private void txtEndereco_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
+
