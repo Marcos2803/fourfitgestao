@@ -65,6 +65,22 @@ namespace fourfit.sistema_gestao.Repositories.Repository.Alunos
             return null;
 
         }
+
+        public async Task<IEnumerable<EntidadeAlunos>> ObterAlunosParaMensalidade()
+
+        {
+
+            var resultado = await _dataContext.Set<EntidadeAlunos>()
+                .Include(x => x.User)
+                .ToListAsync();
+
+            if (resultado != null)
+            {
+                return resultado;
+            }
+
+            return null;
+        }
         //public async Task<bool> ObterAlunoPorUserId(string userId)
         //{
         //    return await _dataContext.Set<EntidadeAlunos>().AnyAsync(a => a.UserId == userId);

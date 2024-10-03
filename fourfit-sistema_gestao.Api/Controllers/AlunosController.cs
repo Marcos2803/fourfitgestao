@@ -21,7 +21,7 @@ namespace fourfit_sistema_gestao.Api.Controllers
         }
         [HttpPost]
         [Route("Register")]
-        [Authorize]
+        //[Authorize]
         [SwaggerResponse(statusCode: 200, description: "Aluno cadastrado com sucesso", Type = typeof(AlunosViewModels))]
         [SwaggerResponse(statusCode: 400, description: "Campos obrigatórios", Type = typeof(ValidarCampos))]
         [SwaggerResponse(statusCode: 500, description: "Erro internet", Type = typeof(ErrosGenericos))]
@@ -182,6 +182,22 @@ namespace fourfit_sistema_gestao.Api.Controllers
                 return Ok(resultado);
             }
             return NotFound();
+        }
+
+        [HttpGet("BuscarTodosAlunos")]
+        public async Task<IActionResult> BuscarTodosAlunos()
+        {
+
+            var resultado = await _unitOfWork.AlunosServices.ObterAlunosParaMensalidade();
+
+            if (resultado != null)
+            {
+                return Ok(resultado.ToList());
+            }
+            return NotFound();
+
+            
+
         }
 
     }

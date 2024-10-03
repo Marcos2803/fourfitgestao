@@ -52,7 +52,7 @@
             pnlSidbar.Dock = DockStyle.Left;
             pnlSidbar.Location = new Point(0, 50);
             pnlSidbar.Name = "pnlSidbar";
-            pnlSidbar.Size = new Size(165, 400);
+            pnlSidbar.Size = new Size(207, 400);
             pnlSidbar.TabIndex = 1;
             // 
             // cbxAlunos
@@ -69,16 +69,16 @@
             btnAlunos.FlatStyle = FlatStyle.Flat;
             btnAlunos.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btnAlunos.ForeColor = Color.White;
-            btnAlunos.IconChar = FontAwesome.Sharp.IconChar.Save;
+            btnAlunos.IconChar = FontAwesome.Sharp.IconChar.Schlix;
             btnAlunos.IconColor = Color.White;
             btnAlunos.IconFont = FontAwesome.Sharp.IconFont.Auto;
             btnAlunos.IconSize = 30;
             btnAlunos.ImageAlign = ContentAlignment.MiddleLeft;
             btnAlunos.Location = new Point(8, 23);
             btnAlunos.Name = "btnAlunos";
-            btnAlunos.Size = new Size(150, 42);
+            btnAlunos.Size = new Size(179, 42);
             btnAlunos.TabIndex = 1;
-            btnAlunos.Text = "Alunos";
+            btnAlunos.Text = "Gerenciar Alunos";
             btnAlunos.TextAlign = ContentAlignment.MiddleRight;
             btnAlunos.UseVisualStyleBackColor = true;
             btnAlunos.Click += btnAlunos_Click;

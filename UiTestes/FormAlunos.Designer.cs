@@ -28,7 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             grpCadastroAlunos = new GroupBox();
+            lblUf = new Label();
+            txtUf = new TextBox();
             btnCadastrar = new Button();
             lblUsuarios = new Label();
             cbxUsuarios = new ComboBox();
@@ -48,11 +51,14 @@
             lblCelular = new Label();
             txtCpf = new TextBox();
             lblCpf = new Label();
+            timer1 = new System.Windows.Forms.Timer(components);
             grpCadastroAlunos.SuspendLayout();
             SuspendLayout();
             // 
             // grpCadastroAlunos
             // 
+            grpCadastroAlunos.Controls.Add(lblUf);
+            grpCadastroAlunos.Controls.Add(txtUf);
             grpCadastroAlunos.Controls.Add(btnCadastrar);
             grpCadastroAlunos.Controls.Add(lblUsuarios);
             grpCadastroAlunos.Controls.Add(cbxUsuarios);
@@ -81,6 +87,24 @@
             grpCadastroAlunos.Text = "Cadastro de Alunos";
             grpCadastroAlunos.Enter += grpCadastroAlunos_Enter;
             // 
+            // lblUf
+            // 
+            lblUf.AutoSize = true;
+            lblUf.Location = new Point(683, 173);
+            lblUf.Name = "lblUf";
+            lblUf.Size = new Size(19, 15);
+            lblUf.TabIndex = 20;
+            lblUf.Text = "Uf";
+            // 
+            // txtUf
+            // 
+            txtUf.CharacterCasing = CharacterCasing.Lower;
+            txtUf.Location = new Point(717, 169);
+            txtUf.Name = "txtUf";
+            txtUf.Size = new Size(162, 23);
+            txtUf.TabIndex = 19;
+            txtUf.TextChanged += textUf_TextChanged;
+            // 
             // btnCadastrar
             // 
             btnCadastrar.Location = new Point(72, 235);
@@ -89,6 +113,8 @@
             btnCadastrar.TabIndex = 18;
             btnCadastrar.Text = "Cadastrar";
             btnCadastrar.UseVisualStyleBackColor = true;
+            btnCadastrar.Click += btnCadastrar_Click;
+            btnCadastrar.MouseCaptureChanged += btnCadastrar_Click;
             // 
             // lblUsuarios
             // 
@@ -170,7 +196,7 @@
             // txtBairro
             // 
             txtBairro.CharacterCasing = CharacterCasing.Lower;
-            txtBairro.Location = new Point(236, 114);
+            txtBairro.Location = new Point(236, 116);
             txtBairro.Name = "txtBairro";
             txtBairro.Size = new Size(326, 23);
             txtBairro.TabIndex = 8;
@@ -280,5 +306,10 @@
         private Button btnCadastrar;
         private Label lblCep;
         private TextBox txtCep;
+        private System.Windows.Forms.Timer timer1;
+        private Label label1;
+        private DateTimePicker dateTimePicker1;
+        private TextBox textBox1;
+        private TextBox txtUf;
     }
 }

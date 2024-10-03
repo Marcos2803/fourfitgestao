@@ -1,8 +1,6 @@
 ﻿using fourfit.sistema_gestao.Domain.Entities.Alunos;
 using fourfit.sistema_gestao.Domain.Interfaces;
-using fourfit_sistema_gestao.UI.Models.Account;
 using fourfit_sistema_gestao.UI.Models.Alunos;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
@@ -58,7 +56,7 @@ namespace fourfit_sistema_gestao.UI.Controllers
                 var model = new EntidadeAlunos
                 {
                     UserId = alunosViewModel.UserId,
-                    Cpf = Convert.ToInt64(CpfRemoverMascara),
+                    //Cpf = Convert.ToInt64(CpfRemoverMascara),
                     Foto = alunosViewModel.Foto,
                     Cep = alunosViewModel.Cep,
                     Endereco = alunosViewModel.Endereco,

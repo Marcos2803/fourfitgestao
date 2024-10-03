@@ -2,7 +2,7 @@
 {
     public class GenericsViewModels
     {
-        public long Cpf { get; set; }
+        public string Cpf { get; set; }
         public string? Celular { get; set; }
         public string? Cep { get; set; }
         public string? Endereco { get; set; }

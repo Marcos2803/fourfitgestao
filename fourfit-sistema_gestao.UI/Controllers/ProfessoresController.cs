@@ -45,7 +45,7 @@ namespace fourfit_sistema_gestao.UI.Controllers
                 var model = new EntidadeProfessores
                 {
                    UserId = professoresViewModel.UserId,
-                   Cpf = Convert.ToInt64(CpfRemoverMascara),
+                   //Cpf = Convert.ToInt64(CpfRemoverMascara),
                     Cref = professoresViewModel.Cref,
                    Especialidade = professoresViewModel.Especialidade,
                    Foto = professoresViewModel.Foto,

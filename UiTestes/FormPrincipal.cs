@@ -14,7 +14,7 @@ namespace UiTestes
 
         private async void btnAlunos_Click(object sender, EventArgs e)
         {
-            FormAlunos formAlunos = new FormAlunos();
+            FormGerenciarAlunos formAlunos = new FormGerenciarAlunos();
             formAlunos.ShowDialog();
         }
 
@@ -42,7 +42,7 @@ namespace UiTestes
                             //dataGridUsuarios.DataSource = usuarios.ToList();
                             var usuariosComNomeCompleto = usuarios.Select(u => new
                             {
-                                u.Id,
+                                u.id,
                                 NomeCompleto = $"{u.primeiroNome} {u.sobreNome}"
                             }).ToList();
 

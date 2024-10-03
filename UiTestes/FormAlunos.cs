@@ -12,9 +12,6 @@ namespace UiTestes
             CarregarUsuarios();
         }
 
-
-
-
         public async Task CarregarUsuarios()
         {
             try
@@ -34,13 +31,18 @@ namespace UiTestes
                             var content = await response.Content.ReadAsStringAsync();
 
                             var usuarios = JsonSerializer.Deserialize<List<UserDTO>>(content);
-                            //dataGridUsuarios.AutoGenerateColumns = false;
-                            //dataGridUsuarios.DataSource = usuarios.ToList();
 
-                            cbxUsuarios.DataSource = usuarios.ToList(); ;
+                            var usuariosComNomeCompleto = usuarios.Select(u => new
+                            {
+                                u.id,
+                                NomeCompleto = $"{u.primeiroNome} {u.sobreNome}"
+                            }).ToList();
+
+                            cbxUsuarios.DataSource = usuariosComNomeCompleto;
                             cbxUsuarios.ValueMember = "id";
-                            cbxUsuarios.DisplayMember = "primeiroNome";
+                            cbxUsuarios.DisplayMember = "NomeCompleto";
                             cbxUsuarios.Text = "--Escolha--";
+
 
                         }
                         else
@@ -67,36 +69,73 @@ namespace UiTestes
         {
             using (HttpClient client = new HttpClient())
             {
-                var endpoint = "/api/Auth/Cadastrar";
-                client.BaseAddress = new Uri($"http://localhost:5187");
-                var url = $"http://localhost:5187{endpoint}";
-                var user = new UserDTO
-                {
-                    primeiroNome = txtCpf.Text,
-                    //email = txtEmail.Text,
-                    //userName = txtEmail.Text,
-                    //emailConfirmed = true,
+                var endpoint = "/api/Alunos/Register";
+                client.BaseAddress = new Uri($"https://localhost:7069");
+                var url = $"https://localhost:7069{endpoint}";
 
+                var usuarioSelecionado = cbxUsuarios.SelectedItem as UserDTO;
+
+                if (usuarioSelecionado == null)
+                {
+                    MessageBox.Show("Usuário não encontrado");
+                    return;
+                }
+                var aluno = new CadastroAlunosDTO
+                {
+                    UserId = usuarioSelecionado.id,
+                    Cpf = txtCpf.Text,
+                    Celular = txtCelular.Text,
+                    Cep = txtCep.Text,
+                    Endereco = txtEndereco.Text,
+                    Numero = int.Parse(txtNumero.Text),
+                    Bairro = txtBairro.Text,
+                    Cidade = txtCidade.Text,
+                    Estado = txtUf.Text,
+                    Foto = null,
+                    DataNacimento = txtDataNasc.Text
                 };
-                var jsonContent = JsonSerializer.Serialize(user);
+
+                var jsonContent = JsonSerializer.Serialize(aluno);
                 var contentString = new StringContent(jsonContent, Encoding.UTF8, "application/json");
                 using (var response = await client.PostAsync(endpoint, contentString))
                 {
                     if (response.IsSuccessStatusCode)
                     {
-                        MessageBox.Show("Usuário criado com sucesso!");
+                        MessageBox.Show("Aluno cadastrado com sucesso!");
+                        LimparCampos();
                     }
                     else
                     {
-                        throw new Exception("Erro ao criar o usuário: " + response.StatusCode);
+                        throw new Exception("Erro ao cadastra o aluno: " + response.StatusCode);
                     }
                 }
+
 
             }
         }
 
+
         private void txtEndereco_TextChanged(object sender, EventArgs e)
         {
+
+        }
+
+        private void textUf_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        public void LimparCampos()
+        {
+            txtCpf.Text = string.Empty;
+            txtCelular.Text = string.Empty;
+            txtCep.Text = string.Empty;
+            txtEndereco.Text = string.Empty;
+            txtNumero.Text = string.Empty;
+            txtBairro.Text = string.Empty;
+            txtCidade.Text = string.Empty;
+            txtUf.Text = string.Empty;
+            txtDataNasc.Text = string.Empty;
 
         }
     }
