@@ -2,7 +2,6 @@
 using fourfit.sistema_gestao.Domain.Enumerables;
 using fourfit.sistema_gestao.Domain.Interfaces;
 using fourfit_sistema_gestao.Api.Models.Alunos;
-using Microsoft.AspNetCore.Authorization;
 using fourfit_sistema_gestao.Api.Validation;
 using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.Annotations;
@@ -184,11 +183,11 @@ namespace fourfit_sistema_gestao.Api.Controllers
             return NotFound();
         }
 
-        [HttpGet("BuscarTodosAlunos")]
-        public async Task<IActionResult> BuscarTodosAlunos()
+        [HttpGet("BuscarAlunosAtivos")]
+        public async Task<IActionResult> BuscarAlunosAtivos()
         {
 
-            var resultado = await _unitOfWork.AlunosServices.ObterAlunosParaMensalidade();
+            var resultado = await _unitOfWork.AlunosServices.ObterAlunosAtivos();
 
             if (resultado != null)
             {

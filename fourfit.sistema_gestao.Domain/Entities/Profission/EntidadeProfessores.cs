@@ -12,14 +12,14 @@ namespace fourfit.sistema_gestao.Domain.Entities.Profission
     {
         public int Id { get; set; }
         public string? UserId { get; set; }
-        public User User { get; set; }
+        public User? User { get; set; }
         public int? Cref { get; set; }
         public string? Especialidade { get; set; }
-        public string Status { get; set; }
+        public string? Status { get; set; }
         public byte[]? Foto { get; set; }
         public DateTime DataCadastro { get; set; }
 
-        public ICollection<Horarios> Horarios { get; set; }
+        public ICollection<Horarios>? Horarios { get; set; }
 
 
     }

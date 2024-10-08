@@ -7,6 +7,8 @@ namespace fourfit.sistema_gestao.Domain.Interfaces
     {
         Task<User> ObterPorUserId(string UserId);
         Task<IEnumerable<User>> ObterUsuariosComEmailConfirmado();
+        Task<IEnumerable<User>> ObterUsuariosMensalidades();
+
 
     }
 }

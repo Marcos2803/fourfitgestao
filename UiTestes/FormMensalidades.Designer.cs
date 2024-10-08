@@ -65,6 +65,7 @@
             cbxAlunos.Name = "cbxAlunos";
             cbxAlunos.Size = new Size(159, 23);
             cbxAlunos.TabIndex = 17;
+            cbxAlunos.SelectedIndexChanged += cbxAlunos_SelectedIndexChanged;
             // 
             // lblAlunos
             // 
@@ -211,6 +212,7 @@
             btnCadastrar.TabIndex = 34;
             btnCadastrar.Text = "Cadastrar";
             btnCadastrar.UseVisualStyleBackColor = true;
+            btnCadastrar.Click += FormMensalidades_Load;
             // 
             // textBox2
             // 
@@ -284,5 +286,7 @@
         private Button btnCadastrar;
         private TextBox textBox2;
         private TextBox textBox3;
+        private Label lblUsuarios;
+        private ComboBox cbxUsuarios;
     }
 }

@@ -126,5 +126,16 @@ namespace fourfit_sistema_gestao.Api.Controllers
                 return StatusCode(500, "Erro interno: " + ex.Message);
             }
         }
+
+        [HttpGet("BuscarAlunosMensalidades")]
+        public async Task<IActionResult> BuscarUsuariosMensalidades()
+        {
+            var resultado = await _unitOfWork.UserServices.ObterUsuariosMensalidades();
+            if (resultado != null)
+            {
+                return Ok(resultado);
+            }
+            return NotFound();
+        }
     }
 }

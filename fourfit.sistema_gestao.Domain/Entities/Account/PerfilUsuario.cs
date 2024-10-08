@@ -2,7 +2,7 @@
 {
     public class PerfilUsuario
     {
-        public User Usuario { get; set;} 
-        public Perfil Perfil { get;set;}
+        public User? Usuario { get; set;} 
+        public Perfil? Perfil { get;set;}
     }
 }

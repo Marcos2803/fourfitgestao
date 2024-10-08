@@ -14,7 +14,9 @@ namespace fourfit.sistema_gestao.Domain.Interfaces
 
         Task<EntidadeAlunos> ObterAlunosUsuariosPorId(int Id);
 
-        Task<IEnumerable<EntidadeAlunos>> ObterAlunosParaMensalidade();
+        Task<IEnumerable<EntidadeAlunos>> ObterAlunosPendentes();
+
+        Task<IEnumerable<EntidadeAlunos>> ObterAlunosAtivos();
 
     }
 

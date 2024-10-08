@@ -1,6 +1,7 @@
 ﻿using fourfit.sistema_gestao.Context;
 using fourfit.sistema_gestao.Domain.Entities.Account;
 using fourfit.sistema_gestao.Domain.Entities.Alunos;
+using fourfit.sistema_gestao.Domain.Enumerables;
 using fourfit.sistema_gestao.Domain.Interfaces;
 using fourfit.sistema_gestao.Repositories.Repository.Base;
 using Microsoft.EntityFrameworkCore;
@@ -26,5 +27,26 @@ namespace fourfit.sistema_gestao.Repositories.Repository.Account
             return await _dataContext.Usuarios.Where(x => x.EmailConfirmed).ToListAsync();
         }
 
+        //public async Task<IEnumerable<EntidadeAlunos>> ObterUsuariosMensalidades()
+
+        //{
+
+        //    var resultado = await _dataContext.Set<User>()
+        //        .Include(x => x.Alunos)
+        //        //.Where(x => x.StatusAlunos == StatusAlunosEnum.Ativo)
+        //        .ToListAsync();
+
+        //    if (resultado != null)
+        //    {
+        //        return resultado;
+        //    }
+
+        //    return null;
+        //}
+
+        Task<IEnumerable<User>> IUserServices.ObterUsuariosMensalidades()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

@@ -11,6 +11,6 @@ namespace fourfit.sistema_gestao.Domain.Entities.Alunos
         public  Exercicios Exercicios { get; set; }
         public decimal PesoPR { get; set; }
         public DateTime DataPR  { get; set; }
-        public string Observacao { get; set; }
+        public string? Observacao { get; set; }
     }
 }

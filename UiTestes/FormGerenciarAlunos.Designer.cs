@@ -102,6 +102,7 @@
             dataGridView1.Name = "dataGridView1";
             dataGridView1.Size = new Size(893, 270);
             dataGridView1.TabIndex = 0;
+            dataGridView1.CellContentClick += dataGridView1_CellContentClick;
             // 
             // Id
             // 
@@ -157,5 +158,6 @@
         private DataGridViewTextBoxColumn Cpf;
         private DataGridViewTextBoxColumn PrimeiroNome;
         private DataGridViewTextBoxColumn Celular;
+ 
     }
 }

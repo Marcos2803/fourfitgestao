@@ -1,6 +1,6 @@
 ﻿
 
-using fourfit.sistema_gestao.Domain.Enumerables;
+//using fourfit.sistema_gestao.Domain.Enumerables;
 
 namespace UiTestes.DTO
 {
@@ -8,7 +8,7 @@ namespace UiTestes.DTO
     {
         public int Id { get; set; }
         public string? UserId { get; set; }
-        public StatusAlunosEnum StatusAlunos { get; set; }
+        //public StatusAlunosEnum StatusAlunos { get; set; }
         public byte[]? Foto { get; set; }
 
     }

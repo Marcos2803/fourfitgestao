@@ -30,7 +30,7 @@
         {
             pnlNavBar = new Panel();
             pnlSidbar = new Panel();
-            cbxAlunos = new ComboBox();
+            btnMensalidades = new FontAwesome.Sharp.IconButton();
             btnAlunos = new FontAwesome.Sharp.IconButton();
             pnlSidbar.SuspendLayout();
             SuspendLayout();
@@ -47,7 +47,7 @@
             // pnlSidbar
             // 
             pnlSidbar.BackColor = Color.FromArgb(0, 64, 64);
-            pnlSidbar.Controls.Add(cbxAlunos);
+            pnlSidbar.Controls.Add(btnMensalidades);
             pnlSidbar.Controls.Add(btnAlunos);
             pnlSidbar.Dock = DockStyle.Left;
             pnlSidbar.Location = new Point(0, 50);
@@ -55,13 +55,25 @@
             pnlSidbar.Size = new Size(207, 400);
             pnlSidbar.TabIndex = 1;
             // 
-            // cbxAlunos
+            // btnMensalidades
             // 
-            cbxAlunos.FormattingEnabled = true;
-            cbxAlunos.Location = new Point(12, 85);
-            cbxAlunos.Name = "cbxAlunos";
-            cbxAlunos.Size = new Size(150, 23);
-            cbxAlunos.TabIndex = 2;
+            btnMensalidades.AutoSize = true;
+            btnMensalidades.FlatStyle = FlatStyle.Flat;
+            btnMensalidades.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnMensalidades.ForeColor = Color.White;
+            btnMensalidades.IconChar = FontAwesome.Sharp.IconChar.Schlix;
+            btnMensalidades.IconColor = Color.White;
+            btnMensalidades.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            btnMensalidades.IconSize = 30;
+            btnMensalidades.ImageAlign = ContentAlignment.MiddleLeft;
+            btnMensalidades.Location = new Point(8, 100);
+            btnMensalidades.Name = "btnMensalidades";
+            btnMensalidades.Size = new Size(188, 42);
+            btnMensalidades.TabIndex = 2;
+            btnMensalidades.Text = "Gerenciar Mensalidades";
+            btnMensalidades.TextAlign = ContentAlignment.MiddleRight;
+            btnMensalidades.UseVisualStyleBackColor = true;
+            btnMensalidades.Click += btnMensalidades_Click;
             // 
             // btnAlunos
             // 
@@ -106,6 +118,6 @@
         private Panel pnlNavBar;
         private Panel pnlSidbar;
         private FontAwesome.Sharp.IconButton btnAlunos;
-        private ComboBox cbxAlunos;
+        private FontAwesome.Sharp.IconButton btnMensalidades;
     }
 }
